@@ -132,8 +132,6 @@ public class View extends JFrame {
         sliderArValt.setPreferredSize(new java.awt.Dimension(200, 30));
         sliderArValt.setValueIsAdjusting(true);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Termék kiválasztása");
 
@@ -274,12 +272,13 @@ public class View extends JFrame {
     
     
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
-        new Torles(this, modell).setVisible(true);
+        new Torles(this.frame, modell).setVisible(true);
+        tablazatFrissites();
 
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
-       new Felvitel(this, modell).setVisible(true);
+       new Felvitel(this.frame, modell).setVisible(true);
         
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 

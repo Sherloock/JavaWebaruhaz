@@ -1,9 +1,9 @@
 package aruhaz;
 
-import java.awt.Frame;
 import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import javax.swing.UIManager;
@@ -13,11 +13,13 @@ public class Felvitel extends JDialog {
 
     Modell modell;
 
-    public Felvitel(Frame parent, Modell modell) {
-        super(parent, true);
-        this.modell = modell;
-        initComponents();
+    public Felvitel(JFrame parent, Modell modell) {
+        super(parent, true);     
         
+        initComponents();
+        setTitle("Termék felvitele");      
+        setLocationRelativeTo(parent);
+
         //Java elemek magyarítása
         UIManager.put("FileChooser.openDialogTitleText", "Forrásfájl megnyitása");
         UIManager.put("FileChooser.lookInLabelText", "Aktuális mappa:");
@@ -27,8 +29,25 @@ public class Felvitel extends JDialog {
         UIManager.put("FileChooser.filesOfTypeLabelText", "Fájl típusa:");
         UIManager.put("OptionPane.noButtonText", "Nem");
         UIManager.put("OptionPane.yesButtonText", "Igen");
+        
+        this.modell = modell;
+        
+        kategoriakFeltolt();
+        telepulesekFeltolt();
     }
 
+    private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése
+        for (String kategoria : modell.getKategoriak()) {
+            cbKategoria.addItem(kategoria);
+        }
+    }
+    
+    private void telepulesekFeltolt() {//kategóriák lenyíló menü feltöltése
+        for (String kategoria : modell.getTelepulesek()) {
+            cbTelepules.addItem(kategoria);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -37,19 +56,18 @@ public class Felvitel extends JDialog {
         btnTalloz = new javax.swing.JButton();
         lbNev = new javax.swing.JLabel();
         tfKepPath = new javax.swing.JTextField();
-        lbAr = new javax.swing.JLabel();
         lbTelep = new javax.swing.JLabel();
         lbKat = new javax.swing.JLabel();
         lbLeir = new javax.swing.JLabel();
         lbKep = new javax.swing.JLabel();
         spLeiras = new javax.swing.JScrollPane();
         taLeiras = new javax.swing.JTextArea();
-        lbCim = new javax.swing.JLabel();
         tfNev = new javax.swing.JTextField();
         btnFelvisz = new javax.swing.JButton();
         btnKilepesF = new javax.swing.JButton();
         cbTelepules = new javax.swing.JComboBox<>();
         cbKategoria = new javax.swing.JComboBox<>();
+        lbNev1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -69,8 +87,6 @@ public class Felvitel extends JDialog {
 
         lbNev.setText("Név:");
 
-        lbAr.setText("Ár:");
-
         lbTelep.setText("Település:");
 
         lbKat.setText("Kategória:");
@@ -84,13 +100,12 @@ public class Felvitel extends JDialog {
         taLeiras.setTabSize(25);
         spLeiras.setViewportView(taLeiras);
 
-        lbCim.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        lbCim.setText("Termék felvitele");
-
         tfNev.setToolTipText("Minta János");
         tfNev.setName(""); // NOI18N
 
         btnFelvisz.setText("Felvitel");
+        btnFelvisz.setMaximumSize(new java.awt.Dimension(68, 32));
+        btnFelvisz.setMinimumSize(new java.awt.Dimension(68, 32));
         btnFelvisz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFelviszActionPerformed(evt);
@@ -104,18 +119,18 @@ public class Felvitel extends JDialog {
             }
         });
 
-        cbTelepules.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKategoriaActionPerformed(evt);
+            }
+        });
 
-        cbKategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lbNev1.setText("Ár:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbCim, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,45 +139,43 @@ public class Felvitel extends JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbKat)
-                            .addComponent(lbTelep)
-                            .addComponent(lbAr)
-                            .addComponent(lbKep))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfKepPath)
-                            .addComponent(cbKategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cbTelepules, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfAr)
-                            .addComponent(tfNev, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnFelvisz)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnKilepesF, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbKat)
+                                    .addComponent(lbTelep)
+                                    .addComponent(lbKep)
+                                    .addComponent(lbNev1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfKepPath)
+                                    .addComponent(cbKategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbTelepules, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfAr)
+                                    .addComponent(tfNev, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbLeir)
                                     .addComponent(spLeiras, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnFelvisz, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnKilepesF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addComponent(lbCim)
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNev))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbAr, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNev1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTelep)
@@ -172,20 +185,18 @@ public class Felvitel extends JDialog {
                     .addComponent(lbKat)
                     .addComponent(cbKategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbLeir)
-                        .addGap(11, 11, 11)
-                        .addComponent(spLeiras, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnFelvisz)
-                            .addComponent(btnKilepesF)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbKep))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbLeir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spLeiras, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFelvisz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKilepesF))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -211,11 +222,11 @@ public class Felvitel extends JDialog {
 
 
     private boolean ellenorizNev() {
-        return (tfNev.getText().length() < 1 || tfNev.getText().length() > 30);
+        return (tfNev.getText().length() > 0 && tfNev.getText().length() <= 30);
     }
     
     private boolean ellenorizLeiras() {
-        return (taLeiras.getText().length() < 30 || taLeiras.getText().length() > 30);
+        return (taLeiras.getText().length() >= 30 && taLeiras.getText().length() <= 200);
     }
 
     private boolean ellenorizAr() {
@@ -254,6 +265,8 @@ public class Felvitel extends JDialog {
     }
     
     private void btnFelviszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFelviszActionPerformed
+        
+        
         if (ellenorzes()) {
             modell.rekordFelvitelFajlba(
                 cbTelepules.getSelectedItem().toString(), 
@@ -271,6 +284,10 @@ public class Felvitel extends JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnKilepesFActionPerformed
 
+    private void cbKategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKategoriaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFelvisz;
@@ -278,12 +295,11 @@ public class Felvitel extends JDialog {
     private javax.swing.JButton btnTalloz;
     private javax.swing.JComboBox<String> cbKategoria;
     private javax.swing.JComboBox<String> cbTelepules;
-    private javax.swing.JLabel lbAr;
-    private javax.swing.JLabel lbCim;
     private javax.swing.JLabel lbKat;
     private javax.swing.JLabel lbKep;
     private javax.swing.JLabel lbLeir;
     private javax.swing.JLabel lbNev;
+    private javax.swing.JLabel lbNev1;
     private javax.swing.JLabel lbTelep;
     private javax.swing.JScrollPane spLeiras;
     private javax.swing.JTextArea taLeiras;
