@@ -23,7 +23,7 @@ public class Termek {
         this.ar = ar;
     }
 
-    public void szazalekosArvaltoztatas(int szazalek){
+    public void szazalekosArvaltoztatas(double szazalek){
         ar *= (1+szazalek);
     }
 

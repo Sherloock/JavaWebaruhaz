@@ -144,7 +144,7 @@ public class Modell {
         Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
         root.appendChild(termekekDoc.importNode(termek, true));
 
-        dokumentumFilebaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
+        dokumentumFajlbaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
     }
 
     private void adatFelvitelSzulohoz(Element szulo, String azonosito, String data){
@@ -159,7 +159,7 @@ public class Modell {
         NodeList termekekNodeList = root.getChildNodes();
         
         boolean sikeresTorles = false;
-        for (int i = 0; i < termekekNodeList.getLength() && sikeresTorles == false; i++) {
+        for (int i = 0; i < termekekNodeList.getLength() && !sikeresTorles; i++) {
             if (termekekNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {//nem tag elemek kiszorítása
                 Element csomopont = (Element) termekekNodeList.item(i);
                                 
@@ -178,13 +178,14 @@ public class Modell {
             }
         }
         if (sikeresTorles) {
-             dokumentumFilebaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
+             dokumentumFajlbaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
         } else {
             hibaUzenet("A megadott azonosító nem található!");
         }
     }
     
-    private void dokumentumFilebaIrasa(Document document, String teljesEleresiUtvonal){
+    //dokumentumot visszaírja fájlba
+    private void dokumentumFajlbaIrasa(Document document, String teljesEleresiUtvonal){
          try {
                 TransformerFactory tf = TransformerFactory.newInstance();
                 Transformer tr = tf.newTransformer();
@@ -205,12 +206,33 @@ public class Modell {
     }
 
     //egy termék árának megváltoztatása
-    public void arvaltoztatas(int id, int szazalek) {
+    public void arvaltoztatas(int id, double szazalek) {
         getTermekById(id).szazalekosArvaltoztatas(szazalek);
+        
+        NodeList termekekNodeList = termekekDoc.getDocumentElement().getElementsByTagName("Termek");
+        
+        boolean sikeresArModositas = false;
+        for (int i = 0; i < termekekNodeList.getLength() && !sikeresArModositas; i++) {
+            
+            if (termekekNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element termek = (Element) termekekNodeList.item(i);
+                                
+                if (adatKivetel(termek, "Id").equals(id + "")) {
+                    Node ar =  termek.getElementsByTagName("Ar").item(0).getFirstChild();
+                    ar.setNodeValue( getTermekById(id).getAr() + ""); 
+                    sikeresArModositas = true;
+                }
+            }
+        }
+        if (sikeresArModositas) {
+            dokumentumFajlbaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
+        } else {
+            hibaUzenet("A megadott azonosító nem található!");
+        }
     }
 
     //összes ár megváltoztatása
-    public void arvaltoztatas(int szazalek) {
+    public void arvaltoztatas(double szazalek) {
 
         for (Termek termek : termekek) {
             arvaltoztatas(termek.ID, szazalek);

@@ -9,7 +9,8 @@ import javax.swing.JFrame;
 
 public class Torles extends JDialog {
      private Modell modell;
-    
+     private ArrayList<String> termekekStrings = new ArrayList<>();
+     
     public Torles(JFrame parent, Modell modell) {
         super(parent, true);
         initComponents();
@@ -17,20 +18,20 @@ public class Torles extends JDialog {
         setLocationRelativeTo(parent);
         
         this.modell = modell;
-        kategoriakFeltolt();
+        termekekStringsFeltolt();
     }
-    private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése
+    private void termekekStringsFeltolt() {
         Collection<String> collection = new TreeSet<String>(Collator.getInstance());
         
         for (int i = 0; i < modell.getTermekek().size(); i++) {
             Termek t = modell.getTermekek().get(i);
-            collection.add(t.getNev() + " - " + t.ID);
+            collection.add(t.getNev() + ";" + t.ID);
         }
         
-        ArrayList<String> list = new ArrayList<String>(collection);
+        termekekStrings = new ArrayList<String>(collection);
         
-        for (int i = 0; i < list.size(); i++) {   
-            cbTermekek.addItem(list.get(i));
+        for (int i = 0; i < termekekStrings.size(); i++) {   
+            cbTermekek.addItem(termekekStrings.get(i).split("\\;")[0]);
         }
     }
 
@@ -87,7 +88,10 @@ public class Torles extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEltavolitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEltavolitActionPerformed
-       modell.termekTorlese(cbTermekek.getSelectedItem().toString().split("\\ - ")[1]);
+           int index =  cbTermekek.getSelectedIndex();
+           String id = termekekStrings.get(index).split(";")[1];
+           modell.termekTorlese(id);
+
         this.dispose();
     }//GEN-LAST:event_btnEltavolitActionPerformed
 

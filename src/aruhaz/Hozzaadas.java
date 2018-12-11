@@ -9,15 +9,15 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 
-public class Felvitel extends JDialog {
+public class Hozzaadas extends JDialog {
 
     Modell modell;
 
-    public Felvitel(JFrame parent, Modell modell) {
+    public Hozzaadas(JFrame parent, Modell modell) {
         super(parent, true);     
         
         initComponents();
-        setTitle("Termék felvitele");      
+        setTitle("Termék hozzáadása");      
         setLocationRelativeTo(parent);
 
         //Java elemek magyarítása
