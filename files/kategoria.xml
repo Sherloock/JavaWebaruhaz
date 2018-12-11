@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Kategoriak>
+    <Kategoria>
+        <Tipus>Élelmiszer</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Tisztálkodószer</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Vegyszer</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Háztartási gép</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Beltéri bútor</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Kültéri bútor</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Dísztárgy</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Barkács eszköz</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Konyhai eszköz</Tipus>
+    </Kategoria>
+    <Kategoria>
+        <Tipus>Gépjárművek</Tipus>
+    </Kategoria>
+</Kategoriak>
