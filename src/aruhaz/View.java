@@ -3,8 +3,10 @@ package aruhaz;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 
 public class View extends JFrame {
 
@@ -14,6 +16,10 @@ public class View extends JFrame {
     public View(Modell m) {
         initComponents();
         ini();
+        
+        UIManager.put("OptionPane.cancelButtonText", "Nem");//java beépített objektumok honosítása
+        UIManager.put("OptionPane.okButtonText", "Igen");
+        
         modell = m;
         tablazatFrissites();
     }
@@ -72,7 +78,7 @@ public class View extends JFrame {
             pCsoportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCsoportLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spTree, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                .addComponent(spTree, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -107,7 +113,7 @@ public class View extends JFrame {
             pTablazatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pTablazatLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 538, Short.MAX_VALUE))
+                .addGap(0, 496, Short.MAX_VALUE))
         );
 
         tpUrlap.addTab("Táblázat", pTablazat);
@@ -165,7 +171,7 @@ public class View extends JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sliderArValt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
 
         tpUrlap.addTab("Árak módosítása", pValtozas);
@@ -212,7 +218,7 @@ public class View extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tpUrlap, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTermekHozzaad)
                     .addComponent(btnGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -225,10 +231,10 @@ public class View extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tpUrlap, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                .addComponent(tpUrlap, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addComponent(btnTermekHozzaad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnTermekTorol)
@@ -236,9 +242,9 @@ public class View extends JFrame {
                 .addComponent(btnGrafikon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPdfKimutatas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
                 .addComponent(btnKilepes)
-                .addGap(22, 22, 22))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnTermekTorol.getAccessibleContext().setAccessibleDescription("");
@@ -279,7 +285,7 @@ public class View extends JFrame {
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
        new Felvitel(this.frame, modell).setVisible(true);
-        
+       tablazatFrissites();       
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
     private void btnGrafikonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafikonActionPerformed
@@ -287,7 +293,9 @@ public class View extends JFrame {
     }//GEN-LAST:event_btnGrafikonActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        
+        if (JOptionPane.showConfirmDialog(this, "Biztos kiakar lépni?", "Kilépés", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnPdfKimutatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfKimutatasActionPerformed

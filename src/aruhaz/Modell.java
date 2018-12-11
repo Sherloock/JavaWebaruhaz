@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
@@ -26,6 +27,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Modell {
+    public final static String TERMEKEK_PATH_STRING = "./files/termek.xml";
+    public final static String KATEGORIAK_PATH_STRING = "./files/kategoria.xml";
+   // public final static String KATEGORIAK_PATH_STRING = "./files/termek.xml";
 
     private ArrayList<Termek> termekek = new ArrayList();
     private ArrayList<String> kategoriak = new ArrayList();
@@ -40,7 +44,7 @@ public class Modell {
 
     //termékek feltöltése
     private void termekekBetoltese() {
-        termekekDoc = dokumentumFajlbol(new File("./files/termek.xml"));
+        termekekDoc = dokumentumFajlbol(new File(TERMEKEK_PATH_STRING));
 
         NodeList termekNodeList = termekekDoc.getDocumentElement().getElementsByTagName("Termek");
         for (int i = 0; i < termekNodeList.getLength(); i++) {
@@ -61,7 +65,7 @@ public class Modell {
 
     // kategóriák feltöltése
     private void kategoriakBetoltese() {
-        Document dokumentum = dokumentumFajlbol(new File("./files/kategoria.xml"));
+        Document dokumentum = dokumentumFajlbol(new File(KATEGORIAK_PATH_STRING));
 
         NodeList kategoriaNodeList = dokumentum.getDocumentElement().getElementsByTagName("Kategoria");
 
@@ -70,26 +74,6 @@ public class Modell {
             kategoriak.add(adatKivetel(kategoria, "Tipus"));
         }
         System.out.println(kategoriak);
-    }
-
-    //dokumentum elkészítése a megadott fájlból
-    private Document dokumentumFajlbol(File fajl) {
-        Document dokumentum = null;
-        try {
-            dokumentum = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fajl);
-        } catch (ParserConfigurationException e) {
-            hibaUzenet("A transzformer konfigurálása közben hiba lépett fel!");
-        } catch (SAXException e) {
-            hibaUzenet("Az xml fájl értelemzése közben hiba lépett fel!");
-        } catch (IOException e) {
-            hibaUzenet("A fájl olvasása közben hiba lépett fel!");
-        }
-        return dokumentum;
-    }
-
-    //egy elem megadott attribútumáva tér vissza
-    private String adatKivetel(Element elem, String attributum) {
-        return elem.getElementsByTagName(attributum).item(0).getFirstChild().getNodeValue();
     }
 
     //települések feltöltése
@@ -112,13 +96,28 @@ public class Modell {
         }
         System.out.println(telepulesek);
     }
+    
+    //dokumentum elkészítése a megadott fájlból
+    private Document dokumentumFajlbol(File fajl) {
+        Document dokumentum = null;
+        try {
+            dokumentum = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fajl);
+        } catch (ParserConfigurationException e) {
+            hibaUzenet("A transzformer konfigurálása közben hiba lépett fel!");
+        } catch (SAXException e) {
+            hibaUzenet("Az xml fájl értelemzése közben hiba lépett fel!");
+        } catch (IOException e) {
+            hibaUzenet("A fájl olvasása közben hiba lépett fel!");
+        }
+        return dokumentum;
+    }
 
-    private void hibaUzenet(String hibauzenet) {
-
-        JOptionPane.showMessageDialog(new JFrame(), hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
+    //egy elem megadott attribútumáva tér vissza
+    private String adatKivetel(Element elem, String attributum) {
+        return elem.getElementsByTagName(attributum).item(0).getFirstChild().getNodeValue();
     }
     
-    //soron következő index kinyerése és frissítése
+    //soron következő index lekérése és frissítése
     private int kovIndex() {
         int index = 0;
         Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
@@ -128,42 +127,24 @@ public class Modell {
     }
     
     
-    public void rekordFelvitelFajlba(String telepules, String nev, String kategoria, String leiras, String ar, String kep) {
+    public void termekHozzadasa(String telepules, String nev, String kategoria, String leiras, String ar, String kep) {
         int index = kovIndex();
         termekek.add(new Termek(index +"",  telepules, nev, leiras, kategoria, ar, kep));
         
-        try {//egyes elemek előállítása
-            Element termek = termekekDoc.createElement("Termek");
-            
-            adatFelvitelSzulohoz(termek, "ID", index + "");
-            adatFelvitelSzulohoz(termek, "Telepules", telepules + "");
-            adatFelvitelSzulohoz(termek, "Nev", nev);
-            adatFelvitelSzulohoz(termek, "Kategoria", kategoria);
-            adatFelvitelSzulohoz(termek, "Leiras", leiras);
-            adatFelvitelSzulohoz(termek, "Kep", kep);
-            adatFelvitelSzulohoz(termek, "Ar", ar + "");
+        Element termek = termekekDoc.createElement("Termek");
 
-            Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
-            root.appendChild(termekekDoc.importNode(termek, true));
+        adatFelvitelSzulohoz(termek, "Id", index + "");
+        adatFelvitelSzulohoz(termek, "Telepules", telepules + "");
+        adatFelvitelSzulohoz(termek, "Nev", nev);
+        adatFelvitelSzulohoz(termek, "Kategoria", kategoria);
+        adatFelvitelSzulohoz(termek, "Leiras", leiras);
+        adatFelvitelSzulohoz(termek, "Kep", kep);
+        adatFelvitelSzulohoz(termek, "Ar", ar + "");
 
-            TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer optimusz = tf.newTransformer();
-            optimusz.setOutputProperty(OutputKeys.INDENT, "yes");
-            optimusz.setOutputProperty(OutputKeys.METHOD, "xml");
-            optimusz.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            optimusz.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
+        root.appendChild(termekekDoc.importNode(termek, true));
 
-            DOMSource source = new DOMSource(termekekDoc);
-            StreamResult result = new StreamResult(new FileOutputStream("./files/termek.xml"));
-
-            optimusz.transform(source, result);
-        } catch (TransformerConfigurationException ex) {
-            hibaUzenet("A rtanszformer konfigurálása sikertelen!");
-        } catch (TransformerException ex) {
-            hibaUzenet("Transzformer hiba!");
-        } catch (FileNotFoundException ex) {
-            hibaUzenet("Az xml fájl nem található!");
-        }
+        dokumentumFilebaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
     }
 
     private void adatFelvitelSzulohoz(Element szulo, String azonosito, String data){
@@ -172,20 +153,55 @@ public class Modell {
             szulo.appendChild(element);
     }
     
-    public void torles(String termekNev) throws SAXException, IOException, ParserConfigurationException {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse("./files/kategoria.xml");
-
-        NodeList nevLista = doc.getElementsByTagName("Termek");
-        for (int i = 0; i < nevLista.getLength(); i++) {
-            Element termek = (Element) nevLista.item(i);
-            Element neve = (Element) termek.getElementsByTagName("Nev").item(0);
-            String tNeve = neve.getTextContent();
-            if (tNeve.equals(termekNev)) {
-                termek.getParentNode().removeChild(termek);
+    //adott id-vel rendelkező elem törlése
+    public void termekTorlese(String id) {
+        Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
+        NodeList termekekNodeList = root.getChildNodes();
+        
+        boolean sikeresTorles = false;
+        for (int i = 0; i < termekekNodeList.getLength() && sikeresTorles == false; i++) {
+            if (termekekNodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {//nem tag elemek kiszorítása
+                Element csomopont = (Element) termekekNodeList.item(i);
+                                
+                if (adatKivetel(csomopont, "Id").equals(id)) {
+                    root.removeChild(csomopont);
+                    Iterator<Termek> iter = termekek.iterator();
+                    
+                    while (iter.hasNext()) {
+                        Termek termek = iter.next();
+                        if (termek.ID == Integer.parseInt(id)) {
+                            iter.remove();
+                        }
+                    }
+                    sikeresTorles = true;
+                }
             }
         }
+        if (sikeresTorles) {
+             dokumentumFilebaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
+        } else {
+            hibaUzenet("A megadott azonosító nem található!");
+        }
+    }
+    
+    private void dokumentumFilebaIrasa(Document document, String teljesEleresiUtvonal){
+         try {
+                TransformerFactory tf = TransformerFactory.newInstance();
+                Transformer tr = tf.newTransformer();
+                tr.setOutputProperty(OutputKeys.INDENT, "yes");
+                tr.setOutputProperty(OutputKeys.METHOD, "xml");
+                tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+                tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+                DOMSource source = new DOMSource(document);
+                StreamResult result = new StreamResult(new FileOutputStream(teljesEleresiUtvonal));
+
+                tr.transform(source, result);
+            } catch (FileNotFoundException ex) {
+               hibaUzenet("Az xml fájl nem található!");
+            } catch (TransformerException ex) {
+                hibaUzenet("Transzformer hiba!");
+            }
     }
 
     //egy termék árának megváltoztatása
@@ -230,11 +246,16 @@ public class Modell {
         return kategoriak;
     }
 
-    public ArrayList<Termek> getTermekLista() {
+    public ArrayList<Termek> getTermekek() {
         return termekek;
     }
 
     public ArrayList<String> getTelepulesek() {
         return telepulesek;
     }
+    
+     private void hibaUzenet(String hibauzenet) {
+        JOptionPane.showMessageDialog(new JFrame(), hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
+    }
+
 }

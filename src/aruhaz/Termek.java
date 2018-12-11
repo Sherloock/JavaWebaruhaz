@@ -26,13 +26,14 @@ public class Termek {
     public void szazalekosArvaltoztatas(int szazalek){
         ar *= (1+szazalek);
     }
-    
-    
+
     @Override
     public String toString() {
-        return "Termek " + ", telepules: " + telepules + ", nev: " + nev + ", kategoria: " + kategoria + ", leiras: " + leiras + ", ar: " + ar + ", kep: " + kep;
+        return "Termek{" + "ID=" + ID + ", telepules=" + telepules + ", nev=" + nev + ", "
+                + "kategoria=" + kategoria + ", leiras=" + leiras + ", ar=" + ar + ", kep=" + kep + '}';
     }
-
+    
+    
     // getters and setters
     
     public String getTelepules() {

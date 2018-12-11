@@ -70,7 +70,6 @@ public class Felvitel extends JDialog {
         lbNev1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         tfAr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,10 +264,8 @@ public class Felvitel extends JDialog {
     }
     
     private void btnFelviszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFelviszActionPerformed
-        
-        
         if (ellenorzes()) {
-            modell.rekordFelvitelFajlba(
+            modell.termekHozzadasa(
                 cbTelepules.getSelectedItem().toString(), 
                 tfNev.getText(), 
                 cbKategoria.getSelectedItem().toString(), 
