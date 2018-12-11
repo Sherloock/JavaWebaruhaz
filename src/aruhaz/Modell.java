@@ -233,10 +233,7 @@ public class Modell {
 
     //összes ár megváltoztatása
     public void arvaltoztatas(double szazalek) {
-
-        for (Termek termek : termekek) {
-            arvaltoztatas(termek.ID, szazalek);
-        }
+        termekek.forEach((termek) -> { arvaltoztatas(termek.ID, szazalek); });
     }
 
     //termék visszaadása az ID-je alalpján
@@ -249,20 +246,7 @@ public class Modell {
         return null;
     }
 
-    // termékek mátrixba rendezése a táblázathoz
-    public String[][] GetTermekMatrix() {
-        String[][] adatok = new String[termekek.size()][7];
-        for (int i = 0; i < termekek.size(); i++) {
-            adatok[i][0] = termekek.get(i).ID + "";
-            adatok[i][1] = termekek.get(i).getTelepules();
-            adatok[i][2] = termekek.get(i).getNev();
-            adatok[i][3] = termekek.get(i).getKategoria();
-            adatok[i][4] = termekek.get(i).getLeiras();
-            adatok[i][5] = termekek.get(i).getAr() + " Ft";
-            adatok[i][6] = termekek.get(i).getKep();
-        }
-        return adatok;
-    }
+
 
     public ArrayList<String> getKategoriak() {
         return kategoriak;

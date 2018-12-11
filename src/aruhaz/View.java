@@ -4,13 +4,26 @@ import java.awt.BorderLayout;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.TreeSet;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTree;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.UIManager;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 public class View extends JFrame {
 
@@ -27,7 +40,6 @@ public class View extends JFrame {
 
         modell = m;
         adatokFrissitese();
-
     }
 
     private void ini() {
@@ -39,25 +51,133 @@ public class View extends JFrame {
 
     //frissíti az aktuális tábla tartalmát
     public void adatokFrissitese() {
-        pTablazat.removeAll();
+        termekekTablaFeltolt();
+        kategoriaTablaFeltolt();
+        termekekStringsFeltolt();
+        kategoriaNezetFeltolt();
+    }
+    
+    private void kategoriaNezetFeltolt() {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");       
+        
+        for (int j = 0; j < modell.getKategoriak().size(); j++) {
+            
+            //kategoriak hozzáad csomopontonként           
+            DefaultMutableTreeNode kategoriakTreeNode = new DefaultMutableTreeNode(modell.getKategoriak().get(j));   
+            
+            for (int i = 0; i < modell.getTermekek().size(); i++) {
+                if(modell.getKategoriak().get(j).equals(modell.getTermekek().get(i).getKategoria())){
+                    kategoriakTreeNode.add(new DefaultMutableTreeNode(modell.getTermekek().get(i).getNev()));
+                }
+            }            
+            root.add(kategoriakTreeNode);     
+        }
+
+        JTree treeCsoportositas = new JTree(root);
+        
+        pCsoportositas.add(new JScrollPane(treeCsoportositas));
+        
+        treeCsoportositas.setShowsRootHandles(false);
+        treeCsoportositas.setRootVisible(true);
+        
+        treeCsoportositas.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treeCsoportositas.getLastSelectedPathComponent();
+            }
+        });        
+    }
+    
+    private void kategoriaTablaFeltolt(){
+        pKategorizal.removeAll();
+        String[] fejlecek = {"Kategória", "Termékek száma", "Legolcsóbb", "Legdrágább"};
+        
+        ArrayList<Termek> termekLista = modell.getTermekek();
+        ArrayList<String> kategoriak = modell.getKategoriak();
+        
+        String[][] adatok = new String[kategoriak.size()][4];
+        //kategóriák feltölt
+        for (int i = 0; i < kategoriak.size(); i++) {
+            adatok[i][0] = kategoriak.get(i);
+            int szamlalo = 0, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+            for (int j = 0; j < termekLista.size(); j++) {
+                if (kategoriak.get(i).equals(termekLista.get(j).getKategoria())) {
+                    szamlalo++;
+                    if (min > termekLista.get(j).getAr()) {
+                        min = (int) termekLista.get(j).getAr();
+                    }
+                    if (max < termekLista.get(j).getAr()) {
+                        max = (int) termekLista.get(j).getAr();
+                        
+                    }
+                }
+            }
+            adatok[i][1] = Integer.toString(szamlalo);
+            adatok[i][2] = Integer.toString(min);
+            adatok[i][3] = Integer.toString(max);
+        }
+        
+        tableKategorizal = new JTable(adatok, fejlecek) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false; //Disallow the editing of any cell
+            }
+        };
+        JScrollPane gorgetoSav = new JScrollPane(tableKategorizal);
+        tableKategorizal.setFillsViewportHeight(true);
+        pKategorizal.setLayout(new BorderLayout());
+        pKategorizal.add(tableKategorizal.getTableHeader(), BorderLayout.PAGE_START);
+        pKategorizal.add(gorgetoSav, BorderLayout.CENTER);
+        
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        
+        tableKategorizal.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
+        tableKategorizal.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
+        tableKategorizal.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
+        
+        tableKategorizal.getColumnModel().getColumn(1).setPreferredWidth(10);
+        
+        pKategorizal.revalidate();
+    }
+    
+    private void termekekTablaFeltolt() {
+        pTermekek.removeAll();
         String[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép"};
-        String[][] adatok = modell.GetTermekMatrix();
-        JTable jtTermekek = new JTable(adatok, fejlec) {
+
+        String[][] adatok = new String[modell.getTermekek().size()][fejlec.length];
+        for (int i = 0; i < modell.getTermekek().size(); i++) {
+            adatok[i][0] = modell.getTermekek().get(i).ID + "";
+            adatok[i][1] = modell.getTermekek().get(i).getTelepules();
+            adatok[i][2] = modell.getTermekek().get(i).getNev();
+            adatok[i][3] = modell.getTermekek().get(i).getKategoria();
+            adatok[i][4] = modell.getTermekek().get(i).getLeiras();
+            adatok[i][5] = modell.getTermekek().get(i).getAr() + " Ft";
+            adatok[i][6] = modell.getTermekek().get(i).getKep();
+        }
+        
+        tableTermekek = new JTable(adatok, fejlec) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         };
 
-        JScrollPane gorgetoSav = new JScrollPane(jtTermekek);
-        jtTermekek.setFillsViewportHeight(true);
+        JScrollPane gorgetoSav = new JScrollPane(tableTermekek);
+        tableTermekek.setFillsViewportHeight(true);
 
-        pTablazat.setLayout(new BorderLayout());
-        pTablazat.add(jtTermekek.getTableHeader(), BorderLayout.PAGE_START);
-        pTablazat.add(gorgetoSav, BorderLayout.CENTER);
-        pTablazat.revalidate();
-
-        termekekStringsFeltolt();
+        pTermekek.setLayout(new BorderLayout());
+        pTermekek.add(tableTermekek.getTableHeader(), BorderLayout.PAGE_START);
+        pTermekek.add(gorgetoSav, BorderLayout.CENTER);
+        
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
+        
+        tableTermekek.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
+        tableTermekek.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
+        
+        tableTermekek.getColumnModel().getColumn(0).setPreferredWidth(10);
+        pTermekek.revalidate();
     }
 
     private void termekekStringsFeltolt() {
@@ -76,29 +196,52 @@ public class View extends JFrame {
         }
     }
 
+    // TODO: nem müxik :(
+    private void rendez(JTable tabla){
+//        DefaultTableModel tablamodel = (DefaultTableModel)tabla.getModel();
+//        TableRowSorter<DefaultTableModel> rendezo = new TableRowSorter<>(tablamodel);
+//        tabla.setRowSorter(rendezo);
+
+        tabla.setAutoCreateRowSorter(true);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabla.getModel());
+        tabla.setRowSorter(sorter);
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+        int columnIndexToSort = 1;
+        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
+
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        spCsoportositas = new javax.swing.JScrollPane();
+        treeCsoportositas = new javax.swing.JTree();
         tpUrlap = new javax.swing.JTabbedPane();
-        pCsoport = new javax.swing.JPanel();
-        spTree = new javax.swing.JScrollPane();
-        tTermekKat = new javax.swing.JTree();
-        pTablazat = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        pValtozas = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        pCsoportositas = new javax.swing.JPanel();
+        pTermekek = new javax.swing.JPanel();
+        spTermekek = new javax.swing.JScrollPane();
+        tableTermekek = new javax.swing.JTable();
+        pKategorizal = new javax.swing.JPanel();
+        spKategorizal = new javax.swing.JScrollPane();
+        tableKategorizal = new javax.swing.JTable();
+        pArvaltozas = new javax.swing.JPanel();
+        labelArValt = new javax.swing.JLabel();
         sliderArValt = new javax.swing.JSlider();
         cbTermekek = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        labelTermekKiv = new javax.swing.JLabel();
         btnArValtoztatas = new javax.swing.JButton();
-        labelArValt = new javax.swing.JLabel();
+        labelArValtUzenet = new javax.swing.JLabel();
         btnTermekHozzaad = new javax.swing.JButton();
         btnTermekTorol = new javax.swing.JButton();
         btnGrafikon = new javax.swing.JButton();
         btnPdfKimutatas = new javax.swing.JButton();
         btnKilepes = new javax.swing.JButton();
+
+        spCsoportositas.setViewportView(treeCsoportositas);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Adatok felvitele");
@@ -108,70 +251,65 @@ public class View extends JFrame {
         tpUrlap.setMinimumSize(new java.awt.Dimension(600, 400));
         tpUrlap.setPreferredSize(new java.awt.Dimension(700, 600));
 
-        pCsoport.setEnabled(false);
+        pCsoportositas.setEnabled(false);
+        pCsoportositas.setLayout(new java.awt.BorderLayout());
+        tpUrlap.addTab("Csoportosítás", pCsoportositas);
 
-        spTree.setViewportView(tTermekKat);
+        pTermekek.setPreferredSize(new java.awt.Dimension(786, 522));
 
-        javax.swing.GroupLayout pCsoportLayout = new javax.swing.GroupLayout(pCsoport);
-        pCsoport.setLayout(pCsoportLayout);
-        pCsoportLayout.setHorizontalGroup(
-            pCsoportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCsoportLayout.createSequentialGroup()
+        tableTermekek.setAutoCreateColumnsFromModel(false);
+        tableTermekek.setAutoCreateRowSorter(true);
+        tableTermekek.setPreferredSize(new java.awt.Dimension(800, 600));
+        spTermekek.setViewportView(tableTermekek);
+
+        javax.swing.GroupLayout pTermekekLayout = new javax.swing.GroupLayout(pTermekek);
+        pTermekek.setLayout(pTermekekLayout);
+        pTermekekLayout.setHorizontalGroup(
+            pTermekekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTermekekLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spTree, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(466, Short.MAX_VALUE))
+                .addComponent(spTermekek, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pCsoportLayout.setVerticalGroup(
-            pCsoportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pCsoportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(spTree, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+        pTermekekLayout.setVerticalGroup(
+            pTermekekLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pTermekekLayout.createSequentialGroup()
+                .addComponent(spTermekek, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 538, Short.MAX_VALUE))
+        );
+
+        tpUrlap.addTab("Termékek", pTermekek);
+
+        tableKategorizal.setAutoCreateRowSorter(true);
+        tableKategorizal.setCellSelectionEnabled(true);
+        tableKategorizal.setPreferredSize(new java.awt.Dimension(800, 600));
+        spKategorizal.setViewportView(tableKategorizal);
+
+        javax.swing.GroupLayout pKategorizalLayout = new javax.swing.GroupLayout(pKategorizal);
+        pKategorizal.setLayout(pKategorizalLayout);
+        pKategorizalLayout.setHorizontalGroup(
+            pKategorizalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKategorizalLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(spKategorizal, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pKategorizalLayout.setVerticalGroup(
+            pKategorizalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pKategorizalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(spKategorizal, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        tpUrlap.addTab("Csoportosítás", pCsoport);
+        tpUrlap.addTab("Kategóriák", pKategorizal);
 
-        pTablazat.setPreferredSize(new java.awt.Dimension(786, 522));
+        pArvaltozas.setMaximumSize(new java.awt.Dimension(1000, 800));
+        pArvaltozas.setMinimumSize(new java.awt.Dimension(600, 400));
+        pArvaltozas.setName(""); // NOI18N
+        pArvaltozas.setPreferredSize(new java.awt.Dimension(790, 500));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.setPreferredSize(new java.awt.Dimension(800, 600));
-        jScrollPane1.setViewportView(jTable1);
-
-        javax.swing.GroupLayout pTablazatLayout = new javax.swing.GroupLayout(pTablazat);
-        pTablazat.setLayout(pTablazatLayout);
-        pTablazatLayout.setHorizontalGroup(
-            pTablazatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablazatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pTablazatLayout.setVerticalGroup(
-            pTablazatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pTablazatLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 536, Short.MAX_VALUE))
-        );
-
-        tpUrlap.addTab("Táblázat", pTablazat);
-
-        pValtozas.setMaximumSize(new java.awt.Dimension(1000, 800));
-        pValtozas.setMinimumSize(new java.awt.Dimension(600, 400));
-        pValtozas.setName(""); // NOI18N
-        pValtozas.setPreferredSize(new java.awt.Dimension(790, 500));
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setText("Ár megváltoztatása (adott százalékkal)");
+        labelArValt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelArValt.setText("Ár megváltoztatása (adott százalékkal)");
 
         sliderArValt.setMajorTickSpacing(5);
         sliderArValt.setMaximum(30);
@@ -185,8 +323,8 @@ public class View extends JFrame {
         sliderArValt.setPreferredSize(new java.awt.Dimension(200, 30));
         sliderArValt.setValueIsAdjusting(true);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setText("Termék kiválasztása");
+        labelTermekKiv.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelTermekKiv.setText("Termék kiválasztása");
 
         btnArValtoztatas.setText("Ár megváltoztatása");
         btnArValtoztatas.addActionListener(new java.awt.event.ActionListener() {
@@ -195,44 +333,44 @@ public class View extends JFrame {
             }
         });
 
-        javax.swing.GroupLayout pValtozasLayout = new javax.swing.GroupLayout(pValtozas);
-        pValtozas.setLayout(pValtozasLayout);
-        pValtozasLayout.setHorizontalGroup(
-            pValtozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pValtozasLayout.createSequentialGroup()
+        javax.swing.GroupLayout pArvaltozasLayout = new javax.swing.GroupLayout(pArvaltozas);
+        pArvaltozas.setLayout(pArvaltozasLayout);
+        pArvaltozasLayout.setHorizontalGroup(
+            pArvaltozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pArvaltozasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pValtozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                .addGroup(pArvaltozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelArValt)
                     .addComponent(sliderArValt, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pValtozasLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                    .addGroup(pArvaltozasLayout.createSequentialGroup()
+                        .addComponent(labelTermekKiv)
                         .addGap(78, 78, 78)
                         .addComponent(cbTermekek, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pValtozasLayout.createSequentialGroup()
+                    .addGroup(pArvaltozasLayout.createSequentialGroup()
                         .addComponent(btnArValtoztatas, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(labelArValt, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelArValtUzenet, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        pValtozasLayout.setVerticalGroup(
-            pValtozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pValtozasLayout.createSequentialGroup()
+        pArvaltozasLayout.setVerticalGroup(
+            pArvaltozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pArvaltozasLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pValtozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pArvaltozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTermekKiv, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbTermekek, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelArValt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(sliderArValt, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addGroup(pValtozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pArvaltozasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnArValtoztatas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelArValt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(319, Short.MAX_VALUE))
+                    .addComponent(labelArValtUzenet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
-        tpUrlap.addTab("Árak módosítása", pValtozas);
+        tpUrlap.addTab("Árak módosítása", pArvaltozas);
 
         btnTermekHozzaad.setText("Termék hozzáadása...");
         btnTermekHozzaad.addActionListener(new java.awt.event.ActionListener() {
@@ -276,13 +414,13 @@ public class View extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tpUrlap, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTermekHozzaad)
-                    .addComponent(btnGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
                     .addComponent(btnKilepes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTermekTorol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPdfKimutatas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnPdfKimutatas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTermekHozzaad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,13 +465,13 @@ public class View extends JFrame {
     }//GEN-LAST:event_btnGrafikonActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Biztos kiakar lépni?", "Kilépés", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this, "Biztos ki akar lépni?", "Kilépés", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnPdfKimutatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfKimutatasActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnPdfKimutatasActionPerformed
 
     private void cbTermekArValtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTermekArValtActionPerformed
@@ -350,7 +488,7 @@ public class View extends JFrame {
             //összes
             if (index == 0) {
                 modell.arvaltoztatas(valtoztatasMerteke);
-                labelArValt.setText("Az összes termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
+                labelArValtUzenet.setText("Az összes termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
             } 
             
             //egy termék
@@ -359,7 +497,7 @@ public class View extends JFrame {
                 String idStr = termekekStrings.get(index).split(";")[1];
                 int id = Integer.parseInt(idStr);
                 modell.arvaltoztatas(id, valtoztatasMerteke);
-                labelArValt.setText(modell.getTermekById(id).getNev() + " termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
+                labelArValtUzenet.setText(modell.getTermekById(id).getNev() + " termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
             }
             adatokFrissitese();
         }
@@ -375,18 +513,24 @@ public class View extends JFrame {
     private javax.swing.JButton btnTermekHozzaad;
     private javax.swing.JButton btnTermekTorol;
     private javax.swing.JComboBox<String> cbTermekek;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelArValt;
-    private javax.swing.JPanel pCsoport;
-    private javax.swing.JPanel pTablazat;
-    private javax.swing.JPanel pValtozas;
+    private javax.swing.JLabel labelArValtUzenet;
+    private javax.swing.JLabel labelTermekKiv;
+    private javax.swing.JPanel pArvaltozas;
+    private javax.swing.JPanel pCsoportositas;
+    private javax.swing.JPanel pKategorizal;
+    private javax.swing.JPanel pTermekek;
     private javax.swing.JSlider sliderArValt;
-    private javax.swing.JScrollPane spTree;
-    private javax.swing.JTree tTermekKat;
+    private javax.swing.JScrollPane spCsoportositas;
+    private javax.swing.JScrollPane spKategorizal;
+    private javax.swing.JScrollPane spTabla1;
+    private javax.swing.JScrollPane spTermekek;
+    private javax.swing.JTable tableKategorizal;
+    private javax.swing.JTable tableTermekek;
     private javax.swing.JTabbedPane tpUrlap;
+    private javax.swing.JTree treeCsoportositas;
     // End of variables declaration//GEN-END:variables
+
+  
 
 }

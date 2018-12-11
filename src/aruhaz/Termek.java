@@ -21,6 +21,7 @@ public class Termek {
         this.kategoria = kategoria;
         this.leiras = leiras;
         this.ar = ar;
+        this.kep = kep;
     }
 
     public void szazalekosArvaltoztatas(double szazalek){

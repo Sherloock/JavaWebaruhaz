@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 
 import javax.swing.UIManager;
 
-
 public class Hozzaadas extends JDialog {
 
     Modell modell;
@@ -95,6 +94,7 @@ public class Hozzaadas extends JDialog {
         lbKep.setText("Kép:");
 
         taLeiras.setColumns(20);
+        taLeiras.setLineWrap(true);
         taLeiras.setRows(15);
         taLeiras.setTabSize(25);
         spLeiras.setViewportView(taLeiras);
@@ -206,8 +206,6 @@ public class Hozzaadas extends JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfArActionPerformed
 
-
-
     private void btnTallozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTallozActionPerformed
         try {
             JFileChooser chooser = new JFileChooser();
@@ -218,7 +216,6 @@ public class Hozzaadas extends JDialog {
             JOptionPane.showMessageDialog(this, "Érvénytelen tallózási útvonal!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnTallozActionPerformed
-
 
     private boolean ellenorizNev() {
         return (tfNev.getText().length() > 0 && tfNev.getText().length() <= 30);

@@ -163,6 +163,7 @@
         <Component class="javax.swing.JTextArea" name="taLeiras">
           <Properties>
             <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="15"/>
             <Property name="tabSize" type="int" value="25"/>
           </Properties>
