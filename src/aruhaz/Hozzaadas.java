@@ -1,7 +1,8 @@
 package aruhaz;
 
-import java.awt.image.ImageFilter;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -14,7 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Hozzaadas extends JDialog {
 
-    Modell modell;
+    private Modell modell;
 
     public Hozzaadas(JFrame parent, Modell modell) {
         super(parent, true);     
@@ -31,7 +32,7 @@ public class Hozzaadas extends JDialog {
         UIManager.put("FileChooser.fileNameLabelText", "Fájl neve:");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Fájl típusa:");
         UIManager.put("OptionPane.noButtonText", "Nem");
-        UIManager.put("OptionPane.yesButtonText", "Igen");
+        UIManager.put("OptionPane.yesButtonText", "Ok");
         
         this.modell = modell;
         
@@ -39,9 +40,12 @@ public class Hozzaadas extends JDialog {
         telepulesekFeltolt();
     }
 
-    private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése
-        for (String kategoria : modell.getKategoriak()) {
-            cbKategoria.addItem(kategoria);
+    private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése     
+        ArrayList<String>kategoriaStrings = new ArrayList<String>(modell.getKategoriak());
+        Collections.sort(kategoriaStrings);
+
+        for (int i = 0; i < kategoriaStrings.size(); i++) {
+            cbKategoria.addItem(kategoriaStrings.get(i).split("\\;")[0]);
         }
     }
     
@@ -213,11 +217,16 @@ public class Hozzaadas extends JDialog {
     private void btnTallozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTallozActionPerformed
         try {
             JFileChooser chooser = new JFileChooser();
-            chooser.showOpenDialog(null);
+            chooser.setCurrentDirectory(new File("."));
+            
+            //kép filter
             FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-            chooser.addChoosableFileFilter(imageFilter);
+            chooser.setFileFilter(imageFilter);
+            
+            chooser.showOpenDialog(null);
             File f = chooser.getSelectedFile();
-            tfKepPath.setText(f.getAbsolutePath());
+            
+            tfKepPath.setText(".images/" +  f.getName());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Érvénytelen tallózási útvonal!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }

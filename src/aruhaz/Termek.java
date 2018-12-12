@@ -15,17 +15,18 @@ public class Termek {
     }
     
     Termek(int ID, String telepules, String nev, String leiras, String kategoria, int ar, String kep) {
-        this.ID =ID;
+        this.ID = ID;
         this.telepules = telepules;
         this.nev = nev;
         this.kategoria = kategoria;
         this.leiras = leiras;
-        this.ar = ar;
+        setAr(ar);
         this.kep = kep;
     }
 
     public void szazalekosArvaltoztatas(double szazalek){
         ar *= (1+szazalek);
+        setAr(ar);
     }
 
     @Override
@@ -78,6 +79,9 @@ public class Termek {
     }
 
     public void setAr(int ar) {
+        if(ar < 1){
+            ar = 1;
+        }
         this.ar = ar;
     }
 

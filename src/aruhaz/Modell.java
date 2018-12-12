@@ -7,16 +7,13 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -28,16 +25,18 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Modell {
-    public final static String TERMEKEK_PATH_STRING = "./files/termek.xml";
-    public final static String KATEGORIAK_PATH_STRING = "./files/kategoria.xml";
-   // public final static String KATEGORIAK_PATH_STRING = "./files/termek.xml";
+    public final String TERMEKEK_PATH_STRING;
+    public final String KATEGORIAK_PATH_STRING;
 
     private ArrayList<Termek> termekek = new ArrayList();
     private ArrayList<String> kategoriak = new ArrayList();
     private ArrayList<String> telepulesek = new ArrayList();
     private Document termekekDoc;
 
-    public Modell() {
+    public Modell(String termekPath, String kategoriaPath) {
+        TERMEKEK_PATH_STRING = termekPath;
+        KATEGORIAK_PATH_STRING = kategoriaPath;
+        
         termekekBetoltese();
         kategoriakBetoltese();
         telepulesekBetoltese();
@@ -124,6 +123,7 @@ public class Modell {
         return index;
     } 
     
+    // termek hozzadasa a modellhez és a fájlhoz
     public void termekHozzadasa(String telepules, String nev, String kategoria, String leiras, String ar, String kep) {
         int index = kovIndex();
         termekek.add(new Termek(index +"",  telepules, nev, leiras, kategoria, ar, kep));
@@ -144,10 +144,11 @@ public class Modell {
         dokumentumFajlbaIrasa(termekekDoc, TERMEKEK_PATH_STRING);
     }
 
-    private void adatFelvitelSzulohoz(Element szulo, String azonosito, String data){
-            Element element = termekekDoc.createElement(azonosito);
-            element.appendChild(termekekDoc.createTextNode(data));
-            szulo.appendChild(element);
+    //adott elemhez adott azonosítoval és adattagot ad
+    private void adatFelvitelSzulohoz(Element szulo, String azonosito, String adat){
+            Element elem = termekekDoc.createElement(azonosito);
+            elem.appendChild(termekekDoc.createTextNode(adat));
+            szulo.appendChild(elem);
     }
     
     //adott id-vel rendelkező elem törlése
@@ -243,8 +244,7 @@ public class Modell {
         return null;
     }
 
-
-
+    // GETTERS
     public ArrayList<String> getKategoriak() {
         return kategoriak;
     }

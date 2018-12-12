@@ -8,8 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class Torles extends JDialog {
-     private Modell modell;
-     private ArrayList<String> termekekStrings = new ArrayList<>();
+    private Modell modell;
+    private ArrayList<String> termekekStrings = new ArrayList<>();
      
     public Torles(JFrame parent, Modell modell) {
         super(parent, true);
