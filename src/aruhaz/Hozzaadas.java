@@ -1,12 +1,16 @@
 package aruhaz;
 
+import java.awt.image.ImageFilter;
 import java.io.File;
+import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Hozzaadas extends JDialog {
 
@@ -210,8 +214,10 @@ public class Hozzaadas extends JDialog {
         try {
             JFileChooser chooser = new JFileChooser();
             chooser.showOpenDialog(null);
+            FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+            chooser.addChoosableFileFilter(imageFilter);
             File f = chooser.getSelectedFile();
-            String filename = f.getAbsolutePath();
+            tfKepPath.setText(f.getAbsolutePath());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Érvénytelen tallózási útvonal!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }

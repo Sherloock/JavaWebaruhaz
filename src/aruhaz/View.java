@@ -1,10 +1,13 @@
 package aruhaz;
 
 import java.awt.BorderLayout;
+import java.awt.List;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.TreeSet;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -13,17 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
 
 public class View extends JFrame {
 
@@ -54,48 +53,97 @@ public class View extends JFrame {
         termekekTablaFeltolt();
         kategoriaTablaFeltolt();
         termekekStringsFeltolt();
-        kategoriaNezetFeltolt();
+        kategoriaTreeFeltolt();
     }
-    
-    private void kategoriaNezetFeltolt() {
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");       
-        
+
+    public static void rendezTree(DefaultMutableTreeNode root) {
+        Enumeration e = root.depthFirstEnumeration();
+        while (e.hasMoreElements()) {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
+            if (!node.isLeaf()) {
+                rendez(node); 
+            }
+        }
+    }
+
+    public static Comparator<DefaultMutableTreeNode> tnc = new Comparator<DefaultMutableTreeNode>() {
+        @Override
+        public int compare(DefaultMutableTreeNode a, DefaultMutableTreeNode b) {
+            //Sort the parent and child nodes separately:
+            if (a.isLeaf() && !b.isLeaf()) {
+                return 1;
+            } else if (!a.isLeaf() && b.isLeaf()) {
+                return -1;
+            } else {
+                String sa = a.getUserObject().toString();
+                String sb = b.getUserObject().toString();
+                return sa.compareToIgnoreCase(sb);
+            }
+        }
+    };
+
+    public static void rendez(DefaultMutableTreeNode parent) {
+        int n = parent.getChildCount();
+        ArrayList<DefaultMutableTreeNode> children = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            children.add((DefaultMutableTreeNode) parent.getChildAt(i));
+        }
+        Collections.sort(children, tnc); //iterative merge sort
+        parent.removeAllChildren();
+        for (MutableTreeNode node : children) {
+            parent.add(node);
+        }
+    }
+
+    private void kategoriaTreeFeltolt() {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Root");
+
+        ArrayList<String> termekek = new ArrayList<>();
+
+        for (int i = 0; i < modell.getTermekek().size(); i++) {
+            termekek.add(modell.getTermekek().get(i).getNev());
+        }
+        Collections.sort(termekek);
+
         for (int j = 0; j < modell.getKategoriak().size(); j++) {
-            
+
             //kategoriak hozzáad csomopontonként           
-            DefaultMutableTreeNode kategoriakTreeNode = new DefaultMutableTreeNode(modell.getKategoriak().get(j));   
-            
+            DefaultMutableTreeNode kategoriakTreeNode = new DefaultMutableTreeNode(modell.getKategoriak().get(j));
+
             for (int i = 0; i < modell.getTermekek().size(); i++) {
-                if(modell.getKategoriak().get(j).equals(modell.getTermekek().get(i).getKategoria())){
+
+                if (modell.getKategoriak().get(j).equals(modell.getTermekek().get(i).getKategoria())) {
+
                     kategoriakTreeNode.add(new DefaultMutableTreeNode(modell.getTermekek().get(i).getNev()));
                 }
-            }            
-            root.add(kategoriakTreeNode);     
+            }
+            root.add(kategoriakTreeNode);
         }
 
+        rendezTree(root);
         JTree treeCsoportositas = new JTree(root);
-        
+
         pCsoportositas.add(new JScrollPane(treeCsoportositas));
-        
+
         treeCsoportositas.setShowsRootHandles(false);
         treeCsoportositas.setRootVisible(true);
-        
+
         treeCsoportositas.getSelectionModel().addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent e) {
                 DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treeCsoportositas.getLastSelectedPathComponent();
             }
-        });        
+        });
     }
-    
-    private void kategoriaTablaFeltolt(){
+
+    private void kategoriaTablaFeltolt() {
         pKategorizal.removeAll();
-        String[] fejlecek = {"Kategória", "Termékek száma", "Legolcsóbb", "Legdrágább"};
-        
+        Object[] fejlec = {"Kategória", "Termékek száma", "Legolcsóbb", "Legdrágább"};
+
         ArrayList<Termek> termekLista = modell.getTermekek();
         ArrayList<String> kategoriak = modell.getKategoriak();
-        
-        String[][] adatok = new String[kategoriak.size()][4];
+
+        Object[][] adatok = new Object[kategoriak.size()][4];
         //kategóriák feltölt
         for (int i = 0; i < kategoriak.size(); i++) {
             adatok[i][0] = kategoriak.get(i);
@@ -108,55 +156,79 @@ public class View extends JFrame {
                     }
                     if (max < termekLista.get(j).getAr()) {
                         max = (int) termekLista.get(j).getAr();
-                        
+
                     }
                 }
             }
-            adatok[i][1] = Integer.toString(szamlalo);
-            adatok[i][2] = Integer.toString(min);
-            adatok[i][3] = Integer.toString(max);
+            adatok[i][1] = szamlalo;
+            adatok[i][2] = min;
+            adatok[i][3] = max;
         }
-        
-        tableKategorizal = new JTable(adatok, fejlecek) {
+
+        DefaultTableModel tablaModell = new DefaultTableModel(adatok, fejlec) {
+            @Override
+            public Class getColumnClass(int column) {
+                if (column >= 1 && column <= 3) {
+                    return Integer.class;
+                } else {
+                    return String.class;
+                }
+            }
+        };
+
+        tableKategorizal = new JTable(tablaModell) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false; //Disallow the editing of any cell
+                return false;
             }
         };
         JScrollPane gorgetoSav = new JScrollPane(tableKategorizal);
+        tableKategorizal.setAutoCreateRowSorter(true);
         tableKategorizal.setFillsViewportHeight(true);
         pKategorizal.setLayout(new BorderLayout());
         pKategorizal.add(tableKategorizal.getTableHeader(), BorderLayout.PAGE_START);
         pKategorizal.add(gorgetoSav, BorderLayout.CENTER);
-        
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-        
-        tableKategorizal.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-        tableKategorizal.getColumnModel().getColumn(2).setCellRenderer(rightRenderer);
-        tableKategorizal.getColumnModel().getColumn(3).setCellRenderer(rightRenderer);
-        
+
+        //jobbra rendez
+        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
+        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
+
+        tableKategorizal.getColumnModel().getColumn(1).setCellRenderer(jobbraRendez);
+        tableKategorizal.getColumnModel().getColumn(2).setCellRenderer(jobbraRendez);
+        tableKategorizal.getColumnModel().getColumn(3).setCellRenderer(jobbraRendez);
+
         tableKategorizal.getColumnModel().getColumn(1).setPreferredWidth(10);
-        
+
         pKategorizal.revalidate();
     }
-    
+
     private void termekekTablaFeltolt() {
         pTermekek.removeAll();
-        String[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép"};
+        Object[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép"};
 
-        String[][] adatok = new String[modell.getTermekek().size()][fejlec.length];
+        Object[][] adatok = new Object[modell.getTermekek().size()][fejlec.length];
         for (int i = 0; i < modell.getTermekek().size(); i++) {
-            adatok[i][0] = modell.getTermekek().get(i).ID + "";
+            adatok[i][0] = modell.getTermekek().get(i).ID;
             adatok[i][1] = modell.getTermekek().get(i).getTelepules();
             adatok[i][2] = modell.getTermekek().get(i).getNev();
             adatok[i][3] = modell.getTermekek().get(i).getKategoria();
             adatok[i][4] = modell.getTermekek().get(i).getLeiras();
-            adatok[i][5] = modell.getTermekek().get(i).getAr() + " Ft";
+            adatok[i][5] = modell.getTermekek().get(i).getAr();
             adatok[i][6] = modell.getTermekek().get(i).getKep();
         }
-        
-        tableTermekek = new JTable(adatok, fejlec) {
+
+        DefaultTableModel model = new DefaultTableModel(adatok, fejlec) {
+            @Override
+            public Class getColumnClass(int column) {
+                if (column == 0 || column == 5) {
+                    return Integer.class;
+                } else {
+                    return String.class;
+                }
+            }
+        };
+
+        tableTermekek = new JTable(model) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -164,18 +236,19 @@ public class View extends JFrame {
         };
 
         JScrollPane gorgetoSav = new JScrollPane(tableTermekek);
+        tableTermekek.setAutoCreateRowSorter(true);
         tableTermekek.setFillsViewportHeight(true);
 
         pTermekek.setLayout(new BorderLayout());
         pTermekek.add(tableTermekek.getTableHeader(), BorderLayout.PAGE_START);
         pTermekek.add(gorgetoSav, BorderLayout.CENTER);
-        
-        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
-        rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
-        
-        tableTermekek.getColumnModel().getColumn(0).setCellRenderer(rightRenderer);
-        tableTermekek.getColumnModel().getColumn(5).setCellRenderer(rightRenderer);
-        
+
+        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
+        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
+
+        tableTermekek.getColumnModel().getColumn(0).setCellRenderer(jobbraRendez);
+        tableTermekek.getColumnModel().getColumn(5).setCellRenderer(jobbraRendez);
+
         tableTermekek.getColumnModel().getColumn(0).setPreferredWidth(10);
         pTermekek.revalidate();
     }
@@ -190,36 +263,17 @@ public class View extends JFrame {
 
         termekekStrings = new ArrayList<String>(collection);
 
+        cbTermekek.removeAll();
         cbTermekek.addItem("Összes termék");
         for (int i = 0; i < termekekStrings.size(); i++) {
             cbTermekek.addItem(termekekStrings.get(i).split("\\;")[0]);
         }
     }
 
-    // TODO: nem müxik :(
-    private void rendez(JTable tabla){
-//        DefaultTableModel tablamodel = (DefaultTableModel)tabla.getModel();
-//        TableRowSorter<DefaultTableModel> rendezo = new TableRowSorter<>(tablamodel);
-//        tabla.setRowSorter(rendezo);
-
-        tabla.setAutoCreateRowSorter(true);
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tabla.getModel());
-        tabla.setRowSorter(sorter);
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-
-        int columnIndexToSort = 1;
-        sortKeys.add(new RowSorter.SortKey(columnIndexToSort, SortOrder.ASCENDING));
-
-        sorter.setSortKeys(sortKeys);
-        sorter.sort();
-
-    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        spCsoportositas = new javax.swing.JScrollPane();
-        treeCsoportositas = new javax.swing.JTree();
         tpUrlap = new javax.swing.JTabbedPane();
         pCsoportositas = new javax.swing.JPanel();
         pTermekek = new javax.swing.JPanel();
@@ -240,8 +294,6 @@ public class View extends JFrame {
         btnGrafikon = new javax.swing.JButton();
         btnPdfKimutatas = new javax.swing.JButton();
         btnKilepes = new javax.swing.JButton();
-
-        spCsoportositas.setViewportView(treeCsoportositas);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Adatok felvitele");
@@ -481,7 +533,7 @@ public class View extends JFrame {
 
     private void btnArValtoztatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArValtoztatasActionPerformed
         double valtoztatasMerteke = sliderArValt.getValue() / 100.0;
-        
+
         if (valtoztatasMerteke != 0.0) {
             int index = cbTermekek.getSelectedIndex();
 
@@ -489,9 +541,7 @@ public class View extends JFrame {
             if (index == 0) {
                 modell.arvaltoztatas(valtoztatasMerteke);
                 labelArValtUzenet.setText("Az összes termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
-            } 
-            
-            //egy termék
+            } //egy termék
             else {
                 index--;
                 String idStr = termekekStrings.get(index).split(";")[1];
@@ -521,16 +571,11 @@ public class View extends JFrame {
     private javax.swing.JPanel pKategorizal;
     private javax.swing.JPanel pTermekek;
     private javax.swing.JSlider sliderArValt;
-    private javax.swing.JScrollPane spCsoportositas;
     private javax.swing.JScrollPane spKategorizal;
     private javax.swing.JScrollPane spTabla1;
     private javax.swing.JScrollPane spTermekek;
     private javax.swing.JTable tableKategorizal;
     private javax.swing.JTable tableTermekek;
     private javax.swing.JTabbedPane tpUrlap;
-    private javax.swing.JTree treeCsoportositas;
     // End of variables declaration//GEN-END:variables
-
-  
-
 }

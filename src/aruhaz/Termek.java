@@ -33,7 +33,7 @@ public class Termek {
         return "Termek{" + "ID=" + ID + ", telepules=" + telepules + ", nev=" + nev + ", "
                 + "kategoria=" + kategoria + ", leiras=" + leiras + ", ar=" + ar + ", kep=" + kep + '}';
     }
-    
+
     
     // getters and setters
     

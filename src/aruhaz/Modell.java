@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -60,7 +61,6 @@ public class Modell {
                     adatKivetel(termek, "Kep")
             ));
         }
-        System.out.println(termekek);
     }
 
     // kategóriák feltöltése
@@ -73,7 +73,6 @@ public class Modell {
             Element kategoria = (Element) kategoriaNodeList.item(i);
             kategoriak.add(adatKivetel(kategoria, "Tipus"));
         }
-        System.out.println(kategoriak);
     }
 
     //települések feltöltése
@@ -94,7 +93,6 @@ public class Modell {
         } catch (IOException ex) {
             hibaUzenet("Ismeretlen hiba!");
         }
-        System.out.println(telepulesek);
     }
     
     //dokumentum elkészítése a megadott fájlból
@@ -124,8 +122,7 @@ public class Modell {
         index = Integer.parseInt(root.getAttribute("kovId"));
         root.setAttribute("kovId", (index + 1) + "");
         return index;
-    }
-    
+    } 
     
     public void termekHozzadasa(String telepules, String nev, String kategoria, String leiras, String ar, String kep) {
         int index = kovIndex();
