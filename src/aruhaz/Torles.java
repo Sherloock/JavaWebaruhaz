@@ -6,31 +6,34 @@ import java.util.Collection;
 import java.util.TreeSet;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Torles extends JDialog {
+
     private Modell modell;
     private ArrayList<String> termekekStrings = new ArrayList<>();
-     
+
     public Torles(JFrame parent, Modell modell) {
         super(parent, true);
         initComponents();
-        setTitle("Termék törlése");      
+        setTitle("Termék törlése");
         setLocationRelativeTo(parent);
-        
+
         this.modell = modell;
         termekekStringsFeltolt();
     }
+
     private void termekekStringsFeltolt() {
         Collection<String> collection = new TreeSet<String>(Collator.getInstance());
-        
+
         for (int i = 0; i < modell.getTermekek().size(); i++) {
             Termek t = modell.getTermekek().get(i);
             collection.add(t.getNev() + ";" + t.ID);
         }
-        
+
         termekekStrings = new ArrayList<String>(collection);
-        
-        for (int i = 0; i < termekekStrings.size(); i++) {   
+
+        for (int i = 0; i < termekekStrings.size(); i++) {
             cbTermekek.addItem(termekekStrings.get(i).split("\\;")[0]);
         }
     }
@@ -88,17 +91,20 @@ public class Torles extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEltavolitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEltavolitActionPerformed
-           int index =  cbTermekek.getSelectedIndex();
-           String id = termekekStrings.get(index).split(";")[1];
-           modell.termekTorlese(id);
-
-        this.dispose();
+        int index = cbTermekek.getSelectedIndex();
+        
+        if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \"" 
+                + termekekStrings.get(index).split(";")[0] + "\" nevű terméket?", "Termék törlése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+           
+            String id = termekekStrings.get(index).split(";")[1];
+            modell.termekTorlese(id);
+            this.dispose();
+        }
     }//GEN-LAST:event_btnEltavolitActionPerformed
 
     private void btnMegseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnMegseActionPerformed
-                               
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

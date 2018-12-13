@@ -24,90 +24,100 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="lbNev" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbKat" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbTelep" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbKep" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbNev1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="tfKepPath" max="32767" attributes="0"/>
-                                  <Component id="cbKategoria" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbTelepules" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfAr" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfNev" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnTalloz" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lbLeir" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="spLeiras" alignment="0" min="-2" pref="318" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnFelvisz" min="-2" pref="120" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnKilepesF" min="-2" pref="129" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lbLeir" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lbKat" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbTelep" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbNev" max="32767" attributes="0"/>
+                      <Component id="lbNev1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbKep" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnFelvisz" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnKilepesF" min="-2" pref="129" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lb30200" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+                      <Component id="lbKarakterSzam" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="l200" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="spLeiras" alignment="1" max="32767" attributes="0"/>
+                  <Component id="cbKategoria" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbTelepules" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tfAr" alignment="0" max="32767" attributes="0"/>
+                  <Component id="tfNev" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="tfKepPath" min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnTalloz" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tfNev" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbNev" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tfAr" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbNev1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbTelep" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbTelepules" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbKat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbKategoria" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="tfKepPath" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnTalloz" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="btnTalloz" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="lbKep" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="lbLeir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="spLeiras" min="-2" pref="92" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnFelvisz" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnKilepesF" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="lbLeir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="spLeiras" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="l200" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbKarakterSzam" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="lb30200" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnKilepesF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFelvisz" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -120,7 +130,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTalloz">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="12" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Tall&#xf3;z&#xe1;s"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTallozActionPerformed"/>
@@ -128,6 +141,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbNev">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="N&#xe9;v:"/>
       </Properties>
     </Component>
@@ -135,11 +149,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbTelep">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Telep&#xfc;l&#xe9;s:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbKat">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="Kateg&#xf3;ria:"/>
       </Properties>
     </Component>
@@ -150,6 +166,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbKep">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="K&#xe9;p:"/>
       </Properties>
     </Component>
@@ -167,6 +184,11 @@
             <Property name="rows" type="int" value="15"/>
             <Property name="tabSize" type="int" value="25"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyPressed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyReleased"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -223,7 +245,35 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lbNev1">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="&#xc1;r:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lb30200">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="10" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="30-200 karakter"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="l200">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="10" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="/ 200"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbKarakterSzam">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="10" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
   </SubComponents>

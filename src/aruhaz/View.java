@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.TreeSet;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
@@ -18,10 +19,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 
@@ -126,6 +129,7 @@ public class View extends JFrame {
         rendezTree(root);
         JTree treeCsoportositas = new JTree(root);
 
+        pCsoportositas.removeAll();
         pCsoportositas.add(new JScrollPane(treeCsoportositas));
 
         treeCsoportositas.setShowsRootHandles(false);
@@ -150,22 +154,19 @@ public class View extends JFrame {
         //kategóriák feltölt
         for (int i = 0; i < kategoriak.size(); i++) {
             adatok[i][0] = kategoriak.get(i);
-            int szamlalo = 0, min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
+            
+                
+            int szamlalo = 0, min = Integer.MAX_VALUE, max = 0;
             for (int j = 0; j < termekLista.size(); j++) {
                 if (kategoriak.get(i).equals(termekLista.get(j).getKategoria())) {
                     szamlalo++;
-                    if (min > termekLista.get(j).getAr()) {
-                        min = (int) termekLista.get(j).getAr();
-                    }
-                    if (max < termekLista.get(j).getAr()) {
-                        max = (int) termekLista.get(j).getAr();
-
-                    }
+                    min = Math.min(min, termekLista.get(j).getAr());
+                    max = Math.max(max, termekLista.get(j).getAr());
                 }
             }
             adatok[i][1] = szamlalo;
-            adatok[i][2] = min;
-            adatok[i][3] = max;
+            adatok[i][2] = szamlalo == 0 ? 0 : min;
+            adatok[i][3] = szamlalo == 0 ? 0 : max;
         }
 
         DefaultTableModel tablaModell = new DefaultTableModel(adatok, fejlec) {
@@ -179,25 +180,10 @@ public class View extends JFrame {
             }
         };
 
-        tableKategorizal = new JTable(tablaModell) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
-            }
-        };
 
-        tableKategorizal.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                c.setBackground(row % 2 == 0 ? Color.LIGHT_GRAY : Color.WHITE);
-                return c;
-            }
-        });
+        tableKategorizal = tablaElkeszitese(tablaModell);
 
         JScrollPane gorgetoSav = new JScrollPane(tableKategorizal);
-        tableKategorizal.setAutoCreateRowSorter(true);
-        tableKategorizal.setFillsViewportHeight(true);
         pKategorizal.setLayout(new BorderLayout());
         pKategorizal.add(tableKategorizal.getTableHeader(), BorderLayout.PAGE_START);
         pKategorizal.add(gorgetoSav, BorderLayout.CENTER);
@@ -209,14 +195,45 @@ public class View extends JFrame {
         tableKategorizal.getColumnModel().getColumn(1).setCellRenderer(jobbraRendez);
         tableKategorizal.getColumnModel().getColumn(2).setCellRenderer(jobbraRendez);
         tableKategorizal.getColumnModel().getColumn(3).setCellRenderer(jobbraRendez);
-
+        
         tableKategorizal.getColumnModel().getColumn(1).setPreferredWidth(10);
+        tableKategorizal.revalidate();
+    }
 
-        pKategorizal.revalidate();
+    private JTable tablaElkeszitese(DefaultTableModel modell) {
+        JTable tabla = new JTable(modell) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+
+            public Class getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            public Component prepareRenderer(
+                    TableCellRenderer renderer, int row, int column) {
+                Component c = super.prepareRenderer(renderer, row, column);
+                JComponent jc = (JComponent) c;
+
+                //  szinez
+                if (!isRowSelected(row)) {
+                    c.setBackground(row % 2 == 0 ? getBackground() : Color.LIGHT_GRAY);
+                }
+
+                return c;
+            }
+        };
+               
+        tabla.setAutoCreateRowSorter(true);
+        tabla.setFillsViewportHeight(true);
+
+        return tabla;
     }
 
     private void termekekTablaFeltolt() {
         pTermekek.removeAll();
+
         Object[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép"};
 
         Object[][] adatok = new Object[modell.getTermekek().size()][fejlec.length];
@@ -241,26 +258,10 @@ public class View extends JFrame {
             }
         };
 
-        tableTermekek = new JTable(model) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
-            }
-        };
-        
-        tableTermekek.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                c.setBackground(row % 2 == 0 ? Color.LIGHT_GRAY : Color.WHITE);
-                return c;
-            }
-        });
+        tableTermekek = tablaElkeszitese(model);
+
 
         JScrollPane gorgetoSav = new JScrollPane(tableTermekek);
-        tableTermekek.setAutoCreateRowSorter(true);
-        tableTermekek.setFillsViewportHeight(true);
-
         pTermekek.setLayout(new BorderLayout());
         pTermekek.add(tableTermekek.getTableHeader(), BorderLayout.PAGE_START);
         pTermekek.add(gorgetoSav, BorderLayout.CENTER);
@@ -292,13 +293,13 @@ public class View extends JFrame {
     private void initComponents() {
 
         tpUrlap = new javax.swing.JTabbedPane();
-        pCsoportositas = new javax.swing.JPanel();
         pTermekek = new javax.swing.JPanel();
         spTermekek = new javax.swing.JScrollPane();
         tableTermekek = new javax.swing.JTable();
         pKategorizal = new javax.swing.JPanel();
         spKategorizal = new javax.swing.JScrollPane();
         tableKategorizal = new javax.swing.JTable();
+        pCsoportositas = new javax.swing.JPanel();
         btnTermekHozzaad = new javax.swing.JButton();
         btnTermekTorol = new javax.swing.JButton();
         btnGrafikon = new javax.swing.JButton();
@@ -313,10 +314,6 @@ public class View extends JFrame {
         tpUrlap.setMaximumSize(new java.awt.Dimension(1000, 800));
         tpUrlap.setMinimumSize(new java.awt.Dimension(600, 400));
         tpUrlap.setPreferredSize(new java.awt.Dimension(700, 600));
-
-        pCsoportositas.setEnabled(false);
-        pCsoportositas.setLayout(new java.awt.BorderLayout());
-        tpUrlap.addTab("Kategória nézet", pCsoportositas);
 
         pTermekek.setPreferredSize(new java.awt.Dimension(786, 522));
 
@@ -367,6 +364,10 @@ public class View extends JFrame {
 
         tpUrlap.addTab("Kategória statisztika", pKategorizal);
 
+        pCsoportositas.setEnabled(false);
+        pCsoportositas.setLayout(new java.awt.BorderLayout());
+        tpUrlap.addTab("Kategória nézet", pCsoportositas);
+
         btnTermekHozzaad.setText("Termék hozzáadása...");
         btnTermekHozzaad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +403,7 @@ public class View extends JFrame {
             }
         });
 
-        btnArakModositas.setText("Árak módosítása...");
+        btnArakModositas.setText("Ár módosítás...");
         btnArakModositas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnArakModositasActionPerformed(evt);
@@ -481,7 +482,7 @@ public class View extends JFrame {
     }//GEN-LAST:event_cbTermekArValtActionPerformed
 
     private void btnArakModositasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArakModositasActionPerformed
-        new Armodositas(this.frame, modell, termekekStrings).setVisible(true);
+        new Armodositas(this.frame, modell, termekekStrings, this).setVisible(true);
         adatokFrissitese();
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
@@ -497,7 +498,6 @@ public class View extends JFrame {
     private javax.swing.JPanel pKategorizal;
     private javax.swing.JPanel pTermekek;
     private javax.swing.JScrollPane spKategorizal;
-    private javax.swing.JScrollPane spTabla1;
     private javax.swing.JScrollPane spTermekek;
     private javax.swing.JTable tableKategorizal;
     private javax.swing.JTable tableTermekek;
