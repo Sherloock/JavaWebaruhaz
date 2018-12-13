@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Termekek kovId="30">
+<Termekek kovId="31">
     
     
 	<Termek>
@@ -9,7 +9,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Ez egy szép kis katica. Piros színű és fekete pöttyök vannak rajta. Egy fűszálon.</Leiras>
         <Kep>.images/animal017.jpg</Kep>
-        <Ar>15083</Ar>
+        <Ar>5173</Ar>
     </Termek>
     <Termek>
         <Id>3</Id>
@@ -18,7 +18,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Ez egy szép kis katica. Piros színű és fekete pöttyök vannak rajta. Egy fűszálon.</Leiras>
         <Kep>.images/animal017.jpg</Kep>
-        <Ar>122109</Ar>
+        <Ar>41883</Ar>
     </Termek>
     <Termek>
         <Id>4</Id>
@@ -27,7 +27,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Egy fűszálon mászó kis, piros, fekete pöttyös katicabogár.</Leiras>
         <Kep>./images/animal017.jpg</Kep>
-        <Ar>43893</Ar>
+        <Ar>15054</Ar>
     </Termek>
     <Termek>
         <Id>5</Id>
@@ -36,7 +36,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Piros alma. Enyhén száradt, kertből lopva.Minden harapás egy álomhoz hasonló.</Leiras>
         <Kep>./images/alma.jpg</Kep>
-        <Ar>4783</Ar>
+        <Ar>1640</Ar>
     </Termek>
     <Termek>
         <Id>6</Id>
@@ -45,7 +45,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Modern műbőr ágy, 140x200cm. Kiválló választás alvásra</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>586532</Ar>
+        <Ar>201180</Ar>
     </Termek>
     
     
@@ -57,7 +57,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Egy kilós csoda. Vedd meg és rájössz Te is!</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>7194</Ar>
+        <Ar>2466</Ar>
     </Termek>
     <Termek>
         <Id>11</Id>
@@ -66,7 +66,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>200x150cm lenyűgöző modell. Csak ajánlani tudom</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>122109</Ar>
+        <Ar>41883</Ar>
     </Termek>
     <Termek>
         <Id>12</Id>
@@ -75,7 +75,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Titánból van az egész. Garantáltan nehéz lesz becipelni a házba</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>879818</Ar>
+        <Ar>301777</Ar>
     </Termek>
     <Termek>
         <Id>13</Id>
@@ -84,7 +84,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>Ez a L-szériás giga porszívó képes mindent beszívni és felszívni.</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>230874</Ar>
+        <Ar>79188</Ar>
     </Termek>
     <Termek>
         <Id>14</Id>
@@ -93,7 +93,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Egyszerű állólámpa. 350x450cm így nem sok helyen fér el</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>61018</Ar>
+        <Ar>20928</Ar>
     </Termek>
     <Termek>
         <Id>15</Id>
@@ -102,7 +102,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Egy II.világháborús amerikai anyahajó. Ritkasága határtalan</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>224789</Ar>
+        <Ar>77102</Ar>
     </Termek>
     <Termek>
         <Id>16</Id>
@@ -111,7 +111,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Jappán atomleves, garantált finom íz</Leiras>
         <Kep>./images/leves.jpg</Kep>
-        <Ar>7208</Ar>
+        <Ar>2471</Ar>
     </Termek>
     <Termek>
         <Id>17</Id>
@@ -120,7 +120,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Alap tabletta, olyanoknak akik leszarnak mindent</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>12100</Ar>
+        <Ar>4150</Ar>
     </Termek>
     <Termek>
         <Id>18</Id>
@@ -129,7 +129,7 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras>Ez a kis medence 5nm-es, kivállóan illik minden kerdbe</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>390969</Ar>
+        <Ar>134101</Ar>
     </Termek>
     
     <Termek>
@@ -139,7 +139,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Mama süti por. Van több kérdés?</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>16743</Ar>
+        <Ar>5742</Ar>
     </Termek>
 
 
@@ -163,6 +163,15 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>32111111111111111111111111111111</Leiras>
         <Kep>images\animal017.jpg</Kep>
-        <Ar>353443</Ar>
+        <Ar>121230</Ar>
+    </Termek>
+<Termek>
+        <Id>30</Id>
+        <Telepules>Abádszalók</Telepules>
+        <Nev>12321</Nev>
+        <Kategoria>Barkács eszköz</Kategoria>
+        <Leiras>32133333333333333333333333333332111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</Leiras>
+        <Kep>images\animal017.jpg</Kep>
+        <Ar>1</Ar>
     </Termek>
 </Termekek>

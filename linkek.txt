@@ -12,3 +12,15 @@ Pages
 https://www.baeldung.com/java-pdf-creation
 http://www.jfree.org/jfreechart/samples.html
 http://kaczursandor.hu
+
+
+
+PDF
+termékkategóriák száma, 
+termékek száma, 
+termékek átlagos ára, 
+termékek száma termékkategóriánként, 
+termékek átlagos ára termékkategóriánként,
+táblázatosan a termékkategóriák neve, min. és max. ára, mennyisége, 
+a generált fájl elérési útvonala, 
+a generálás dátuma és időpontja rövid formátumban.

@@ -180,7 +180,7 @@ public class View extends JFrame {
             }
         };
 
-
+        
         tableKategorizal = tablaElkeszitese(tablaModell);
 
         JScrollPane gorgetoSav = new JScrollPane(tableKategorizal);
@@ -465,7 +465,6 @@ public class View extends JFrame {
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
         new Torles(this.frame, modell).setVisible(true);
         adatokFrissitese();
-
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed

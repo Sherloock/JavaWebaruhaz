@@ -79,10 +79,7 @@ public class Termek {
     }
 
     public void setAr(int ar) {
-        if(ar < 1){
-            ar = 1;
-        }
-        this.ar = ar;
+        this.ar = Math.max(1, ar);
     }
 
     public void setKep(String kep) {
