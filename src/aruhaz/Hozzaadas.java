@@ -18,11 +18,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Hozzaadas extends JDialog {
 
     private Modell modell;
+    
 
     public Hozzaadas(JFrame parent, Modell modell) {
         super(parent, true);
 
         initComponents();
+        
+        this.modell = modell;
+        kategoriakFeltolt();
+        telepulesekFeltolt();
+        
+        init(parent);
+    }
+    
+    private void init(JFrame parent) {
         setTitle("Termék hozzáadása");
         setLocationRelativeTo(parent);
 
@@ -35,11 +45,6 @@ public class Hozzaadas extends JDialog {
         UIManager.put("FileChooser.filesOfTypeLabelText", "Fájl típusa:");
         UIManager.put("OptionPane.noButtonText", "Nem");
         UIManager.put("OptionPane.yesButtonText", "Ok");
-
-        this.modell = modell;
-
-        kategoriakFeltolt();
-        telepulesekFeltolt();
     }
 
     private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése     
@@ -82,12 +87,6 @@ public class Hozzaadas extends JDialog {
         lbKarakterSzam = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        tfAr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfArActionPerformed(evt);
-            }
-        });
 
         btnTalloz.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnTalloz.setText("Tallózás");
@@ -144,12 +143,6 @@ public class Hozzaadas extends JDialog {
         btnKilepesF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKilepesFActionPerformed(evt);
-            }
-        });
-
-        cbKategoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKategoriaActionPerformed(evt);
             }
         });
 
@@ -253,10 +246,6 @@ public class Hozzaadas extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfArActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfArActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfArActionPerformed
-
     private void btnTallozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTallozActionPerformed
         try {
             JFileChooser chooser = new JFileChooser();
@@ -274,8 +263,6 @@ public class Hozzaadas extends JDialog {
             file.getAbsolutePath().replace(konyvtar.substring(0, konyvtar.length()-1), "");
             
             tfKepPath.setText(file.getAbsolutePath().replace(konyvtar.substring(0, konyvtar.length()-1), ""));
-
-           // tfKepPath.setText(".images/" + f.getName());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Érvénytelen tallózási útvonal!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
@@ -346,10 +333,6 @@ public class Hozzaadas extends JDialog {
         this.dispose();
     }//GEN-LAST:event_btnKilepesFActionPerformed
 
-    private void cbKategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbKategoriaActionPerformed
-
     private void taLeirasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taLeirasKeyTyped
         lbKarakterSzam.setText(taLeiras.getText().length() + "");
         lbKarakterSzam.setForeground(ellenorizLeiras() ? Color.black : Color.red);
@@ -364,7 +347,6 @@ public class Hozzaadas extends JDialog {
         lbKarakterSzam.setText(taLeiras.getText().length() + "");
         lbKarakterSzam.setForeground(ellenorizLeiras() ? Color.black : Color.red);
     }//GEN-LAST:event_taLeirasKeyReleased
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFelvisz;

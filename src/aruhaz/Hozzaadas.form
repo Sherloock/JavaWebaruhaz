@@ -124,9 +124,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="tfAr">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfArActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTalloz">
       <Properties>
@@ -236,9 +233,6 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbKategoriaActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

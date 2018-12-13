@@ -35,8 +35,9 @@
                   <Component id="btnPdfKimutatas" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnTermekHozzaad" max="32767" attributes="0"/>
                   <Component id="btnTermekTorol" max="32767" attributes="0"/>
-                  <Component id="btnGrafikon" alignment="0" pref="186" max="32767" attributes="0"/>
+                  <Component id="btnTermekekSzamaTelepulesenkent" alignment="0" pref="186" max="32767" attributes="0"/>
                   <Component id="btnArakModositas" alignment="1" pref="186" max="32767" attributes="0"/>
+                  <Component id="btnAtlagar" alignment="1" pref="186" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -49,10 +50,12 @@
               <Component id="btnTermekHozzaad" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnTermekTorol" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnArakModositas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnGrafikon" min="-2" max="-2" attributes="0"/>
+              <Component id="btnAtlagar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnTermekekSzamaTelepulesenkent" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnPdfKimutatas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -221,12 +224,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTermekTorolActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnGrafikon">
+    <Component class="javax.swing.JButton" name="btnTermekekSzamaTelepulesenkent">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kimutat&#xe1;s..."/>
+        <Property name="text" type="java.lang.String" value="Telep&#xfc;l&#xe9;s statisztika"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGrafikonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTermekekSzamaTelepulesenkentActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPdfKimutatas">
@@ -251,6 +254,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnArakModositasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAtlagar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#xc1;tlag&#xe1;r statisztika..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtlagarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

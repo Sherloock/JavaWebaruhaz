@@ -28,9 +28,9 @@ public class Modell {
     public final String TERMEKEK_PATH_STRING;
     public final String KATEGORIAK_PATH_STRING;
 
-    private ArrayList<Termek> termekek = new ArrayList();
-    private ArrayList<String> kategoriak = new ArrayList();
-    private ArrayList<String> telepulesek = new ArrayList();
+    private final ArrayList<Termek> TERMEKEK = new ArrayList();
+    private final ArrayList<String> KATEGORIAK = new ArrayList();
+    private final ArrayList<String> TELEPULESEK = new ArrayList();
     private Document termekekDoc;
 
     public Modell(String termekPath, String kategoriaPath) {
@@ -50,7 +50,7 @@ public class Modell {
         for (int i = 0; i < termekNodeList.getLength(); i++) {
             Element termek = (Element) termekNodeList.item(i);
 
-            termekek.add(new Termek(
+            TERMEKEK.add(new Termek(
                     adatKivetel(termek, "Id"),
                     adatKivetel(termek, "Telepules"),
                     adatKivetel(termek, "Nev"),
@@ -70,7 +70,7 @@ public class Modell {
 
         for (int i = 0; i < kategoriaNodeList.getLength(); i++) {
             Element kategoria = (Element) kategoriaNodeList.item(i);
-            kategoriak.add(adatKivetel(kategoria, "Tipus"));
+            KATEGORIAK.add(adatKivetel(kategoria, "Tipus"));
         }
     }
 
@@ -83,7 +83,7 @@ public class Modell {
             int index = 0;
             while ((sor = br.readLine()) != null && !sor.contains("Összesen")) {
                 if (index > 3) {
-                    telepulesek.add(sor.split("\\;")[0]);
+                    TELEPULESEK.add(sor.split("\\;")[0]);
                 }
                 index++;
             }
@@ -126,7 +126,7 @@ public class Modell {
     // termek hozzadasa a modellhez és a fájlhoz
     public void termekHozzadasa(String telepules, String nev, String kategoria, String leiras, String ar, String kep) {
         int index = kovIndex();
-        termekek.add(new Termek(index +"",  telepules, nev, leiras, kategoria, ar, kep));
+        TERMEKEK.add(new Termek(index +"",  telepules, nev, leiras, kategoria, ar, kep));
         
         Element termek = termekekDoc.createElement("Termek");
 
@@ -163,7 +163,7 @@ public class Modell {
                                 
                 if (adatKivetel(csomopont, "Id").equals(id)) {
                     root.removeChild(csomopont);
-                    Iterator<Termek> iter = termekek.iterator();
+                    Iterator<Termek> iter = TERMEKEK.iterator();
                     
                     while (iter.hasNext()) {
                         Termek termek = iter.next();
@@ -231,12 +231,12 @@ public class Modell {
 
     //összes ár megváltoztatása
     public void arvaltoztatas(double szazalek) {
-        termekek.forEach((termek) -> { arvaltoztatas(termek.ID, szazalek); });
+        TERMEKEK.forEach((termek) -> { arvaltoztatas(termek.ID, szazalek); });
     }
 
     //termék visszaadása az ID-je alalpján
     public Termek getTermekById(int id) {
-        for (Termek termek : termekek) {
+        for (Termek termek : TERMEKEK) {
             if (termek.ID == id) {
                 return termek;
             }
@@ -246,19 +246,19 @@ public class Modell {
 
     // GETTERS
     public ArrayList<String> getKategoriak() {
-        return kategoriak;
+        return KATEGORIAK;
     }
 
     public ArrayList<Termek> getTermekek() {
-        return termekek;
+        return TERMEKEK;
     }
 
     public ArrayList<String> getTelepulesek() {
-        return telepulesek;
+        return TELEPULESEK;
     }
     
      private void hibaUzenet(String hibauzenet) {
         JOptionPane.showMessageDialog(new JFrame(), hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
-    }
-
+    }    
+     
 }

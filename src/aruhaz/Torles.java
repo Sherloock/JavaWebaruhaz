@@ -12,17 +12,22 @@ public class Torles extends JDialog {
 
     private Modell modell;
     private ArrayList<String> termekekStrings = new ArrayList<>();
+    
 
     public Torles(JFrame parent, Modell modell) {
         super(parent, true);
         initComponents();
-        setTitle("Termék törlése");
-        setLocationRelativeTo(parent);
-
+       
         this.modell = modell;
         termekekStringsFeltolt();
+        
+        init(parent);
     }
-
+    private void init(JFrame parent) {
+        setTitle("Termék törlése");
+        setLocationRelativeTo(parent);
+    }
+    
     private void termekekStringsFeltolt() {
         Collection<String> collection = new TreeSet<String>(Collator.getInstance());
 

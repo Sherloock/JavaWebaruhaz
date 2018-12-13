@@ -7,7 +7,5 @@ public class Main {
            View v = new View(m);
            
            v.setVisible(true);
-
-           
        }
 }

@@ -19,7 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.UIManager;
-import javax.swing.border.MatteBorder;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -36,21 +35,22 @@ public class View extends JFrame {
 
     public View(Modell m) {
         initComponents();
-        ini();
-
-        UIManager.put("OptionPane.cancelButtonText", "Nem");
-        UIManager.put("OptionPane.okButtonText", "Igen");
-
+        
         modell = m;
         adatokFrissitese();
+        
+        init();
     }
 
-    private void ini() {
+    private void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setTitle("Webáruház 3.0");
         setLocationRelativeTo(this);
         setLayout(new BorderLayout());
+        
+        UIManager.put("OptionPane.cancelButtonText", "Nem");
+        UIManager.put("OptionPane.okButtonText", "Igen");
     }
 
     //frissíti az aktuális tábla tartalmát
@@ -302,10 +302,11 @@ public class View extends JFrame {
         pCsoportositas = new javax.swing.JPanel();
         btnTermekHozzaad = new javax.swing.JButton();
         btnTermekTorol = new javax.swing.JButton();
-        btnGrafikon = new javax.swing.JButton();
+        btnTermekekSzamaTelepulesenkent = new javax.swing.JButton();
         btnPdfKimutatas = new javax.swing.JButton();
         btnKilepes = new javax.swing.JButton();
         btnArakModositas = new javax.swing.JButton();
+        btnAtlagar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Adatok felvitele");
@@ -382,10 +383,10 @@ public class View extends JFrame {
             }
         });
 
-        btnGrafikon.setText("Kimutatás...");
-        btnGrafikon.addActionListener(new java.awt.event.ActionListener() {
+        btnTermekekSzamaTelepulesenkent.setText("Település statisztika");
+        btnTermekekSzamaTelepulesenkent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGrafikonActionPerformed(evt);
+                btnTermekekSzamaTelepulesenkentActionPerformed(evt);
             }
         });
 
@@ -410,6 +411,13 @@ public class View extends JFrame {
             }
         });
 
+        btnAtlagar.setText("Átlagár statisztika...");
+        btnAtlagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtlagarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -422,8 +430,9 @@ public class View extends JFrame {
                     .addComponent(btnPdfKimutatas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTermekHozzaad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTermekTorol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGrafikon, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(btnArakModositas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                    .addComponent(btnTermekekSzamaTelepulesenkent, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(btnArakModositas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                    .addComponent(btnAtlagar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -433,10 +442,12 @@ public class View extends JFrame {
                 .addComponent(btnTermekHozzaad)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTermekTorol)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnArakModositas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGrafikon)
+                .addComponent(btnAtlagar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTermekekSzamaTelepulesenkent)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPdfKimutatas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -462,9 +473,9 @@ public class View extends JFrame {
         adatokFrissitese();
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
-    private void btnGrafikonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGrafikonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGrafikonActionPerformed
+    private void btnTermekekSzamaTelepulesenkentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekekSzamaTelepulesenkentActionPerformed
+         new TermekekTelepulesenkentDiagram(this.frame, modell).setVisible(true);
+    }//GEN-LAST:event_btnTermekekSzamaTelepulesenkentActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
         if (JOptionPane.showConfirmDialog(this, "Biztos ki akar lépni?", "Kilépés", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -473,7 +484,7 @@ public class View extends JFrame {
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnPdfKimutatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPdfKimutatasActionPerformed
-
+         new PdfKimutatas(this.frame, modell).setVisible(true);
     }//GEN-LAST:event_btnPdfKimutatasActionPerformed
 
     private void cbTermekArValtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTermekArValtActionPerformed
@@ -486,14 +497,19 @@ public class View extends JFrame {
         adatokFrissitese();
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
+    private void btnAtlagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtlagarActionPerformed
+        new AtlagarKategoriankentDiagram(this.frame, modell).setVisible(true);
+    }//GEN-LAST:event_btnAtlagarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArakModositas;
-    private javax.swing.JButton btnGrafikon;
+    private javax.swing.JButton btnAtlagar;
     private javax.swing.JButton btnKilepes;
     private javax.swing.JButton btnPdfKimutatas;
     private javax.swing.JButton btnTermekHozzaad;
     private javax.swing.JButton btnTermekTorol;
+    private javax.swing.JButton btnTermekekSzamaTelepulesenkent;
     private javax.swing.JPanel pCsoportositas;
     private javax.swing.JPanel pKategorizal;
     private javax.swing.JPanel pTermekek;

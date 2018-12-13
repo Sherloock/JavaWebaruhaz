@@ -3,6 +3,9 @@ SOURCES:
 https://www.tutorialspoint.com/java_xml/java_dom_modify_document.htm
 https://stackoverflow.com/questions/6592192/why-does-my-jtable-sort-an-integer-column-incorrectly
 https://java-swing-tips.blogspot.com/2013/09/how-to-sort-jtree-nodes.html
+https://stackoverflow.com/questions/17939556/how-to-get-the-execution-directory-path-in-java
+https://www.tutorialspoint.com/jfreechart/jfreechart_pie_chart.htm
+https://www.tutorialspoint.com/jfreechart/jfreechart_bar_chart.htm
 
 Pages
 

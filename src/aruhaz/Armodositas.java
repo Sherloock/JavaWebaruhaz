@@ -8,16 +8,23 @@ import javax.swing.UIManager;
 
 public class Armodositas extends JDialog {
 
-    private Modell modell;
-    private ArrayList<String> termekekStrings;
-    private View view;
+    private final Modell modell;
+    private final ArrayList<String> termekekStrings;
+    private final View view;
 
     public Armodositas(JFrame parent, Modell modell, ArrayList<String> termekekStrings, View view) {
         super(parent, true);
+        initComponents();
+
         this.termekekStrings = termekekStrings;
         this.view = view;
+        this.modell = modell;
+        termeklistaBellitasaComboBoxra();
+        
+        init(parent);
+    }
 
-        initComponents();
+    private void init(JFrame parent) {
         setTitle("Ár módosítás");
         setLocationRelativeTo(parent);
 
@@ -30,9 +37,9 @@ public class Armodositas extends JDialog {
         UIManager.put("FileChooser.filesOfTypeLabelText", "Fájl típusa:");
         UIManager.put("OptionPane.noButtonText", "Nem");
         UIManager.put("OptionPane.yesButtonText", "Ok");
+    }
 
-        this.modell = modell;
-
+    private void termeklistaBellitasaComboBoxra() {
         cbTermekek.removeAllItems();
         cbTermekek.addItem("Összes termék");
         for (int i = 0; i < termekekStrings.size(); i++) {
@@ -69,12 +76,6 @@ public class Armodositas extends JDialog {
         sliderArValt.setAutoscrolls(true);
         sliderArValt.setPreferredSize(new java.awt.Dimension(200, 30));
         sliderArValt.setValueIsAdjusting(true);
-
-        cbTermekek.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTermekekActionPerformed(evt);
-            }
-        });
 
         labelTermekKiv.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         labelTermekKiv.setText("Termék kiválasztása");
@@ -147,18 +148,18 @@ public class Armodositas extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbTermekekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTermekekActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbTermekekActionPerformed
+    private void btnMegseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegseActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnMegseActionPerformed
 
     private void btnArValtoztatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArValtoztatasActionPerformed
         double valtoztatasMerteke = sliderArValt.getValue() / 100.0;
         if (valtoztatasMerteke != 0.0) {
 
             int indexAbc = cbTermekek.getSelectedIndex();
-            
-                                    //Összes    egy termék
-            int id = (indexAbc == 0) ? -1       : Integer.parseInt(termekekStrings.get(indexAbc-1).split(";")[1]);
+
+            //Összes    egy termék
+            int id = (indexAbc == 0) ? -1 : Integer.parseInt(termekekStrings.get(indexAbc - 1).split(";")[1]);
 
             if (JOptionPane.showConfirmDialog(this, "Biztos meg akarja változtatni a kiválaszott termék árát? ("
                     + (id == -1 ? "Összes termék" : modell.getTermekById(id).getNev())
@@ -181,11 +182,6 @@ public class Armodositas extends JDialog {
             }
         }
     }//GEN-LAST:event_btnArValtoztatasActionPerformed
-
-    private void btnMegseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegseActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnMegseActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArValtoztatas;

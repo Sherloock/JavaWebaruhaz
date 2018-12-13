@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Termekek kovId="34">
+<Termekek kovId="30">
     
-    <Termek>
-        <Id>1</Id>
-        <Telepules>Aba</Telepules>
-        <Nev>Dani</Nev>
-        <Kategoria>Elelmiszer</Kategoria>
-        <Leiras>VasemberVasemberVasemberVasemberVasemberVasemberVasemberVasemberVasemberVasemberVasember!!!!</Leiras>
-        <Kep>.images/iron-man-3-helmet-wallpaper.jpg</Kep>
-        <Ar>564760</Ar>
+    
+	<Termek>
+        <Id>2</Id>
+        <Telepules>Rácalmás</Telepules>
+        <Nev>Katicaaaaaaaaa2</Nev>
+        <Kategoria>Dísztárgy</Kategoria>
+        <Leiras>Ez egy szép kis katica. Piros színű és fekete pöttyök vannak rajta. Egy fűszálon.</Leiras>
+        <Kep>.images/animal017.jpg</Kep>
+        <Ar>15083</Ar>
     </Termek>
-    
+    <Termek>
+        <Id>3</Id>
+        <Telepules>Rácalmás</Telepules>
+        <Nev>Katica</Nev>
+        <Kategoria>Dísztárgy</Kategoria>
+        <Leiras>Ez egy szép kis katica. Piros színű és fekete pöttyök vannak rajta. Egy fűszálon.</Leiras>
+        <Kep>.images/animal017.jpg</Kep>
+        <Ar>122109</Ar>
+    </Termek>
     <Termek>
         <Id>4</Id>
         <Telepules>Pécel</Telepules>
@@ -18,7 +27,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Egy fűszálon mászó kis, piros, fekete pöttyös katicabogár.</Leiras>
         <Kep>./images/animal017.jpg</Kep>
-        <Ar>20494</Ar>
+        <Ar>43893</Ar>
     </Termek>
     <Termek>
         <Id>5</Id>
@@ -27,7 +36,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Piros alma. Enyhén száradt, kertből lopva.Minden harapás egy álomhoz hasonló.</Leiras>
         <Kep>./images/alma.jpg</Kep>
-        <Ar>2261</Ar>
+        <Ar>4783</Ar>
     </Termek>
     <Termek>
         <Id>6</Id>
@@ -36,35 +45,11 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Modern műbőr ágy, 140x200cm. Kiválló választás alvásra</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>273564</Ar>
+        <Ar>586532</Ar>
     </Termek>
-    <Termek>
-        <Id>7</Id>
-        <Telepules>Karcag</Telepules>
-        <Nev>Ferrari 458</Nev>
-        <Kategoria>Gépjárművek</Kategoria>
-        <Leiras>Kétüléses piros csoda. Ezzel lehet ám csajozni.</Leiras>
-        <Kep>Hiányzó adat</Kep>
-        <Ar>286541028</Ar>
-    </Termek>
-    <Termek>
-        <Id>8</Id>
-        <Telepules>Tököl</Telepules>
-        <Nev>Kalapács</Nev>
-        <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>Ez a kalapács kibír 15.000 ütést. Kiválló választás akármire is kell</Leiras>
-        <Kep>Hiányzó adat</Kep>
-        <Ar>22779</Ar>
-    </Termek>
-    <Termek>
-        <Id>9</Id>
-        <Telepules>Kartal</Telepules>
-        <Nev>Baba frissítő</Nev>
-        <Kategoria>Tisztálkodószer</Kategoria>
-        <Leiras>Na ide kéne írnom valamit csak kezdem unni és még pokerezem is</Leiras>
-        <Kep>./images/baba.jpg</Kep>
-        <Ar>5112</Ar>
-    </Termek>
+    
+    
+    
     <Termek>
         <Id>10</Id>
         <Telepules>Kőkút</Telepules>
@@ -72,7 +57,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Egy kilós csoda. Vedd meg és rájössz Te is!</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>3368</Ar>
+        <Ar>7194</Ar>
     </Termek>
     <Termek>
         <Id>11</Id>
@@ -81,7 +66,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>200x150cm lenyűgöző modell. Csak ajánlani tudom</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>56970</Ar>
+        <Ar>122109</Ar>
     </Termek>
     <Termek>
         <Id>12</Id>
@@ -90,7 +75,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Titánból van az egész. Garantáltan nehéz lesz becipelni a házba</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>410353</Ar>
+        <Ar>879818</Ar>
     </Termek>
     <Termek>
         <Id>13</Id>
@@ -99,7 +84,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>Ez a L-szériás giga porszívó képes mindent beszívni és felszívni.</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>102562</Ar>
+        <Ar>230874</Ar>
     </Termek>
     <Termek>
         <Id>14</Id>
@@ -108,7 +93,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Egyszerű állólámpa. 350x450cm így nem sok helyen fér el</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>28465</Ar>
+        <Ar>61018</Ar>
     </Termek>
     <Termek>
         <Id>15</Id>
@@ -117,7 +102,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Egy II.világháborús amerikai anyahajó. Ritkasága határtalan</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>104846</Ar>
+        <Ar>224789</Ar>
     </Termek>
     <Termek>
         <Id>16</Id>
@@ -126,7 +111,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Jappán atomleves, garantált finom íz</Leiras>
         <Kep>./images/leves.jpg</Kep>
-        <Ar>3562</Ar>
+        <Ar>7208</Ar>
     </Termek>
     <Termek>
         <Id>17</Id>
@@ -135,7 +120,7 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Alap tabletta, olyanoknak akik leszarnak mindent</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>5666</Ar>
+        <Ar>12100</Ar>
     </Termek>
     <Termek>
         <Id>18</Id>
@@ -144,17 +129,9 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras>Ez a kis medence 5nm-es, kivállóan illik minden kerdbe</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>182374</Ar>
+        <Ar>390969</Ar>
     </Termek>
-    <Termek>
-        <Id>19</Id>
-        <Telepules>Pécel</Telepules>
-        <Nev>Flowey</Nev>
-        <Kategoria>Vegyszer</Kategoria>
-        <Leiras>Szagsemlegesítő. Ajánljuk használatát.</Leiras>
-        <Kep>./images/flowey.jpg</Kep>
-        <Ar>27347</Ar>
-    </Termek>
+    
     <Termek>
         <Id>20</Id>
         <Telepules>Aba</Telepules>
@@ -162,66 +139,30 @@
         <Kategoria>Elelmiszer</Kategoria>
         <Leiras>Mama süti por. Van több kérdés?</Leiras>
         <Kep>Hiányzó adat</Kep>
-        <Ar>7430</Ar>
+        <Ar>16743</Ar>
     </Termek>
 
 
 
-<Termek>
-        <Id>24</Id>
-        <Telepules>Abádszalók</Telepules>
-        <Nev>SDFSDGAASGD</Nev>
-        <Kategoria>Elelmiszer</Kategoria>
-        <Leiras>SDFSDGAASGDSDFSDGAASGDSDFSDGAASGD</Leiras>
-        <Kep>Hiányzó adat</Kep>
-        <Ar>3390556</Ar>
-    </Termek>
 
-<Termek>
-        <Id>26</Id>
-        <Telepules>Abádszalók</Telepules>
-        <Nev>aaaaa</Nev>
-        <Kategoria>Elelmiszer</Kategoria>
-        <Leiras>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Leiras>
-        <Kep>Hiányzó adat</Kep>
-        <Ar>1</Ar>
-    </Termek>
+
+    
 <Termek>
         <Id>28</Id>
         <Telepules>Abádszalók</Telepules>
-        <Nev>dasdfas</Nev>
+        <Nev>wa</Nev>
         <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>	sdafasdafasdafasdafasdafasdafasdafa</Leiras>
-        <Kep>Hiányzó adat</Kep>
-        <Ar>1</Ar>
-    </Termek>
-
-<Termek>
-        <Id>30</Id>
-        <Telepules>Abádszalók</Telepules>
-        <Nev>asdasda</Nev>
-        <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>asssssssssssssssssssssssssssssssssssssssssssssssssss</Leiras>
-        <Kep>F:\School\Java alkalmazások - Kaczur Sándor\Aruhaz\images\leves.jpg</Kep>
-        <Ar>1</Ar>
-    </Termek>
-
-<Termek>
-        <Id>32</Id>
-        <Telepules>Abaújlak</Telepules>
-        <Nev>LEVEEEES</Nev>
-        <Kategoria>Háztartási gép</Kategoria>
-        <Leiras>asdsadasasdsadasasdsadasasdsadasasdsadasasdsadasasdsadasasdsadasasdsadas</Leiras>
-        <Kep>.images\leves.jpg</Kep>
-        <Ar>5781436</Ar>
-    </Termek>
-<Termek>
-        <Id>33</Id>
-        <Telepules>Abádszalók</Telepules>
-        <Nev>baba</Nev>
-        <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>asfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasfasf</Leiras>
+        <Leiras>2111111111111111111111111111111</Leiras>
         <Kep>.images/baba.jpg</Kep>
-        <Ar>444</Ar>
+        <Ar>1</Ar>
+    </Termek>
+<Termek>
+        <Id>29</Id>
+        <Telepules>Abádszalók</Telepules>
+        <Nev>31231</Nev>
+        <Kategoria>Barkács eszköz</Kategoria>
+        <Leiras>32111111111111111111111111111111</Leiras>
+        <Kep>images\animal017.jpg</Kep>
+        <Ar>353443</Ar>
     </Termek>
 </Termekek>
