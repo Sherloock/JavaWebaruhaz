@@ -9,8 +9,9 @@ https://www.tutorialspoint.com/jfreechart/jfreechart_bar_chart.htm
 https://www.baeldung.com/java-pdf-creation
 http://www.jfree.org/jfreechart/samples.html
 http://kaczursandor.hu
-
-
+https://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application
+https://stackoverflow.com/questions/5175728/how-to-get-the-current-date-time-in-java
+https://stackoverflow.com/questions/31610647/how-to-apply-different-font-to-paragraph-and-chunk-in-pdfcell-in-itext
 
 PDF
 termékkategóriák száma, 

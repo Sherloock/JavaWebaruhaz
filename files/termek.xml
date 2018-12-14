@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Termekek kovId="52">
+<Termekek kovId="51">
     <Termek>
         <Id>1</Id>
         <Telepules>Aba</Telepules>
@@ -450,13 +450,5 @@
         <Kep>.images/kezicsiszolo.jpg</Kep>
         <Ar>610</Ar>
     </Termek>
-<Termek>
-        <Id>51</Id>
-        <Telepules>Abádszalók</Telepules>
-        <Nev>1</Nev>
-        <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>dasdasdasdfasfgsdfgsdgsdgsdfsdfd</Leiras>
-        <Kep>images\baba.jpg</Kep>
-        <Ar>1</Ar>
-    </Termek>
+
 </Termekek>

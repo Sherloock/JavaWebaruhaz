@@ -4,14 +4,21 @@ import diagramok.Digrammok;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.HeadlessException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.text.Collator;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.TreeSet;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
@@ -22,6 +29,8 @@ import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
@@ -37,27 +46,27 @@ public class WebaruhazMainView extends JFrame {
 
     public WebaruhazMainView(Modell m) {
         initComponents();
-        
+
         modell = m;
         adatokFrissitese();
-        
+
         init();
     }
 
     private void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-       
+
         setTitle("Webáruház 3.0");
         setLocationRelativeTo(this);
         setLayout(new BorderLayout());
-        
+
         UIManager.put("OptionPane.cancelButtonText", "Nem");
         UIManager.put("OptionPane.okButtonText", "Igen");
     }
 
     //frissíti az aktuális tábla tartalmát
     public void adatokFrissitese() {
-       statisztika = new Statisztika(modell);
+        statisztika = new Statisztika(modell);
         termekekTablaFeltolt();
         kategoriaTablaFeltolt();
         termekekStringsFeltolt();
@@ -159,7 +168,7 @@ public class WebaruhazMainView extends JFrame {
                 }
             }
         };
-        
+
         tableKategorizal = tablaElkeszitese(tablaModell);
 
         JScrollPane gorgetoSav = new JScrollPane(tableKategorizal);
@@ -174,7 +183,7 @@ public class WebaruhazMainView extends JFrame {
         tableKategorizal.getColumnModel().getColumn(1).setCellRenderer(jobbraRendez);
         tableKategorizal.getColumnModel().getColumn(2).setCellRenderer(jobbraRendez);
         tableKategorizal.getColumnModel().getColumn(3).setCellRenderer(jobbraRendez);
-        
+
         tableKategorizal.getColumnModel().getColumn(1).setPreferredWidth(10);
         tableKategorizal.revalidate();
     }
@@ -203,7 +212,7 @@ public class WebaruhazMainView extends JFrame {
                 return c;
             }
         };
-               
+
         tabla.setAutoCreateRowSorter(true);
         tabla.setFillsViewportHeight(true);
 
@@ -454,10 +463,26 @@ public class WebaruhazMainView extends JFrame {
     }//GEN-LAST:event_btnAtlagarActionPerformed
 
     private void btnAtlagar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtlagar1ActionPerformed
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//	Date date = new Date();
+        boolean sikeres = false;
         
-        Pdf.kimutatas("kimutatasok\\asd");
+        while (!sikeres) {
+            
+            JFileChooser chooser = new JFileChooser();
+            
+            chooser.setCurrentDirectory(new File(".\\kimutatasok"));
+
+            FileFilter pdfFilter = new FileNameExtensionFilter("PDF Document", "pdf");
+            chooser.setFileFilter(pdfFilter);
+            
+            String timeStamp = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss").format(Calendar.getInstance().getTime());
+            chooser.setSelectedFile(new File(timeStamp));
+            chooser.showSaveDialog(null);
+
+            File fajlNev = chooser.getSelectedFile();
+
+            sikeres =  Pdf.kimutatas(modell, statisztika, fajlNev.getAbsolutePath());
+            
+        }
     }//GEN-LAST:event_btnAtlagar1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
