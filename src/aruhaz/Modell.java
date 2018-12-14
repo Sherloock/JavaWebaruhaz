@@ -82,7 +82,7 @@ public class Modell {
             String sor;
             int index = 0;
             while ((sor = br.readLine()) != null && !sor.contains("Összesen")) {
-                if (index > 3) {
+                if (index >= 3) {
                     TELEPULESEK.add(sor.split("\\;")[0]);
                 }
                 index++;

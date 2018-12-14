@@ -10,9 +10,9 @@ public class Armodositas extends JDialog {
 
     private final Modell modell;
     private final ArrayList<String> termekekStrings;
-    private final View view;
+    private final WebaruhazMainView view;
 
-    public Armodositas(JFrame parent, Modell modell, ArrayList<String> termekekStrings, View view) {
+    public Armodositas(JFrame parent, Modell modell, ArrayList<String> termekekStrings, WebaruhazMainView view) {
         super(parent, true);
         initComponents();
 

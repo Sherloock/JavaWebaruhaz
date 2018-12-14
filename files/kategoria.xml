@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Kategoriak>
     <Kategoria>
-        <Tipus>Elelmiszer</Tipus>
-    </Kategoria>
-    <Kategoria>
         <Tipus>Tisztálkodószer</Tipus>
     </Kategoria>
     <Kategoria>
-        <Tipus>Vegyszer</Tipus>
+        <Tipus>Tisztítószer</Tipus>
     </Kategoria>
     <Kategoria>
         <Tipus>Háztartási gép</Tipus>
@@ -27,7 +24,5 @@
     <Kategoria>
         <Tipus>Konyhai eszköz</Tipus>
     </Kategoria>
-    <Kategoria>
-        <Tipus>Gépjárművek</Tipus>
-    </Kategoria>
+    
 </Kategoriak>
