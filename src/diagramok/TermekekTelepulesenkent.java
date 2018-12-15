@@ -11,22 +11,21 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class TermekekTelepulesenkent {
-  private Statisztika statisztika;
 
+    private final Statisztika statisztika;
 
     public TermekekTelepulesenkent(Statisztika statisztika) {
-
         this.statisztika = statisztika;
-
     }
-    public JPanel build(){
-         JFreeChart diagramm = oszlopdiagramElkeszitese();
-         return new ChartPanel(diagramm);
+
+    public JPanel build() {
+        JFreeChart diagramm = oszlopdiagramElkeszitese();
+        return new ChartPanel(diagramm);
     }
 
     private JFreeChart oszlopdiagramElkeszitese() {
         JFreeChart oszlopdiagramm = ChartFactory.createBarChart(
-                "a Termékek darabszáma telelpülésenként",
+                "",
                 "Település",
                 "Termékek száma",
                 adatokElokeszitese(),
@@ -37,16 +36,13 @@ public class TermekekTelepulesenkent {
     }
 
     private CategoryDataset adatokElokeszitese() {
-
-        
         Tablazat tablazat = statisztika.termekekSzamaTelepulesenkent();
 
         final DefaultCategoryDataset adatok = new DefaultCategoryDataset();
-        for (int i = 0; i < tablazat.getAdatok().length; i++) {
-            adatok.addValue((Integer)tablazat.getAdatok()[i][1], "darab", (String)tablazat.getAdatok()[i][0]);
+        for (Object[] adat : tablazat.getAdatok()) {
+            adatok.addValue((Integer) adat[1], "darab", (String) adat[0]);
         }
 
         return adatok;
     }
-
 }

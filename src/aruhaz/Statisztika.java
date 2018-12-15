@@ -15,7 +15,7 @@ public class Statisztika {
     }
 
     public Tablazat osszesAdat() {
-        Object[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép"};
+        Object[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép elérési címe"};
 
         Object[][] adatok = new Object[modell.getTermekek().size()][fejlec.length];
         for (int i = 0; i < modell.getTermekek().size(); i++) {
@@ -58,14 +58,14 @@ public class Statisztika {
         int sum[] = new int[n];
         int db[] = new int[n];
 
-        for (Termek termek : modell.getTermekek()) {
+        modell.getTermekek().forEach((termek) -> {
             for (int i = 0; i < kategoriak.size(); i++) {
                 if (kategoriak.get(i).equals(termek.getKategoria())) {
                     db[i]++;
                     sum[i] += termek.getAr();
                 }
             }
-        }
+        });
         
         Object[][] adatok = new Object[n][fejlec.length];
         
@@ -106,7 +106,7 @@ public class Statisztika {
         ArrayList<String> telepulesek = new ArrayList<>();
         ArrayList<Integer> termekDB = new ArrayList<>();
 
-        for (Termek termek : modell.getTermekek()) {
+        modell.getTermekek().forEach((termek) -> {
             if (telepulesek.contains(termek.getTelepules())) {
                 int index = telepulesek.indexOf(termek.getTelepules());
                 termekDB.set(index, termekDB.get(index) + 1);
@@ -114,7 +114,7 @@ public class Statisztika {
                 telepulesek.add(termek.getTelepules());
                 termekDB.add(1);
             }
-        }
+        });
 
         Object[][] adatok = new Object[telepulesek.size()][fejlec.length];
         for (int i = 0; i < telepulesek.size(); i++) {

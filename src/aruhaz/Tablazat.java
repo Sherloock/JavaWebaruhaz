@@ -4,8 +4,8 @@ public class Tablazat {
     public final int X;
     public final int Y;
     
-    private Object fejlec[];
-    private Object adatok[][];
+    private final Object fejlec[];
+    private final Object adatok[][];
 
     public Tablazat(Object[] fejlec, Object[][] adatok) {
         this.fejlec = fejlec;

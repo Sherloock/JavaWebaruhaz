@@ -78,7 +78,7 @@ public class Termek {
         this.leiras = leiras;
     }
 
-    public void setAr(int ar) {
+    public final void setAr(int ar) {
         this.ar = Math.max(1, ar);
     }
 
