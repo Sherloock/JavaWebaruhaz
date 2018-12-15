@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -38,10 +39,10 @@ public class Hozzaadas extends JDialog {
         }
     }
 
-    private void telepulesekFeltolt() {//kategóriák lenyíló menü feltöltése
-        for (String kategoria : view.getModell().getTelepulesek()) {
+    private void telepulesekFeltolt() { //kategóriák lenyíló menü feltöltése
+        view.getModell().getTelepulesek().forEach((kategoria) -> {
             cbTelepules.addItem(kategoria);
-        }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -270,7 +271,7 @@ public class Hozzaadas extends JDialog {
                 tfKepPath.setText("." + s.replace("\\", "/"));
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this, "Érvénytelen tallózási útvonal!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnTallozActionPerformed

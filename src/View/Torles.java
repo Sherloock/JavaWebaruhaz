@@ -100,8 +100,7 @@ public class Torles extends JDialog {
         String nev = termekekStrings.get(index).split(";")[0];
         String id = termekekStrings.get(index).split(";")[1];
 
-        if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""
-                + nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""+ nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
             view.getModell().termekTorlese(id);
             this.dispose();

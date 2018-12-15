@@ -1,6 +1,5 @@
 package diagramok;
 
-import aruhaz.Statisztika;
 import aruhaz.Tablazat;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -10,28 +9,26 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class TermekekTelepulesenkent {
+public class Oszlopdiagram {
 
-    public JPanel build(Statisztika statisztika) {
-        JFreeChart diagramm = oszlopdiagramElkeszitese(statisztika);
+    public static JPanel build(Tablazat tablazat) {
+        JFreeChart diagramm = oszlopdiagramElkeszitese(tablazat);
         return new ChartPanel(diagramm);
     }
 
-    private JFreeChart oszlopdiagramElkeszitese(Statisztika statisztika) {
+    private static JFreeChart oszlopdiagramElkeszitese(Tablazat tablazat) {
         JFreeChart oszlopdiagramm = ChartFactory.createBarChart(
                 "",
-                "Település",
-                "Termékek száma",
-                adatokElokeszitese(statisztika),
+                tablazat.getFejlec()[0].toString(),
+                tablazat.getFejlec()[1].toString(),
+                adatokElokeszitese(tablazat),
                 PlotOrientation.HORIZONTAL,
                 true, true, false);
 
         return oszlopdiagramm;
     }
 
-    private CategoryDataset adatokElokeszitese(Statisztika statisztika) {
-        Tablazat tablazat = statisztika.termekekSzamaTelepulesenkent();
-
+    private static CategoryDataset adatokElokeszitese(Tablazat tablazat) {
         final DefaultCategoryDataset adatok = new DefaultCategoryDataset();
         for (Object[] adat : tablazat.getAdatok()) {
             adatok.addValue((Integer) adat[1], "darab", (String) adat[0]);

@@ -2,7 +2,6 @@ package View;
 
 import aruhaz.Modell;
 import aruhaz.Pdf;
-import aruhaz.Statisztika;
 import aruhaz.Tablazat;
 import aruhaz.Termek;
 import diagramok.Diagram;
@@ -84,8 +83,9 @@ public final class AruhazMainView extends JFrame {
 
     private void elemekMagyaritasa() {
         UIManager.put("OptionPane.noButtonText", "Nem");
-        UIManager.put("OptionPane.yesButtonText", "Ok");
+        UIManager.put("OptionPane.yesButtonText", "Igen");
         UIManager.put("OptionPane.cancelButtonText", "Mégse");
+        UIManager.put("OptionPane.okButtonText", "Rendben");
 
         //http://jhead.hu/index.php/home/blog/java/14-filechooser-parbeszedablak-magyaritasa
         UIManager.put("FileChooser.updateButtonMnemonic", new Integer('f'));
@@ -448,7 +448,7 @@ public final class AruhazMainView extends JFrame {
             }
         });
 
-        btnArakModositas.setText("Árak módosítás...");
+        btnArakModositas.setText("Árak módosítása...");
         btnArakModositas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnArakModositasActionPerformed(evt);
@@ -523,7 +523,7 @@ public final class AruhazMainView extends JFrame {
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Biztos ki akar lépni?", "Kilépés", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this, "Biztos ki akar lépni?", "Kilépés", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnKilepesActionPerformed
@@ -549,9 +549,9 @@ public final class AruhazMainView extends JFrame {
 
             FileFilter pdfFilter = new FileNameExtensionFilter("PDF Document", "pdf");
             chooser.setFileFilter(pdfFilter);
-
+            
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss").format(Calendar.getInstance().getTime());
-            chooser.setSelectedFile(new File(timeStamp));
+            chooser.setSelectedFile(new File("WebáruházKimutatás" + timeStamp));
 
             if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File fajlNev = chooser.getSelectedFile();

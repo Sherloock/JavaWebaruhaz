@@ -51,8 +51,8 @@ public class Armodositas extends JDialog {
         labelArValt.setText("Ár megváltoztatása (adott százalékkal)");
 
         sliderArValt.setMajorTickSpacing(5);
-        sliderArValt.setMaximum(30);
-        sliderArValt.setMinimum(-30);
+        sliderArValt.setMaximum(50);
+        sliderArValt.setMinimum(-50);
         sliderArValt.setMinorTickSpacing(5);
         sliderArValt.setPaintLabels(true);
         sliderArValt.setPaintTicks(true);
@@ -149,8 +149,8 @@ public class Armodositas extends JDialog {
             int id = (indexAbc == 0) ? -1 : Integer.parseInt(termekekStrings.get(indexAbc - 1).split(";")[1]);
 
             if (JOptionPane.showConfirmDialog(this, "Biztos meg akarja változtatni a kiválaszott termék árát? ("
-                    + (id == -1 ? "Összes termék" : modell.getTermekById(id).getNev() + "; Azonorsító:" + id)
-                    + ")", "Termék törlése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+                    + (id == -1 ? "Összes termék" : modell.getTermekById(id).getNev() + "; Azonosító:" + id)
+                    + ")", "Ár módosítása", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                 //összes
                 if (id == -1) {

@@ -1,6 +1,5 @@
 package diagramok;
 
-import aruhaz.Statisztika;
 import aruhaz.Tablazat;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
@@ -9,16 +8,14 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
-public class TermekekAratlagKategoriankent {
+public class Kordiagram {
 
-    public JPanel build(Statisztika statisztika) {
-        JFreeChart chart = kordiagramElkeszitese(adatokElokeszitese(statisztika));
+    public static JPanel build(Tablazat tablazat) {
+        JFreeChart chart = kordiagramElkeszitese(adatokElokeszitese(tablazat));
         return new ChartPanel(chart);
     }
 
-    private PieDataset adatokElokeszitese(Statisztika statisztika) {
-        Tablazat tablazat = statisztika.termekAtlagosAraKategoriankent();
-
+    private static PieDataset adatokElokeszitese(Tablazat tablazat) {
         DefaultPieDataset adatok = new DefaultPieDataset();
         for (Object[] adat : tablazat.getAdatok()) {
             adatok.setValue(adat[0] + " (" + adat[1] + "Ft)", (Integer) adat[1]);
@@ -26,7 +23,7 @@ public class TermekekAratlagKategoriankent {
         return adatok;
     }
 
-    private JFreeChart kordiagramElkeszitese(PieDataset adatok) {
+    private static JFreeChart kordiagramElkeszitese(PieDataset adatok) {
         JFreeChart chart = ChartFactory.createPieChart(
                 "", // chart title 
                 adatok, // data    

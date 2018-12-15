@@ -48,19 +48,19 @@ public class Pdf {
             document.add(new Paragraph(line, FONT_SIMA));
 
             //termékek átlagos ára termékkategóriánként, 
-            Paragraph p = new Paragraph("Termékek átlagos ára termékkategóriánként\n\n", FONT_SIMA);
+            Paragraph p = new Paragraph("Termékek átlagos ára kategóriánként\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.termekAtlagosAraKategoriankent()));
 
             //termékek száma termékkategóriánként, 
-            p = new Paragraph("\nTermékek száma termékkategóriánként\n\n", FONT_SIMA);
+            p = new Paragraph("\nTermékek száma kategóriánként\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.termekSzamaKategoriankent()));
 
             //táblázatosan a termékkategóriák neve, min. és max. ára, mennyisége,
-            p = new Paragraph("\nTermékkategóriák neve, mennyisége lególcsobb/legdrágább a kategóriában\n\n", FONT_SIMA);
+            p = new Paragraph("\nKategóriák neve, mennyisége legolcsóbb és legdrágább a kategóriában\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.kategoriaDbMinMaxAr()));

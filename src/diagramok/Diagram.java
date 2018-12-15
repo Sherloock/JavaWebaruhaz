@@ -14,8 +14,8 @@ public class Diagram extends JDialog {
     }
 
     private void init(JFrame parent, Statisztika statisztika) {      
-        tpDiagramok.add(new TermekekTelepulesenkent().build(statisztika), "Termékek száma településenként");
-        tpDiagramok.add(new TermekekAratlagKategoriankent().build(statisztika), "Termékek átlagos ára kategóriánként");
+        tpDiagramok.add(Oszlopdiagram.build(statisztika.termekekSzamaTelepulesenkent()), "Termékek száma településenként");
+        tpDiagramok.add(Kordiagram.build(statisztika.termekAtlagosAraKategoriankent()), "Termékek átlagos ára kategóriánként");
         setLocationRelativeTo(parent);
     }
 

@@ -228,7 +228,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnArakModositas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xc1;rak m&#xf3;dos&#xed;t&#xe1;s..."/>
+                <Property name="text" type="java.lang.String" value="&#xc1;rak m&#xf3;dos&#xed;t&#xe1;sa..."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnArakModositasActionPerformed"/>

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Termekek kovId="51">
     
-    
+    <Termek>
+        <Id>1</Id>
+        <Telepules>Aba</Telepules>
+        <Nev>Alkoholos ablaktisztító</Nev>
+        <Kategoria>Tisztítószer</Kategoria>
+        <Leiras>500 ml-es alkoholos ablaktisztító.Folt és homálymentesen tisztít. Habosító szórófejes és utántöltő változatban.</Leiras>
+        <Kep>.images/ablaktisztito.jpg</Kep>
+        <Ar>400</Ar>
+    </Termek>
 	<Termek>
         <Id>2</Id>
         <Telepules>Répcelak</Telepules>
@@ -43,7 +51,7 @@
         <Telepules>Budapest</Telepules>
         <Nev>Műbőr ágy</Nev>
         <Kategoria>Beltéri bútor</Kategoria>
-        <Leiras> Az ágy mérete 160x210 cm, azonban a fejrész szélessége 173 cm. A fekete felsőrész műbőrből készült, ezért ápolása kifejezetten egyszerű. A rejtett cipzárnak köszönhetően a matrac huzat bármikor levehető és kimosható. </Leiras>
+        <Leiras>Az ágy mérete 160x210 cm, azonban a fejrész szélessége 173 cm. A fekete felsőrész műbőrből készült, ezért ápolása kifejezetten egyszerű. A rejtett cipzárnak köszönhetően a matrac huzat bármikor levehető és kimosható. </Leiras>
         <Kep>.images/muboragy.jpg</Kep>
         <Ar>24000</Ar>
     </Termek>
@@ -151,11 +159,19 @@
         <Telepules>Kalocsa</Telepules>
         <Nev>Popszegecshúzó fogó</Nev>
         <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras> Professzionális minőségű, egykezes,Cr-Va (Chrome-Vanadium) acél ötvözetű popszegecshúzó fogó.Mattkróm bevonattal és csúszásmentes foganytúval ellátott.</Leiras>
+        <Leiras>Professzionális minőségű, egykezes,Cr-Va (Chrome-Vanadium) acél ötvözetű popszegecshúzó fogó.Mattkróm bevonattal és csúszásmentes foganytúval ellátott.</Leiras>
         <Kep>.images/popszegecshuzofogo.jpg</Kep>
         <Ar>6800</Ar>
     </Termek>
-    
+    <Termek>
+        <Id>19</Id>
+        <Telepules>Csepreg</Telepules>
+        <Nev>Ajtódísz</Nev>
+        <Kategoria>Vegyszer</Kategoria>
+        <Leiras>26 x 8 cm-es fából készült ajtódísz akasztóval a tetején. </Leiras>
+        <Kep>.images/ajtodisz.jpg</Kep>
+        <Ar>2300</Ar>
+    </Termek>
     <Termek>
         <Id>20</Id>
         <Telepules>Nagykáta</Telepules>
@@ -215,7 +231,7 @@
         <Telepules>Aba</Telepules>
         <Nev>Dezodor</Nev>   
         <Kategoria>Tisztálkodószer</Kategoria>
-        <Leiras>Értékes bioaktív összetevőket tartalmazó natúr dezodor.Nem tömíti el a pórusokat, a verejtékben található baktériumok hatástalanításával gátolja a nemkívánt testszag kialakulását, miközben a bőr szabadon lélegzik. </Leiras>
+        <Leiras>Értékes bioaktív összetevőket tartalmazó natúr dezodor.Nem tömíti el a pórusokat, a verejtékben található baktériumok hatástalanításával gátolja a nemkívánt testszag kialakulását, miközben a bőr szabadon lélegzik.</Leiras>
         <Kep>.images/dezodor.png</Kep>
         <Ar>2800</Ar>
     </Termek>
@@ -224,7 +240,7 @@
         <Telepules>Nagykáta</Telepules>
         <Nev>Kanapé</Nev>
         <Kategoria>Beltéri bútor</Kategoria>
-        <Leiras>85x225x85 cm-es bézs szövetű kanapé 110x190 cm-es fekvőfelülettel. </Leiras>
+        <Leiras>85x225x85 cm-es bézs szövetű kanapé 110x190 cm-es fekvőfelülettel.</Leiras>
         <Kep>.images/kanape.jpg</Kep>
         <Ar>58000</Ar>
     </Termek>
@@ -314,7 +330,7 @@
         <Telepules>Győr</Telepules>
         <Nev>Római tál</Nev>
         <Kategoria>Konyhai eszköz</Kategoria>
-        <Leiras>6 liter űrtartalmú agyag római tál.Az edény sütőben való használatra alkalmas.Nyílt lángon használni szigorúan tilos! </Leiras>
+        <Leiras>6 liter űrtartalmú agyag római tál.Az edény sütőben való használatra alkalmas.Nyílt lángon használni szigorúan tilos!</Leiras>
         <Kep>.images/romaital.jpg</Kep>
         <Ar>4350</Ar>
     </Termek>
@@ -341,7 +357,7 @@
         <Telepules>Besenyszög</Telepules>
         <Nev>Bútorápoló és tisztító</Nev>
         <Kategoria>Tisztítószer</Kategoria>
-        <Leiras>Használható minden típusú fára és lemosható felületre (műanyag). </Leiras>
+        <Leiras>Használható minden típusú fára és lemosható felületre (műanyag).</Leiras>
         <Kep>.images/butorapolo.jpg</Kep>
         <Ar>11690</Ar>
     </Termek>
@@ -350,7 +366,7 @@
         <Telepules>Nagykáta</Telepules>
         <Nev>Toalet tisztító</Nev>
         <Kategoria>Tisztítószer</Kategoria>
-        <Leiras>Napi toalett-tisztító és vízkőoldószer. Hosszan tartó, sűrű formulájának köszönhetően könnyedén megtapad a felületeken. Megelőzi a vízkőlerakódást! Friss, kellemes illatával eltávolítja a kellemetlen szagokat. 6 x 750 ml-es kiszerelésben kapható. </Leiras>
+        <Leiras>Napi toalett-tisztító és vízkőoldószer. Hosszan tartó, sűrű formulájának köszönhetően könnyedén megtapad a felületeken. Megelőzi a vízkőlerakódást! Friss, kellemes illatával eltávolítja a kellemetlen szagokat. 6 x 750 ml-es kiszerelésben kapható.</Leiras>
         <Kep>.images/toalettisztito.jpg</Kep>
         <Ar>4760</Ar>
     </Termek>
@@ -377,7 +393,7 @@
         <Telepules>Záhony</Telepules>
         <Nev>Páraelszívó</Nev>
         <Kategoria>Háztartási gép</Kategoria>
-        <Leiras> A készüléken található tolószabályzóval választhat a 3 féle szívóteljesítmény közül, melyek közül a legerősebb fokozat teljesítménye 320 m3/h. Világítása megfelelő fényt biztosít a munkaterületnek. </Leiras>
+        <Leiras>A készüléken található tolószabályzóval választhat a 3 féle szívóteljesítmény közül, melyek közül a legerősebb fokozat teljesítménye 320 m3/h. Világítása megfelelő fényt biztosít a munkaterületnek.</Leiras>
         <Kep>.images/paraelszivo.jpg</Kep>
         <Ar>14500</Ar>
     </Termek>
@@ -386,7 +402,7 @@
         <Telepules>Kerekegyháza</Telepules>
         <Nev>Kézi fűrész</Nev>
         <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>Kemény és stabil vágólap a fogazott élre történő maximális erőátvitel érdekében. Keményfémlapkás fogak ytong (gázbeton)  anyagon való könnyű áthaladása érdekében.  Ergonomikus kialakítású, két részből álló, kiváló minőségű, lágy TPR gumival ellátott markolata van az ytong fűrésznek. </Leiras>
+        <Leiras>Kemény és stabil vágólap a fogazott élre történő maximális erőátvitel érdekében. Keményfémlapkás fogak ytong (gázbeton)  anyagon való könnyű áthaladása érdekében.  Ergonomikus kialakítású, két részből álló, kiváló minőségű, lágy TPR gumival ellátott markolata van az ytong fűrésznek.</Leiras>
         <Kep>.images/furesz.jpg</Kep>
         <Ar>6200</Ar>
     </Termek>
