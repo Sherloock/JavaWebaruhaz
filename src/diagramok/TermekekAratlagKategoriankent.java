@@ -11,18 +11,12 @@ import org.jfree.data.general.PieDataset;
 
 public class TermekekAratlagKategoriankent {
 
-    private final Statisztika statisztika;
-
-    public TermekekAratlagKategoriankent(Statisztika statisztika) {
-        this.statisztika = statisztika;
-    }
-
-    public JPanel build() {
-        JFreeChart chart = kordiagramElkeszitese(adatokElokeszitese());
+    public JPanel build(Statisztika statisztika) {
+        JFreeChart chart = kordiagramElkeszitese(adatokElokeszitese(statisztika));
         return new ChartPanel(chart);
     }
 
-    private PieDataset adatokElokeszitese() {
+    private PieDataset adatokElokeszitese(Statisztika statisztika) {
         Tablazat tablazat = statisztika.termekAtlagosAraKategoriankent();
 
         DefaultPieDataset adatok = new DefaultPieDataset();

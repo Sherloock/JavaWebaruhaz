@@ -257,6 +257,10 @@ public class Modell {
         return TELEPULESEK;
     }
     
+    public Statisztika getStatisztika(){
+        return new Statisztika(this);
+    }
+    
      private void hibaUzenet(String hibauzenet) {
         JOptionPane.showMessageDialog(new JFrame(), hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
     }    

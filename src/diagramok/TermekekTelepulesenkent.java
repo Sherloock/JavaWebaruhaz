@@ -12,30 +12,24 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class TermekekTelepulesenkent {
 
-    private final Statisztika statisztika;
-
-    public TermekekTelepulesenkent(Statisztika statisztika) {
-        this.statisztika = statisztika;
-    }
-
-    public JPanel build() {
-        JFreeChart diagramm = oszlopdiagramElkeszitese();
+    public JPanel build(Statisztika statisztika) {
+        JFreeChart diagramm = oszlopdiagramElkeszitese(statisztika);
         return new ChartPanel(diagramm);
     }
 
-    private JFreeChart oszlopdiagramElkeszitese() {
+    private JFreeChart oszlopdiagramElkeszitese(Statisztika statisztika) {
         JFreeChart oszlopdiagramm = ChartFactory.createBarChart(
                 "",
                 "Település",
                 "Termékek száma",
-                adatokElokeszitese(),
+                adatokElokeszitese(statisztika),
                 PlotOrientation.HORIZONTAL,
                 true, true, false);
 
         return oszlopdiagramm;
     }
 
-    private CategoryDataset adatokElokeszitese() {
+    private CategoryDataset adatokElokeszitese(Statisztika statisztika) {
         Tablazat tablazat = statisztika.termekekSzamaTelepulesenkent();
 
         final DefaultCategoryDataset adatok = new DefaultCategoryDataset();

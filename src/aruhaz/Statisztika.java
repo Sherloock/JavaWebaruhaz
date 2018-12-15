@@ -5,13 +5,9 @@ import java.util.ArrayList;
 public class Statisztika {
 
     private final Modell modell;
-    ArrayList<Termek> termekLista;
-    ArrayList<String> kategoriak;
 
     public Statisztika(Modell modell) {
         this.modell = modell;
-        termekLista = modell.getTermekek();
-        kategoriak = modell.getKategoriak();
     }
 
     public Tablazat osszesAdat() {
@@ -31,7 +27,7 @@ public class Statisztika {
     }
 
     public Tablazat termekSzamaKategoriankent() {
-
+        ArrayList<String>kategoriak = modell.getKategoriak();
         Object[] fejlec = {"Kategória", "Termékek Száma"};
         Object[][] adatok = new Object[kategoriak.size()][fejlec.length];
 
@@ -40,8 +36,8 @@ public class Statisztika {
             adatok[i][0] = kategoriak.get(i);
 
             int db = 0;
-            for (int j = 0; j < termekLista.size(); j++) {
-                if (kategoriak.get(i).equals(termekLista.get(j).getKategoria())) {
+            for (int j = 0; j < modell.getTermekek().size(); j++) {
+                if (kategoriak.get(i).equals(modell.getTermekek().get(j).getKategoria())) {
                     db++;
                 }
             }
@@ -51,7 +47,7 @@ public class Statisztika {
     }
 
     public Tablazat termekAtlagosAraKategoriankent() {
-
+        ArrayList<String>kategoriak = modell.getKategoriak();
         Object[] fejlec = {"Kategória", "Átlagos ár"};
         int n = kategoriak.size();
 
@@ -78,6 +74,7 @@ public class Statisztika {
     }
 
     public Tablazat kategoriaDbMinMaxAr() {
+        ArrayList<String>kategoriak = modell.getKategoriak();
         Object[] fejlec = {"Kategória", "Termékek száma", "Legolcsóbb", "Legdrágább"};
         Object[][] adatok = new Object[kategoriak.size()][fejlec.length];
 
@@ -86,11 +83,11 @@ public class Statisztika {
             adatok[i][0] = kategoriak.get(i);
 
             int szamlalo = 0, min = Integer.MAX_VALUE, max = 0;
-            for (int j = 0; j < termekLista.size(); j++) {
-                if (kategoriak.get(i).equals(termekLista.get(j).getKategoria())) {
+            for (int j = 0; j < modell.getTermekek().size(); j++) {
+                if (kategoriak.get(i).equals(modell.getTermekek().get(j).getKategoria())) {
                     szamlalo++;
-                    min = Math.min(min, termekLista.get(j).getAr());
-                    max = Math.max(max, termekLista.get(j).getAr());
+                    min = Math.min(min, modell.getTermekek().get(j).getAr());
+                    max = Math.max(max, modell.getTermekek().get(j).getAr());
                 }
             }
             adatok[i][1] = szamlalo;

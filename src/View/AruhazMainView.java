@@ -50,7 +50,10 @@ public final class AruhazMainView extends JFrame {
 
     private ArrayList<String> termekekStrings = new ArrayList<>();
     private final Modell modell;
-    private Statisztika statisztika;
+
+    public Modell getModell() {
+        return modell;
+    }
 
     public AruhazMainView(Modell m) {
         initComponents();
@@ -131,7 +134,6 @@ public final class AruhazMainView extends JFrame {
 
     //frissíti az aktuális tábla tartalmát
     public void adatokFrissitese() {
-        statisztika = new Statisztika(modell);
         termekekStringsFeltolt();
         termekekTablaFeltolt();
         kategoriaTablaFeltolt();
@@ -157,7 +159,7 @@ public final class AruhazMainView extends JFrame {
         while (e.hasMoreElements()) {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) e.nextElement();
             if (!node.isLeaf()) {
-                rendez(node);
+                rendezNode(node);
             }
         }
     }
@@ -174,13 +176,13 @@ public final class AruhazMainView extends JFrame {
         }
     };
 
-    public static void rendez(DefaultMutableTreeNode parent) {
+    public static void rendezNode(DefaultMutableTreeNode parent) {
         int n = parent.getChildCount();
         ArrayList<DefaultMutableTreeNode> children = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             children.add((DefaultMutableTreeNode) parent.getChildAt(i));
         }
-        Collections.sort(children, tnc); //iterative merge sort
+        Collections.sort(children, tnc);
         parent.removeAllChildren();
         children.forEach(parent::add);
     }
@@ -224,7 +226,7 @@ public final class AruhazMainView extends JFrame {
 
     private void kategoriaTablaFeltolt() {
         pKategorizal.removeAll();
-        Tablazat tablazat = statisztika.kategoriaDbMinMaxAr();
+        Tablazat tablazat = modell.getStatisztika().kategoriaDbMinMaxAr();
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override
             public Class getColumnClass(int column) {
@@ -280,7 +282,7 @@ public final class AruhazMainView extends JFrame {
 
     private void termekekTablaFeltolt() {
         pTermekek.removeAll();
-        Tablazat tablazat = statisztika.osszesAdat();
+        Tablazat tablazat = modell.getStatisztika().osszesAdat();
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override
             public Class getColumnClass(int column) {
@@ -511,12 +513,12 @@ public final class AruhazMainView extends JFrame {
 
 
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
-        new Torles(this, modell).setVisible(true);
+        new Torles(this).setVisible(true);
         adatokFrissitese();
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
-        new Hozzaadas(this, modell).setVisible(true);
+        new Hozzaadas(this).setVisible(true);
         adatokFrissitese();
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
@@ -527,13 +529,13 @@ public final class AruhazMainView extends JFrame {
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnArakModositasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArakModositasActionPerformed
-        new Armodositas(this, modell, termekekStrings).setVisible(true);
+        new Armodositas(this, termekekStrings).setVisible(true);
         adatokFrissitese();
 
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
     private void btnDiagramokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagramokActionPerformed
-        new Diagram(this, statisztika).setVisible(true);
+        new Diagram(this, modell.getStatisztika()).setVisible(true);
     }//GEN-LAST:event_btnDiagramokActionPerformed
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
@@ -553,7 +555,7 @@ public final class AruhazMainView extends JFrame {
 
             if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File fajlNev = chooser.getSelectedFile();
-                sikeres = Pdf.kimutatas(modell, statisztika, fajlNev.getAbsolutePath());
+                sikeres = Pdf.kimutatas(modell, fajlNev.getAbsolutePath());
             } else {
                 return;
             }

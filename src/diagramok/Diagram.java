@@ -5,22 +5,17 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class Diagram extends JDialog {
-
-    private final Statisztika statisztika;
     
 
     public Diagram(JFrame parent, Statisztika statisztika) {
         super(parent, true);
         initComponents();
-        
-        this.statisztika = statisztika;
-        
-        init(parent);
+        init(parent, statisztika);
     }
 
-    private void init(JFrame parent) {      
-        tpDiagramok.add(new TermekekTelepulesenkent(statisztika).build(), "Termékek száma településenként");
-        tpDiagramok.add(new TermekekAratlagKategoriankent(statisztika).build(), "Termékek átlagos ára kategóriánként");
+    private void init(JFrame parent, Statisztika statisztika) {      
+        tpDiagramok.add(new TermekekTelepulesenkent().build(statisztika), "Termékek száma településenként");
+        tpDiagramok.add(new TermekekAratlagKategoriankent().build(statisztika), "Termékek átlagos ára kategóriánként");
         setLocationRelativeTo(parent);
     }
 

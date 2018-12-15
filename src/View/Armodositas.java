@@ -7,20 +7,15 @@ import javax.swing.JOptionPane;
 
 public class Armodositas extends JDialog {
 
-    private final Modell modell;
-    private final ArrayList<String> termekekStrings;
     private final AruhazMainView view;
+    private final ArrayList<String> termekekStrings;
 
-    public Armodositas(AruhazMainView view, Modell modell, ArrayList<String> termekekStrings) {
+    public Armodositas(AruhazMainView view, ArrayList<String> termekekStrings) {
         super(view, true);
         initComponents();
-
-        this.termekekStrings = termekekStrings;
         this.view = view;
-        this.modell = modell;
+        this.termekekStrings = termekekStrings;
         termeklistaBellitasaComboBoxra();
-
-        setLocationRelativeTo(view);
     }
 
     private void termeklistaBellitasaComboBoxra() {
@@ -45,6 +40,11 @@ public class Armodositas extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Árak módosítása");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         labelArValt.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         labelArValt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -138,6 +138,8 @@ public class Armodositas extends JDialog {
     }//GEN-LAST:event_btnMegseActionPerformed
 
     private void btnArValtoztatasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArValtoztatasActionPerformed
+        Modell modell = view.getModell();
+        
         double valtoztatasMerteke = sliderArValt.getValue() / 100.0;
         if (valtoztatasMerteke != 0.0) {
 
@@ -163,10 +165,14 @@ public class Armodositas extends JDialog {
                             + elozoAr + " --> " + modell.getTermekById(id).getAr() + ")");
 
                 }
-                view.adatokFrissitese();
+                ((AruhazMainView)this.getParent()).adatokFrissitese();
             }
         }
     }//GEN-LAST:event_btnArValtoztatasActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setLocationRelativeTo(this.getParent());
+    }//GEN-LAST:event_formWindowOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArValtoztatas;

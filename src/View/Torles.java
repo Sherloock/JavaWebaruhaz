@@ -1,36 +1,31 @@
 package View;
 
-import aruhaz.Modell;
 import aruhaz.Termek;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeSet;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Torles extends JDialog {
 
-    private final Modell modell;
+    private final AruhazMainView view;
     private ArrayList<String> termekekStrings = new ArrayList<>();
-    
 
-    public Torles(JFrame parent, Modell modell) {
-        super(parent, true);
+    public Torles(AruhazMainView view) {
+        super(view, true);
+
         initComponents();
-       
-        this.modell = modell;
+        this.view = view;
         termekekStringsFeltolt();
-        
-         setLocationRelativeTo(parent);
     }
-    
+
     private void termekekStringsFeltolt() {
         Collection<String> collection = new TreeSet<>(Collator.getInstance());
 
-        for (int i = 0; i < modell.getTermekek().size(); i++) {
-            Termek t = modell.getTermekek().get(i);
+        for (int i = 0; i < view.getModell().getTermekek().size(); i++) {
+            Termek t = view.getModell().getTermekek().get(i);
             collection.add(t.getNev() + ";" + t.ID);
         }
 
@@ -50,6 +45,11 @@ public class Torles extends JDialog {
         cbTermekek = new javax.swing.JComboBox<>();
 
         setTitle("Termék törlése");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnEltavolit.setText("Eltávolítás");
         btnEltavolit.addActionListener(new java.awt.event.ActionListener() {
@@ -99,13 +99,11 @@ public class Torles extends JDialog {
         int index = cbTermekek.getSelectedIndex();
         String nev = termekekStrings.get(index).split(";")[0];
         String id = termekekStrings.get(index).split(";")[1];
-        
-        
-        if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \"" 
-                + nev + "\" nevű terméket? (Azonosító:" + id+")", "Termék törlése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
-           
-            
-            modell.termekTorlese(id);
+
+        if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""
+                + nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+
+            view.getModell().termekTorlese(id);
             this.dispose();
         }
     }//GEN-LAST:event_btnEltavolitActionPerformed
@@ -113,6 +111,10 @@ public class Torles extends JDialog {
     private void btnMegseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnMegseActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setLocationRelativeTo(this.getParent());
+    }//GEN-LAST:event_formWindowOpened
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,6 +1,5 @@
 package View;
 
-import aruhaz.Modell;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -19,23 +18,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Hozzaadas extends JDialog {
 
-    private final Modell modell;
     private final AruhazMainView view;
 
-    public Hozzaadas(AruhazMainView parent, Modell modell) {
-        super(parent, true);
+    public Hozzaadas(AruhazMainView view) {
+        super(view, true);
 
         initComponents();
-        view = parent;
-        this.modell = modell;
+        this.view = view;
         kategoriakFeltolt();
         telepulesekFeltolt();
-
-        setLocationRelativeTo(parent);
     }
 
     private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése     
-        ArrayList<String> kategoriaStrings = new ArrayList<>(modell.getKategoriak());
+        ArrayList<String> kategoriaStrings = new ArrayList<>(view.getModell().getKategoriak());
         Collections.sort(kategoriaStrings);
 
         for (int i = 0; i < kategoriaStrings.size(); i++) {
@@ -44,7 +39,7 @@ public class Hozzaadas extends JDialog {
     }
 
     private void telepulesekFeltolt() {//kategóriák lenyíló menü feltöltése
-        for (String kategoria : modell.getTelepulesek()) {
+        for (String kategoria : view.getModell().getTelepulesek()) {
             cbTelepules.addItem(kategoria);
         }
     }
@@ -76,6 +71,11 @@ public class Hozzaadas extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Termék hozzáadása");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnTalloz.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnTalloz.setText("Tallózás");
@@ -292,7 +292,9 @@ public class Hozzaadas extends JDialog {
     }
 
     private boolean ellenorizFile() {
-        if(tfKepPath.getText().isEmpty()) return false;
+        if (tfKepPath.getText().isEmpty()) {
+            return false;
+        }
         File f = new File(tfKepPath.getText().substring(1));
         String mimetype = new MimetypesFileTypeMap().getContentType(f);
         String type = mimetype.split("/")[0];
@@ -324,13 +326,13 @@ public class Hozzaadas extends JDialog {
 
     private void btnFelviszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFelviszActionPerformed
         if (ellenorzes()) {
-            modell.termekHozzadasa(
-                    cbTelepules.getSelectedItem().toString(),
-                    tfNev.getText(),
-                    cbKategoria.getSelectedItem().toString(),
-                    taLeiras.getText(),
-                    tfAr.getText(),
-                    tfKepPath.getText()
+            view.getModell().termekHozzadasa(
+                cbTelepules.getSelectedItem().toString(),
+                tfNev.getText(),
+                cbKategoria.getSelectedItem().toString(),
+                taLeiras.getText(),
+                tfAr.getText(),
+                tfKepPath.getText()
             );
             this.dispose();
         }
@@ -358,7 +360,7 @@ public class Hozzaadas extends JDialog {
     private void btnKepMegnyitasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKepMegnyitasaActionPerformed
         try {
             File file = new File(tfKepPath.getText().substring(1));
-             Image image = view.kepAtmeretezese(ImageIO.read(file));
+            Image image = view.kepAtmeretezese(ImageIO.read(file));
             JLabel picLabel = new JLabel(new ImageIcon(image));
             JOptionPane.showMessageDialog(null, picLabel, "Kép", JOptionPane.PLAIN_MESSAGE, null);
         } catch (IOException ex) {
@@ -367,6 +369,10 @@ public class Hozzaadas extends JDialog {
             JOptionPane.showMessageDialog(this, "Nincs kép megadva!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnKepMegnyitasaActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setLocationRelativeTo(view);
+    }//GEN-LAST:event_formWindowOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFelvisz;

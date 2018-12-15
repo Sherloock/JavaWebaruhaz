@@ -24,10 +24,11 @@ import javax.swing.JOptionPane;
 
 public class Pdf {
 
-    private static final Font FONT_NAGY = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-    private static final Font FONT_SIMA = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
+    public static boolean kimutatas(Modell modell, String absPath) {
+        Font FONT_NAGY = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Font FONT_SIMA = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
 
-    public static boolean kimutatas(Modell modell, Statisztika statisztika, String absPath) {
+        Statisztika statisztika = modell.getStatisztika();
         File file = new File(absPath + ".pdf");
         Document document = new Document();
         try {
@@ -47,19 +48,19 @@ public class Pdf {
             document.add(new Paragraph(line, FONT_SIMA));
 
             //termékek átlagos ára termékkategóriánként, 
-            Paragraph p = new Paragraph("Termékek átlagos ára termékkategóriánként\n\n", FONT_SIMA); 
+            Paragraph p = new Paragraph("Termékek átlagos ára termékkategóriánként\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.termekAtlagosAraKategoriankent()));
 
             //termékek száma termékkategóriánként, 
-            p = new Paragraph("\nTermékek száma termékkategóriánként\n\n", FONT_SIMA); 
+            p = new Paragraph("\nTermékek száma termékkategóriánként\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.termekSzamaKategoriankent()));
 
             //táblázatosan a termékkategóriák neve, min. és max. ára, mennyisége,
-             p = new Paragraph("\nTermékkategóriák neve, mennyisége lególcsobb/legdrágább a kategóriában\n\n", FONT_SIMA); 
+            p = new Paragraph("\nTermékkategóriák neve, mennyisége lególcsobb/legdrágább a kategóriában\n\n", FONT_SIMA);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
             document.add(tablazatElkeszitese(statisztika.kategoriaDbMinMaxAr()));
@@ -90,8 +91,8 @@ public class Pdf {
         }
         return false;
     }
-    
-    public static PdfPTable tablazatElkeszitese(Tablazat tablazat){
+
+    public static PdfPTable tablazatElkeszitese(Tablazat tablazat) {
         PdfPTable pdfTablazat = new PdfPTable(tablazat.X);
         fejlecHozzadadasa(pdfTablazat, tablazat.getFejlec());
         adatokHozzadadasa(pdfTablazat, tablazat.getAdatok());
@@ -115,7 +116,7 @@ public class Pdf {
                 Object obj = adat[j];
                 PdfPCell cella = new PdfPCell();
                 cella.setPhrase(new Paragraph(obj.toString()));
-                if(!obj.getClass().equals(String.class)){
+                if (!obj.getClass().equals(String.class)) {
                     cella.setVerticalAlignment(Element.ALIGN_RIGHT);
                 }
                 tabla.addCell(cella);
