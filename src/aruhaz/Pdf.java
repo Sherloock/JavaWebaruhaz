@@ -33,7 +33,7 @@ public class Pdf {
         try {
             Paragraph paragrafus;
             PdfPTable tablazat;
-            
+
             PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
@@ -43,7 +43,7 @@ public class Pdf {
             document.add(paragrafus);
 
             //termékkategóriák száma
-            String line = "Termékkategóriák száma: " + modell.getKategoriak().size() + "\n";
+            String line = "Kategóriák száma: " + modell.getKategoriak().size() + "\n";
             document.add(new Paragraph(line, FONT_KOZEPES));
 
             //termékek száma, 
@@ -54,7 +54,7 @@ public class Pdf {
             paragrafus = new Paragraph("Termékek átlagos ára kategóriánként\n\n", FONT_KOZEPES);
             paragrafus.setAlignment(Element.ALIGN_CENTER);
             document.add(paragrafus);
-            
+
             tablazat = tablazatElkeszitese(statisztika.termekAtlagosAraKategoriankent());
             tablazat.setTotalWidth(200);
             tablazat.setLockedWidth(true);
@@ -64,7 +64,7 @@ public class Pdf {
             paragrafus = new Paragraph("\nTermékek száma kategóriánként\n\n", FONT_KOZEPES);
             paragrafus.setAlignment(Element.ALIGN_CENTER);
             document.add(paragrafus);
-            
+
             tablazat = tablazatElkeszitese(statisztika.termekSzamaKategoriankent());
             tablazat.setTotalWidth(200);
             tablazat.setLockedWidth(true);
@@ -74,7 +74,7 @@ public class Pdf {
             paragrafus = new Paragraph("\nKategóriák neve, mennyisége legolcsóbb és legdrágább a kategóriában\n\n", FONT_KOZEPES);
             paragrafus.setAlignment(Element.ALIGN_CENTER);
             document.add(paragrafus);
-            
+
             tablazat = tablazatElkeszitese(statisztika.kategoriaDbMinMaxAr());
             document.add(tablazat);
 
@@ -100,7 +100,7 @@ public class Pdf {
         } catch (FileNotFoundException | DocumentException ex) {
             JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-             JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
@@ -137,5 +137,4 @@ public class Pdf {
             }
         }
     }
-
 }
