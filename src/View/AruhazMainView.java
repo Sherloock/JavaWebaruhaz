@@ -78,7 +78,6 @@ public final class AruhazMainView extends JFrame {
                 tablaOszlopainakAtmeretezese(tableTermekek, termekekTablaOszlopszelesseg);
             }
         });
-
     }
 
     private void elemekMagyaritasa() {
@@ -144,7 +143,7 @@ public final class AruhazMainView extends JFrame {
         if (tabla != null) {
             tabla.setPreferredSize(tabla.getPreferredSize());
             int tablaSzelesseg = tabla.getWidth();
-
+            
             TableColumnModel jTableOszlopModell = tabla.getColumnModel();
             for (int i = 0; i < jTableOszlopModell.getColumnCount(); i++) {
                 int pWidth = Math.round(oszlopSzelessegek[i] * tablaSzelesseg / 100);
@@ -331,8 +330,15 @@ public final class AruhazMainView extends JFrame {
         });
         pTermekek.revalidate();
     }
+    
+    // kép átméretezése default
     public Image kepAtmeretezese(Image image){
-        int maxWidth = 800, maxHeight = 600; 
+        return kepAtmeretezese(image, 800, 600);
+    }
+    
+    
+    // ha nagyobb mint a megadott paraméterek
+    public Image kepAtmeretezese(Image image, int maxWidth,int maxHeight){
         int imageWidth = image.getWidth(rootPane);
         int imageHeight = image.getHeight(rootPane);
                 

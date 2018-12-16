@@ -17,8 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -26,53 +24,68 @@ public class Pdf {
 
     public static boolean kimutatas(Modell modell, String absPath) {
         Font FONT_NAGY = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-        Font FONT_SIMA = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
+        Font FONT_KOZEPES = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
+        Font FONT_KICSI = FontFactory.getFont(FontFactory.COURIER, 8, BaseColor.BLACK);
 
         Statisztika statisztika = modell.getStatisztika();
         File file = new File(absPath + ".pdf");
         Document document = new Document();
         try {
+            Paragraph paragrafus;
+            PdfPTable tablazat;
+            
             PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 
             //fejlec
-            String line = "Webáruház statisztika\n\n";
-            document.add(new Paragraph(line, FONT_NAGY));
+            paragrafus = new Paragraph("Webáruház statisztika\n\n", FONT_NAGY);
+            paragrafus.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragrafus);
 
             //termékkategóriák száma
-            line = "Termékkategóriák száma: " + modell.getKategoriak().size() + "\n";
-            document.add(new Paragraph(line, FONT_SIMA));
+            String line = "Termékkategóriák száma: " + modell.getKategoriak().size() + "\n";
+            document.add(new Paragraph(line, FONT_KOZEPES));
 
             //termékek száma, 
             line = "Termékek száma: " + modell.getTermekek().size() + "\n\n";
-            document.add(new Paragraph(line, FONT_SIMA));
+            document.add(new Paragraph(line, FONT_KOZEPES));
 
             //termékek átlagos ára termékkategóriánként, 
-            Paragraph p = new Paragraph("Termékek átlagos ára kategóriánként\n\n", FONT_SIMA);
-            p.setAlignment(Element.ALIGN_CENTER);
-            document.add(p);
-            document.add(tablazatElkeszitese(statisztika.termekAtlagosAraKategoriankent()));
+            paragrafus = new Paragraph("Termékek átlagos ára kategóriánként\n\n", FONT_KOZEPES);
+            paragrafus.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragrafus);
+            
+            tablazat = tablazatElkeszitese(statisztika.termekAtlagosAraKategoriankent());
+            tablazat.setTotalWidth(200);
+            tablazat.setLockedWidth(true);
+            document.add(tablazat);
 
             //termékek száma termékkategóriánként, 
-            p = new Paragraph("\nTermékek száma kategóriánként\n\n", FONT_SIMA);
-            p.setAlignment(Element.ALIGN_CENTER);
-            document.add(p);
-            document.add(tablazatElkeszitese(statisztika.termekSzamaKategoriankent()));
+            paragrafus = new Paragraph("\nTermékek száma kategóriánként\n\n", FONT_KOZEPES);
+            paragrafus.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragrafus);
+            
+            tablazat = tablazatElkeszitese(statisztika.termekSzamaKategoriankent());
+            tablazat.setTotalWidth(200);
+            tablazat.setLockedWidth(true);
+            document.add(tablazat);
 
             //táblázatosan a termékkategóriák neve, min. és max. ára, mennyisége,
-            p = new Paragraph("\nKategóriák neve, mennyisége legolcsóbb és legdrágább a kategóriában\n\n", FONT_SIMA);
-            p.setAlignment(Element.ALIGN_CENTER);
-            document.add(p);
-            document.add(tablazatElkeszitese(statisztika.kategoriaDbMinMaxAr()));
+            paragrafus = new Paragraph("\nKategóriák neve, mennyisége legolcsóbb és legdrágább a kategóriában\n\n", FONT_KOZEPES);
+            paragrafus.setAlignment(Element.ALIGN_CENTER);
+            document.add(paragrafus);
+            
+            tablazat = tablazatElkeszitese(statisztika.kategoriaDbMinMaxAr());
+            document.add(tablazat);
 
             //a generált fájl elérési útvonala, 
-            line = "\nA generált fájl elérési útvonala: " + file + "\n";
-            document.add(new Paragraph(line, FONT_SIMA));
+            line = "\n\n\nA generált fájl elérési útvonala: " + file + "\n";
+            document.add(new Paragraph(line, FONT_KICSI));
 
             //a generálás dátuma és időpontja rövid formátumban.
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd. HH:mm:ss").format(Calendar.getInstance().getTime());
             line = "Készült: " + timeStamp + "\n";
-            document.add(new Paragraph(line, FONT_SIMA));
+            document.add(new Paragraph(line, FONT_KICSI));
 
             document.close();
 
@@ -87,7 +100,7 @@ public class Pdf {
         } catch (FileNotFoundException | DocumentException ex) {
             JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(Pdf.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }
@@ -105,6 +118,7 @@ public class Pdf {
             header.setHorizontalAlignment(Element.ALIGN_MIDDLE);
             header.setBackgroundColor(BaseColor.LIGHT_GRAY);
             header.setBorderWidth(2);
+            header.setHorizontalAlignment(Element.ALIGN_CENTER);
             header.setPhrase(new Paragraph(fejlec.toString()));
             tabla.addCell(header);
         }
@@ -117,7 +131,7 @@ public class Pdf {
                 PdfPCell cella = new PdfPCell();
                 cella.setPhrase(new Paragraph(obj.toString()));
                 if (!obj.getClass().equals(String.class)) {
-                    cella.setVerticalAlignment(Element.ALIGN_RIGHT);
+                    cella.setHorizontalAlignment(Element.ALIGN_RIGHT);
                 }
                 tabla.addCell(cella);
             }
