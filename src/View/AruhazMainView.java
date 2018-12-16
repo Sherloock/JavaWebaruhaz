@@ -305,22 +305,22 @@ public final class AruhazMainView extends JFrame {
         tableTermekek.setSize(pTermekek.getSize());
         tablaOszlopainakAtmeretezese(tableTermekek, termekekTablaOszlopszelesseg);
 
+        //képek megnyitása kattintásra
         tableTermekek.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int picCol = 6;
-                int idCol = 0;
                 int row = tableTermekek.rowAtPoint(evt.getPoint());
                 int col = tableTermekek.columnAtPoint(evt.getPoint());
-                if ( tableTermekek.getColumnName(col).equals(tablazat.getFejlec()[picCol])) {
-                    int id = (int) tableTermekek.getValueAt(row, idCol);
+                
+                if ( tableTermekek.getColumnName(col).equals(tablazat.getFejlec()[6])) { //képek 6. oszlop
+                    int id = (int) tableTermekek.getValueAt(row, 0); //id 0.oszlop
                     
                     String path  = modell.getTermekById(id).getKep();
                     try {
                         File file = new File(path.substring(1));
                         Image image = kepAtmeretezese(ImageIO.read(file));
                         JLabel picLabel = new JLabel(new ImageIcon(image));
-                        JOptionPane.showMessageDialog(null, picLabel, path, JOptionPane.PLAIN_MESSAGE, null);
+                        JOptionPane.showMessageDialog(null, picLabel, modell.getTermekById(id).getNev(), JOptionPane.CLOSED_OPTION, null);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(new JFrame(), "A képet nem sikerült megnyitni!", "Hiba!", JOptionPane.ERROR_MESSAGE);
                     } catch (IndexOutOfBoundsException ex) {

@@ -27,9 +27,9 @@ public class Kordiagram {
         JFreeChart chart = ChartFactory.createPieChart(
                 "", // chart title 
                 adatok, // data    
-                true, // include legend   
+                false, // include legend   
                 true,
-                false);
+                true);
 
         return chart;
     }

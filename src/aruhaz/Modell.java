@@ -109,7 +109,7 @@ public class Modell {
         return dokumentum;
     }
 
-    //egy elem megadott attribútumáva tér vissza
+    //egy elem megadott attribútumával tér vissza
     private String adatKivetel(Element elem, String attributum) {
         return elem.getElementsByTagName(attributum).item(0).getFirstChild().getNodeValue();
     }

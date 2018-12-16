@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Aruhaz">
+  <ClassDiagramComponents>
+    <Class name="Main" package="aruhaz" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Modell" package="aruhaz" visibility="public" xPosition="485.0" yPosition="250.0">
+      <Fields>
+        <Field name="TERMEKEK_PATH_STRING" type="String" visibility="public" isFinal="true"/>
+        <Field name="KATEGORIAK_PATH_STRING" type="String" visibility="public" isFinal="true"/>
+        <Field name="TERMEKEK" type="ArrayList&lt;Termek&gt;" visibility="private" isFinal="true"/>
+        <Field name="KATEGORIAK" type="ArrayList&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="TELEPULESEK" type="ArrayList&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="termekekDoc" type="Document" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="termekPath"/>
+          <Argument type="String" name="kategoriaPath"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="termekekBetoltese" returnType="void" visibility="private"/>
+        <Method name="kategoriakBetoltese" returnType="void" visibility="private"/>
+        <Method name="telepulesekBetoltese" returnType="void" visibility="private"/>
+        <Method name="dokumentumFajlbol" returnType="Document" visibility="private">
+          <Argument type="File" name="fajl"/>
+        </Method>
+        <Method name="adatKivetel" returnType="String" visibility="private">
+          <Argument type="Element" name="elem"/>
+          <Argument type="String" name="attributum"/>
+        </Method>
+        <Method name="kovIndex" returnType="int" visibility="private"/>
+        <Method name="termekHozzadasa" returnType="void" visibility="public">
+          <Argument type="String" name="telepules"/>
+          <Argument type="String" name="nev"/>
+          <Argument type="String" name="kategoria"/>
+          <Argument type="String" name="leiras"/>
+          <Argument type="String" name="ar"/>
+          <Argument type="String" name="kep"/>
+        </Method>
+        <Method name="adatFelvitelSzulohoz" returnType="void" visibility="private">
+          <Argument type="Element" name="szulo"/>
+          <Argument type="String" name="azonosito"/>
+          <Argument type="String" name="adat"/>
+        </Method>
+        <Method name="termekTorlese" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="dokumentumFajlbaIrasa" returnType="void" visibility="private">
+          <Argument type="Document" name="document"/>
+          <Argument type="String" name="teljesEleresiUtvonal"/>
+        </Method>
+        <Method name="arvaltoztatas" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="double" name="szazalek"/>
+        </Method>
+        <Method name="arvaltoztatas" returnType="void" visibility="public">
+          <Argument type="double" name="szazalek"/>
+        </Method>
+        <Method name="getTermekById" returnType="Termek" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getKategoriak" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="getTermekek" returnType="ArrayList&lt;Termek&gt;" visibility="public"/>
+        <Method name="getTelepulesek" returnType="ArrayList&lt;String&gt;" visibility="public"/>
+        <Method name="getStatisztika" returnType="Statisztika" visibility="public"/>
+        <Method name="hibaUzenet" returnType="void" visibility="private">
+          <Argument type="String" name="hibauzenet"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Pdf" package="aruhaz" visibility="public" xPosition="261.0" yPosition="20.0">
+      <Fields>
+        <Field name="FONT_NAGY" type="Font" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="FONT_SIMA" type="Font" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="kimutatas" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Modell" name="modell"/>
+          <Argument type="String" name="absPath"/>
+        </Method>
+        <Method name="tablazatElkeszitese" returnType="PdfPTable" visibility="public" isStatic="true">
+          <Argument type="Tablazat" name="tablazat"/>
+        </Method>
+        <Method name="fejlecHozzadadasa" returnType="void" visibility="private" isStatic="true">
+          <Argument type="PdfPTable" name="tabla"/>
+          <Argument type="Object[]" name="fejlecek"/>
+        </Method>
+        <Method name="adatokHozzadadasa" returnType="void" visibility="private" isStatic="true">
+          <Argument type="PdfPTable" name="tabla"/>
+          <Argument type="Object[][]" name="adatok"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Statisztika" package="aruhaz" visibility="public" xPosition="1007.0" yPosition="191.0">
+      <Fields>
+        <Field name="modell" type="Modell" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Modell" name="modell"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="osszesAdat" returnType="Tablazat" visibility="public"/>
+        <Method name="termekSzamaKategoriankent" returnType="Tablazat" visibility="public"/>
+        <Method name="termekAtlagosAraKategoriankent" returnType="Tablazat" visibility="public"/>
+        <Method name="kategoriaDbMinMaxAr" returnType="Tablazat" visibility="public"/>
+        <Method name="termekekSzamaTelepulesenkent" returnType="Tablazat" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Tablazat" package="aruhaz" visibility="public" xPosition="700.0" yPosition="20.0">
+      <Fields>
+        <Field name="X" type="int" visibility="public" isFinal="true"/>
+        <Field name="Y" type="int" visibility="public" isFinal="true"/>
+        <Field name="fejlec" type="Object" visibility="private" isFinal="true"/>
+        <Field name="adatok" type="Object" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Object[]" name="fejlec"/>
+          <Argument type="Object[][]" name="adatok"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFejlec" returnType="Object[]" visibility="public"/>
+        <Method name="getAdatok" returnType="Object[][]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Termek" package="aruhaz" visibility="public" xPosition="1007.0" yPosition="453.0">
+      <Fields>
+        <Field name="ID" type="int" visibility="public" isFinal="true"/>
+        <Field name="telepules" type="String" visibility="private"/>
+        <Field name="nev" type="String" visibility="private"/>
+        <Field name="kategoria" type="String" visibility="private"/>
+        <Field name="leiras" type="String" visibility="private"/>
+        <Field name="ar" type="int" visibility="private"/>
+        <Field name="kep" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="String" name="ID"/>
+          <Argument type="String" name="telepules"/>
+          <Argument type="String" name="nev"/>
+          <Argument type="String" name="leiras"/>
+          <Argument type="String" name="kategoria"/>
+          <Argument type="String" name="ar"/>
+          <Argument type="String" name="kep"/>
+        </Constructor>
+        <Constructor visibility="package">
+          <Argument type="int" name="ID"/>
+          <Argument type="String" name="telepules"/>
+          <Argument type="String" name="nev"/>
+          <Argument type="String" name="leiras"/>
+          <Argument type="String" name="kategoria"/>
+          <Argument type="int" name="ar"/>
+          <Argument type="String" name="kep"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="szazalekosArvaltoztatas" returnType="void" visibility="public">
+          <Argument type="double" name="szazalek"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getTelepules" returnType="String" visibility="public"/>
+        <Method name="getNev" returnType="String" visibility="public"/>
+        <Method name="getKategoria" returnType="String" visibility="public"/>
+        <Method name="getLeiras" returnType="String" visibility="public"/>
+        <Method name="getAr" returnType="int" visibility="public"/>
+        <Method name="getKep" returnType="String" visibility="public"/>
+        <Method name="setTelepules" returnType="void" visibility="public">
+          <Argument type="String" name="telepules"/>
+        </Method>
+        <Method name="setNev" returnType="void" visibility="public">
+          <Argument type="String" name="nev"/>
+        </Method>
+        <Method name="setKategoria" returnType="void" visibility="public">
+          <Argument type="String" name="kategoria"/>
+        </Method>
+        <Method name="setLeiras" returnType="void" visibility="public">
+          <Argument type="String" name="leiras"/>
+        </Method>
+        <Method name="setAr" returnType="void" visibility="public" isFinal="true">
+          <Argument type="int" name="ar"/>
+        </Method>
+        <Method name="setKep" returnType="void" visibility="public">
+          <Argument type="String" name="kep"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Diagram" package="diagramok" visibility="public" xPosition="1382.0" yPosition="20.0">
+      <Fields>
+        <Field name="tpDiagramok" type="javax.swing.JTabbedPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JFrame" name="parent"/>
+          <Argument type="Statisztika" name="statisztika"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="private">
+          <Argument type="JFrame" name="parent"/>
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TermekekAratlagKategoriankent" package="diagramok" visibility="public" xPosition="1007.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="build" returnType="JPanel" visibility="public">
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+        <Method name="adatokElokeszitese" returnType="PieDataset" visibility="private">
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+        <Method name="kordiagramElkeszitese" returnType="JFreeChart" visibility="private">
+          <Argument type="PieDataset" name="adatok"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="TermekekTelepulesenkent" package="diagramok" visibility="public" xPosition="1307.0" yPosition="267.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="build" returnType="JPanel" visibility="public">
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+        <Method name="oszlopdiagramElkeszitese" returnType="JFreeChart" visibility="private">
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+        <Method name="adatokElokeszitese" returnType="CategoryDataset" visibility="private">
+          <Argument type="Statisztika" name="statisztika"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Armodositas" package="View" visibility="public" xPosition="20.0" yPosition="1079.0">
+      <Fields>
+        <Field name="view" type="AruhazMainView" visibility="private" isFinal="true"/>
+        <Field name="termekekStrings" type="ArrayList&lt;String&gt;" visibility="private" isFinal="true"/>
+        <Field name="btnArValtoztatas" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnMegse" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbTermekek" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="labelArValt" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelArValtUzenet" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="labelTermekKiv" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="sliderArValt" type="javax.swing.JSlider" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AruhazMainView" name="view"/>
+          <Argument type="ArrayList&lt;String&gt;" name="termekekStrings"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="termeklistaBellitasaComboBoxra" returnType="void" visibility="private"/>
+        <Method name="btnMegseActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnArValtoztatasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formWindowOpened" returnType="void" visibility="private">
+          <Argument type="java.awt.event.WindowEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AruhazMainView" package="View" visibility="public" isFinal="true" xPosition="492.0" yPosition="817.0">
+      <Fields>
+        <Field name="termekekTablaOszlopszelesseg" type="float[]" visibility="private" isStatic="true"/>
+        <Field name="termekekStrings" type="ArrayList&lt;String&gt;" visibility="private"/>
+        <Field name="modell" type="Modell" visibility="private" isFinal="true"/>
+        <Field name="tnc" type="Comparator&lt;DefaultMutableTreeNode&gt;" visibility="public" isStatic="true"/>
+        <Field name="tableTermekek" type="JTable" visibility="private"/>
+        <Field name="btnArakModositas" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnDiagramok" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnKilepes" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnPDF" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTermekHozzaad" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTermekTorol" type="javax.swing.JButton" visibility="private"/>
+        <Field name="pCsoportositas" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pGombok" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pKategorizal" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="pTermekek" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="spKategorizal" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="spMain" type="javax.swing.JSplitPane" visibility="private"/>
+        <Field name="tableKategorizal" type="javax.swing.JTable" visibility="private"/>
+        <Field name="tpUrlap" type="javax.swing.JTabbedPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Modell" name="m"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getModell" returnType="Modell" visibility="public"/>
+        <Method name="init" returnType="void" visibility="private"/>
+        <Method name="elemekMagyaritasa" returnType="void" visibility="private"/>
+        <Method name="adatokFrissitese" returnType="void" visibility="public"/>
+        <Method name="tablaOszlopainakAtmeretezese" returnType="void" visibility="private">
+          <Argument type="JTable" name="tabla"/>
+          <Argument type="float[]" name="oszlopSzelessegek"/>
+        </Method>
+        <Method name="rendezTree" returnType="void" visibility="public" isStatic="true">
+          <Argument type="DefaultMutableTreeNode" name="root"/>
+        </Method>
+        <Method name="rendezNode" returnType="void" visibility="public" isStatic="true">
+          <Argument type="DefaultMutableTreeNode" name="parent"/>
+        </Method>
+        <Method name="kategoriaTreeFeltolt" returnType="void" visibility="private"/>
+        <Method name="kategoriaTablaFeltolt" returnType="void" visibility="private"/>
+        <Method name="tablaElkeszitese" returnType="JTable" visibility="private">
+          <Argument type="DefaultTableModel" name="modell"/>
+        </Method>
+        <Method name="termekekTablaFeltolt" returnType="void" visibility="private"/>
+        <Method name="kepAtmeretezese" returnType="Image" visibility="public">
+          <Argument type="Image" name="image"/>
+        </Method>
+        <Method name="termekekStringsFeltolt" returnType="void" visibility="private"/>
+        <Method name="btnTermekTorolActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnTermekHozzaadActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnKilepesActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnArakModositasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnDiagramokActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnPDFActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Hozzaadas" package="View" visibility="public" xPosition="20.0" yPosition="250.0">
+      <Fields>
+        <Field name="modell" type="Modell" visibility="private" isFinal="true"/>
+        <Field name="view" type="AruhazMainView" visibility="private" isFinal="true"/>
+        <Field name="btnFelvisz" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnKepMegnyitasa" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnKilepesF" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnTalloz" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbKategoria" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="cbTelepules" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+        <Field name="l200" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lb30200" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbAr" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbKarakterSzam" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbKat" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbKep" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbLeir" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbNev" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbTelep" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="spLeiras" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="taLeiras" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="tfAr" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfKepPath" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="tfNev" type="javax.swing.JTextField" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AruhazMainView" name="view"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="kategoriakFeltolt" returnType="void" visibility="private"/>
+        <Method name="telepulesekFeltolt" returnType="void" visibility="private"/>
+        <Method name="btnTallozActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="ellenorizNev" returnType="boolean" visibility="private"/>
+        <Method name="ellenorizLeiras" returnType="boolean" visibility="private"/>
+        <Method name="ellenorizAr" returnType="boolean" visibility="private"/>
+        <Method name="ellenorizFile" returnType="boolean" visibility="private"/>
+        <Method name="ellenorzes" returnType="boolean" visibility="private"/>
+        <Method name="btnFelviszActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnKilepesFActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="taLeirasKeyTyped" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="taLeirasKeyPressed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="taLeirasKeyReleased" returnType="void" visibility="private">
+          <Argument type="java.awt.event.KeyEvent" name="evt"/>
+        </Method>
+        <Method name="btnKepMegnyitasaActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formWindowOpened" returnType="void" visibility="private">
+          <Argument type="java.awt.event.WindowEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Torles" package="View" visibility="public" xPosition="1007.0" yPosition="1004.0">
+      <Fields>
+        <Field name="view" type="AruhazMainView" visibility="private" isFinal="true"/>
+        <Field name="termekekStrings" type="ArrayList&lt;String&gt;" visibility="private"/>
+        <Field name="btnEltavolit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="btnMegse" type="javax.swing.JButton" visibility="private"/>
+        <Field name="cbTermekek" type="javax.swing.JComboBox&lt;String&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="AruhazMainView" name="view"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="termekekStringsFeltolt" returnType="void" visibility="private"/>
+        <Method name="btnEltavolitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="btnMegseActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="formWindowOpened" returnType="void" visibility="private">
+          <Argument type="java.awt.event.WindowEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="TERMEKEK" source="aruhaz.Modell" target="aruhaz.Termek" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Termek&gt;"/>
+    <HasRelation name="view" source="View.Hozzaadas" target="View.AruhazMainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="View.Armodositas" target="View.AruhazMainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modell" source="aruhaz.Statisztika" target="aruhaz.Modell" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="aruhaz.Pdf" target="aruhaz.Tablazat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modell" source="View.AruhazMainView" target="aruhaz.Modell" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="modell" source="View.Hozzaadas" target="aruhaz.Modell" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="diagramok.Diagram" target="aruhaz.Statisztika" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="aruhaz.Pdf" target="aruhaz.Modell" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="aruhaz.Statisztika" target="aruhaz.Tablazat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="diagramok.TermekekAratlagKategoriankent" target="aruhaz.Statisztika" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="diagramok.TermekekTelepulesenkent" target="aruhaz.Statisztika" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="View.Torles" target="View.AruhazMainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
