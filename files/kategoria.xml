@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Kategoriak>
-	<Kategoria>
-        <Tipus>Számítógép alkatrész</Tipus>
-    </Kategoria>
-	<Kategoria>
-        <Tipus>Ruha</Tipus>
-    </Kategoria>
     <Kategoria>
         <Tipus>Tisztálkodószer</Tipus>
     </Kategoria>

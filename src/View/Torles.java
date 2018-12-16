@@ -103,6 +103,7 @@ public class Torles extends JDialog {
         if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""+ nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
             view.getModell().termekTorlese(id);
+            ((AruhazMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
     }//GEN-LAST:event_btnEltavolitActionPerformed

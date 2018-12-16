@@ -224,11 +224,12 @@ public class Hozzaadas extends JDialog {
                     .addComponent(lbKat)
                     .addComponent(cbKategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbKep)
-                    .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKepMegnyitasa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnKepMegnyitasa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbKep)
+                        .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -237,11 +238,11 @@ public class Hozzaadas extends JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(spLeiras, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lb30200)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(l200)
-                        .addComponent(lbKarakterSzam)))
+                        .addComponent(lbKarakterSzam))
+                    .addComponent(lb30200))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKilepesF)
@@ -335,6 +336,7 @@ public class Hozzaadas extends JDialog {
                 tfAr.getText(),
                 tfKepPath.getText()
             );
+            ((AruhazMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
     }//GEN-LAST:event_btnFelviszActionPerformed
@@ -363,7 +365,7 @@ public class Hozzaadas extends JDialog {
             File file = new File(tfKepPath.getText().substring(1));
             Image image = view.kepAtmeretezese(ImageIO.read(file));
             JLabel picLabel = new JLabel(new ImageIcon(image));
-            JOptionPane.showMessageDialog(null, picLabel, "Kép", JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, picLabel, file.toString(), JOptionPane.PLAIN_MESSAGE, null);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "A képet nem sikerült megnyitni!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         } catch (IndexOutOfBoundsException ex) {

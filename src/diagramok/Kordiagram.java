@@ -11,6 +11,7 @@ import org.jfree.data.general.PieDataset;
 public class Kordiagram {
 
     public static JPanel build(Tablazat tablazat) {
+        tablazat.rendezes(1);
         JFreeChart chart = kordiagramElkeszitese(adatokElokeszitese(tablazat));
         return new ChartPanel(chart);
     }

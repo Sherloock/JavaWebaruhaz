@@ -12,6 +12,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class Oszlopdiagram {
 
     public static JPanel build(Tablazat tablazat) {
+        tablazat.rendezes(1);
         JFreeChart diagramm = oszlopdiagramElkeszitese(tablazat);
         return new ChartPanel(diagramm);
     }

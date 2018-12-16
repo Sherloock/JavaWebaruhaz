@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Termekek kovId="51">
+<Termekek kovId="52">
     
-    <Termek>
-        <Id>1</Id>
-        <Telepules>Aba</Telepules>
-        <Nev>Alkoholos ablaktisztító</Nev>
-        <Kategoria>Tisztítószer</Kategoria>
-        <Leiras>500 ml-es alkoholos ablaktisztító.Folt és homálymentesen tisztít. Habosító szórófejes és utántöltő változatban.</Leiras>
-        <Kep>.images/ablaktisztito.jpg</Kep>
-        <Ar>420</Ar>
-    </Termek>
+    
 	<Termek>
         <Id>2</Id>
         <Telepules>Répcelak</Telepules>
@@ -17,7 +9,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras> Fogszuvasodásgátló technológiával készült fogkrém. Természetes eredetű kamilla, zsálya, kakukkfű, mirha és teafa kivonatot tartalmaz, melyek frissítő tulajdonságukról ismertek. A kálcium- és aktív fluoridtartalomnak köszönhetően erősíti a fogzománcot és óvja fogait a szuvasodás ellen.</Leiras>
         <Kep>.images/fogkrem.jpg</Kep>
-        <Ar>300</Ar>
+        <Ar>420</Ar>
     </Termek>
     <Termek>
         <Id>3</Id>
@@ -26,7 +18,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras>Az növényi olajokkal dúsított 1000 ml-es folyékony szappan.Nem tartalmaz mesterséges színezéket illatve tartósítószert sem. A szappan nem szárítja a bőrt hiszen a növényi olyajok segítik a bőr puhaságának megőrzését.</Leiras>
         <Kep>.images/folyekonyszappan.jpg</Kep>
-        <Ar>2600</Ar>
+        <Ar>3639</Ar>
     </Termek>
     <Termek>
         <Id>4</Id>
@@ -35,7 +27,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Vintage stílusú párna, pamutvászon anyagból.</Leiras>
         <Kep>.images/vintageparna.jpg</Kep>
-        <Ar>3600</Ar>
+        <Ar>5040</Ar>
     </Termek>
     <Termek>
         <Id>5</Id>
@@ -44,7 +36,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Rozsdamentes acélból készült 20cm-es átmérőjű lábas. Gáz-, kerámialapos -, elektromos-, indukciós tűzhelyen egyaránt használható.</Leiras>
         <Kep>.images/labas.jpg</Kep>
-        <Ar>4000</Ar>
+        <Ar>5600</Ar>
     </Termek>
     <Termek>
         <Id>6</Id>
@@ -53,7 +45,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Az ágy mérete 160x210 cm, azonban a fejrész szélessége 173 cm. A fekete felsőrész műbőrből készült, ezért ápolása kifejezetten egyszerű. A rejtett cipzárnak köszönhetően a matrac huzat bármikor levehető és kimosható. </Leiras>
         <Kep>.images/muboragy.jpg</Kep>
-        <Ar>24000</Ar>
+        <Ar>33600</Ar>
     </Termek>
     <Termek>
         <Id>7</Id>
@@ -62,7 +54,7 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras>A négyzet alakú zsámoly időjárás- és vízálló PP-ből (polipropilénből) készült. Nem kell félni az anyag elrozsdásodásától, elrohadásától vagy megrongálódásától, mivel teljesen karbantartásmentes. A sokoldalú kerti bútor akár asztalként vagy lábtartóként is használható, ha leveszi a kényelmes párnát.</Leiras>
         <Kep>.images/zsamoly.jpg</Kep>
-        <Ar>40000</Ar>
+        <Ar>56000</Ar>
     </Termek>
     <Termek>
         <Id>8</Id>
@@ -71,7 +63,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Hőkezelt és edzett acél fejjel és minőségi keményfa nyéllel rendelkezik. Biztonsági acélgűrű a fej leesés ellen.</Leiras>
         <Kep>.images/kalapacs.jpg</Kep>
-        <Ar>2200</Ar>
+        <Ar>3080</Ar>
     </Termek>
     <Termek>
         <Id>9</Id>
@@ -80,7 +72,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Hangulatos üveg mécsestartó kötél füllel. Mérete 10 x 10 cm.</Leiras>
         <Kep>.images/mecsestarto.jpg</Kep>
-        <Ar>450</Ar>
+        <Ar>630</Ar>
     </Termek>
     <Termek>
         <Id>10</Id>
@@ -89,7 +81,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Minőségi Cr-Va (chrome vanadium) acél alapanyagból készült csavarhúzó, edzett és mágneses éllel. A PH jelölésű csavarhúzó főként gipszkarton- és lemezcsavarok behajtására alkalmas</Leiras>
         <Kep>.images/csillagcsavar.jpg</Kep>
-        <Ar>450</Ar>
+        <Ar>630</Ar>
     </Termek>
     <Termek>
         <Id>11</Id>
@@ -98,7 +90,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Rozsdamentes acélból készült 37*28*6 cm-es tepsi.Gáz- illetve elektromos sütőben használható</Leiras>
         <Kep>.images/tepsi.jpg</Kep>
-        <Ar>2500</Ar>
+        <Ar>3500</Ar>
     </Termek>
     <Termek>
         <Id>12</Id>
@@ -107,7 +99,7 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras> Akácfából készült 6 fős kerti bútor szett. Praktikusan összecsukható székek és téglalap alakú asztal.</Leiras>
         <Kep>.images/kulteributorszett.jpg</Kep>
-        <Ar>140000</Ar>
+        <Ar>196000</Ar>
     </Termek>
     <Termek>
         <Id>13</Id>
@@ -116,7 +108,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>Könnyen használható és hatékony porszívó. Legjobb eredményeit biztosítja a kemény padlók tisztítása, a porszűrés és az energetikai hatékonyság terén.</Leiras>
         <Kep>.images/porszivo.jpg</Kep>
-        <Ar>27000</Ar>
+        <Ar>37800</Ar>
     </Termek>
     <Termek>
         <Id>14</Id>
@@ -125,7 +117,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Vezetéken elhelyezett kapcsolóval ellátott olvasókaros állólámpa.</Leiras>
         <Kep>.images/allolampa.jpg</Kep>
-        <Ar>7500</Ar>
+        <Ar>10500</Ar>
     </Termek>
     <Termek>
         <Id>15</Id>
@@ -134,7 +126,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Használatra kész oldat szórófejes flakonban.6 x 750 ml-es kiszerelésben elérhető.Kellemes, friss illatával eltávolítja a kellemetlen szagokat.</Leiras>
         <Kep>.images/legfrissito.jpg</Kep>
-        <Ar>5400</Ar>
+        <Ar>7559</Ar>
     </Termek>
     <Termek>
         <Id>16</Id>
@@ -143,7 +135,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Gépi öblítőszer poharakhoz és edényekhez. Minden vízkeménység mellett használható. Automata adagolóval rendelkező mosogatógépekhez ajánlott.</Leiras>
         <Kep>.images/gepioblitoszer.jpg</Kep>
-        <Ar>3400</Ar>
+        <Ar>4760</Ar>
     </Termek>
     <Termek>
         <Id>17</Id>
@@ -152,7 +144,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Professzionális homlokcsípő fogó.Cr-Va (Chrome-Vanadium) acél pofával és csúszásmentes, ergonómikus nyéllel ellátott fogó.</Leiras>
         <Kep>.images/homlokcsipofogo.jpg</Kep>
-        <Ar>3100</Ar>
+        <Ar>4340</Ar>
     </Termek>
     <Termek>
         <Id>18</Id>
@@ -161,7 +153,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Professzionális minőségű, egykezes,Cr-Va (Chrome-Vanadium) acél ötvözetű popszegecshúzó fogó.Mattkróm bevonattal és csúszásmentes foganytúval ellátott.</Leiras>
         <Kep>.images/popszegecshuzofogo.jpg</Kep>
-        <Ar>6800</Ar>
+        <Ar>9520</Ar>
     </Termek>
     <Termek>
         <Id>19</Id>
@@ -170,7 +162,7 @@
         <Kategoria>Vegyszer</Kategoria>
         <Leiras>26 x 8 cm-es fából készült ajtódísz akasztóval a tetején. </Leiras>
         <Kep>.images/ajtodisz.jpg</Kep>
-        <Ar>2300</Ar>
+        <Ar>3220</Ar>
     </Termek>
     <Termek>
         <Id>20</Id>
@@ -179,7 +171,7 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras>A bútorszett masszív és kiváló minőségű PE rattanból készült, ami miatt strapabíró és könnyen karbantartható. </Leiras>
         <Kep>.images/polyrattanszett.jpg</Kep>
-        <Ar>79990</Ar>
+        <Ar>111986</Ar>
     </Termek>
 	<Termek>
         <Id>21</Id>
@@ -188,7 +180,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Öntött vas anyagú, kívül-belül zománcozott, 6,2 literes kacsasütő.</Leiras>
         <Kep>.images/kacsasuto.jpg</Kep>
-        <Ar>21000</Ar>
+        <Ar>29399</Ar>
     </Termek>
 	<Termek>
         <Id>22</Id>
@@ -197,7 +189,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Karcmentes tisztító folyékony súrolószer friss virág illattal.</Leiras>
         <Kep>.images/suroloszer.jpg</Kep>
-        <Ar>2500</Ar>
+        <Ar>3500</Ar>
     </Termek>
 	<Termek>
         <Id>23</Id>
@@ -206,7 +198,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>Elöl töltős mosógép A+++ energiaosztállyal és 7 kg mosási kapacitással.</Leiras>
         <Kep>.images/mosogep.jpg</Kep>
-        <Ar>69990</Ar>
+        <Ar>97986</Ar>
     </Termek>
 	<Termek>
         <Id>24</Id>
@@ -215,7 +207,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>Alkalmas gyors kiolvasztáshoz, melegítéshez és ételkészítéshez: mindezt a lehető legrövidebb idő alatt. A bármely szögből könnyedén látható TFT kijelző és az enegriatakarékos LED megvilágítás könnyű és egyszerű használatot biztosít. </Leiras>
         <Kep>.images/mikrohullamusuto.jpg</Kep>
-        <Ar>79000</Ar>
+        <Ar>110600</Ar>
     </Termek>
 	<Termek>
         <Id>25</Id>
@@ -224,7 +216,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras>200 ml-es intenzív hidratáló testápoló a mindennapi bőrápoláshoz, mely tápláló és mélyen felszívódó természetes összetevőket tartalmaz, melyek segíthetnek regenerálni, táplálni, puhítani és kisimítani a száraz bőrt.</Leiras>
         <Kep>.images/testapolo.jpg</Kep>
-        <Ar>1000</Ar>
+        <Ar>1400</Ar>
     </Termek>
 	<Termek>
         <Id>26</Id>
@@ -233,7 +225,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras>Értékes bioaktív összetevőket tartalmazó natúr dezodor.Nem tömíti el a pórusokat, a verejtékben található baktériumok hatástalanításával gátolja a nemkívánt testszag kialakulását, miközben a bőr szabadon lélegzik.</Leiras>
         <Kep>.images/dezodor.png</Kep>
-        <Ar>2800</Ar>
+        <Ar>3919</Ar>
     </Termek>
 	<Termek>
         <Id>27</Id>
@@ -242,7 +234,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>85x225x85 cm-es bézs szövetű kanapé 110x190 cm-es fekvőfelülettel.</Leiras>
         <Kep>.images/kanape.jpg</Kep>
-        <Ar>58000</Ar>
+        <Ar>81200</Ar>
     </Termek>
 	<Termek>
         <Id>28</Id>
@@ -251,7 +243,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Csúszásmentes jó fogású nyéllel, normál 250mm hosszúságú. Vágáskapacitás kb 1,0mm lemez vastagságig. Aluminium esetében 1,8mm.</Leiras>
         <Kep>.images/lemezvagoollo.jpg</Kep>
-        <Ar>1100</Ar>
+        <Ar>1540</Ar>
     </Termek>
 	<Termek>
         <Id>29</Id>
@@ -260,7 +252,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>A+ energiaosztályú hűtőszekrény, melynek köszönhetően rendkívül energiahatékony. Kisebb konyhákba, illetve kisebb háztartásokba kiváló választás.</Leiras>
         <Kep>.images/hutoszekreny.jpg</Kep>
-        <Ar>690</Ar>
+        <Ar>965</Ar>
     </Termek>
 	<Termek>
         <Id>30</Id>
@@ -269,7 +261,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras>Védelem és hidratálás mandulával és sheavajjal. A krémben lévő kamillakivonat nyugtatja és ápolja az igénybevett kéz bőrét.</Leiras>
         <Kep>.images/kezkrem.jpg</Kep>
-        <Ar>690</Ar>
+        <Ar>965</Ar>
     </Termek>
 	<Termek>
         <Id>31</Id>
@@ -278,7 +270,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>200 mm hosszúságú kerek, félkerek és lapos reszelő.</Leiras>
         <Kep>.images/fareszelokeszlet.jpg</Kep>  
-        <Ar>2990</Ar> 
+        <Ar>4186</Ar> 
     </Termek>
 	<Termek>
         <Id>32</Id>
@@ -287,7 +279,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Kitűnő puhaságot biztosít a textíliáknak.Megelőzi a műszálas ruhaneműk elektrosztatikus feltöltődését és kellemes, friss illatával eltávolítja a kellemetlen szagokat </Leiras>
         <Kep>.images/oblitoszer.jpg</Kep>
-        <Ar>690</Ar>
+        <Ar>965</Ar>
     </Termek>
 	<Termek>
         <Id>33</Id>
@@ -296,7 +288,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>9×9-es méretű kerámia díszdömb.</Leiras>
         <Kep>.images/diszgomb.jpg</Kep>
-        <Ar>4100</Ar>
+        <Ar>5740</Ar>
     </Termek>
 	<Termek>
         <Id>34</Id>
@@ -305,7 +297,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Moduláris szekrény 14 tárolórekesszel.Mérete 37 x 146 x 180,5 cm. Ez a ruhásszekrény műanyag elemekből és krómozott acélhuzalból készült.</Leiras>
         <Kep>.images/szekreny.jpg</Kep>
-        <Ar>21300</Ar>
+        <Ar>29819</Ar>
     </Termek>
 	<Termek>
         <Id>35</Id>
@@ -314,7 +306,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>Modern 15×5,5-ös méretű dekorációs madár dróton.</Leiras>
         <Kep>.images/diszmadar.jpg</Kep>
-        <Ar>3500</Ar>
+        <Ar>4900</Ar>
     </Termek>
 	<Termek>
         <Id>36</Id>
@@ -323,7 +315,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Masszív, tartós anyagból, több különböző anyag típuson is használható, mint pl. bőr, szövet, műanyag, karton.Ideális övek, karórák, táskák lyukasztására, patentolására. </Leiras>
         <Kep>.images/ovlyukaszto.jpg</Kep>
-        <Ar>1900</Ar>
+        <Ar>2660</Ar>
     </Termek>
 	<Termek>
         <Id>37</Id>
@@ -332,7 +324,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>6 liter űrtartalmú agyag római tál.Az edény sütőben való használatra alkalmas.Nyílt lángon használni szigorúan tilos!</Leiras>
         <Kep>.images/romaital.jpg</Kep>
-        <Ar>4350</Ar>
+        <Ar>6090</Ar>
     </Termek>
 	<Termek>
         <Id>38</Id>
@@ -341,7 +333,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>6 liter űrtartalmú rozsdamentes acélból és műanyagból készült kukta.</Leiras>
         <Kep>.images/kukta.jpg</Kep>
-        <Ar>14500</Ar>
+        <Ar>20300</Ar>
     </Termek>
 	<Termek>
         <Id>39</Id>
@@ -350,7 +342,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>A csapkiütő munkahossza 30 mm. Króm-vanádium ötvözött acélos anyagú.</Leiras>
         <Kep>.images/csapkiuto.jpg</Kep>
-        <Ar>980</Ar>
+        <Ar>1372</Ar>
     </Termek>
 	<Termek>
         <Id>40</Id>
@@ -359,7 +351,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Használható minden típusú fára és lemosható felületre (műanyag).</Leiras>
         <Kep>.images/butorapolo.jpg</Kep>
-        <Ar>11690</Ar>
+        <Ar>16365</Ar>
     </Termek>
 	<Termek>
         <Id>41</Id>
@@ -368,7 +360,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>Napi toalett-tisztító és vízkőoldószer. Hosszan tartó, sűrű formulájának köszönhetően könnyedén megtapad a felületeken. Megelőzi a vízkőlerakódást! Friss, kellemes illatával eltávolítja a kellemetlen szagokat. 6 x 750 ml-es kiszerelésben kapható.</Leiras>
         <Kep>.images/toalettisztito.jpg</Kep>
-        <Ar>4760</Ar>
+        <Ar>6664</Ar>
     </Termek>
 	<Termek>
         <Id>42</Id>
@@ -377,7 +369,7 @@
         <Kategoria>Dísztárgy</Kategoria>
         <Leiras>53×18×5,5 méretű alumínium tollmintás tál.</Leiras>
         <Kep>.images/tollmintastal.jpg</Kep>
-        <Ar>14760</Ar>
+        <Ar>20664</Ar>
     </Termek>
 	<Termek>
         <Id>43</Id>
@@ -386,7 +378,7 @@
         <Kategoria>Beltéri bútor</Kategoria>
         <Leiras>Az ülőke jutából és pamutból készült, és EPS habszivacs labdákkal van töltve a maximális kényelem érdekében. </Leiras>
         <Kep>.images/puff.jpg</Kep>
-        <Ar>12450</Ar>
+        <Ar>17430</Ar>
     </Termek>
 	<Termek>
         <Id>44</Id>
@@ -395,7 +387,7 @@
         <Kategoria>Háztartási gép</Kategoria>
         <Leiras>A készüléken található tolószabályzóval választhat a 3 féle szívóteljesítmény közül, melyek közül a legerősebb fokozat teljesítménye 320 m3/h. Világítása megfelelő fényt biztosít a munkaterületnek.</Leiras>
         <Kep>.images/paraelszivo.jpg</Kep>
-        <Ar>14500</Ar>
+        <Ar>20300</Ar>
     </Termek>
 	<Termek>
         <Id>45</Id>
@@ -404,7 +396,7 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Kemény és stabil vágólap a fogazott élre történő maximális erőátvitel érdekében. Keményfémlapkás fogak ytong (gázbeton)  anyagon való könnyű áthaladása érdekében.  Ergonomikus kialakítású, két részből álló, kiváló minőségű, lágy TPR gumival ellátott markolata van az ytong fűrésznek.</Leiras>
         <Kep>.images/furesz.jpg</Kep>
-        <Ar>6200</Ar>
+        <Ar>8680</Ar>
     </Termek>
 	<Termek>
         <Id>46</Id>
@@ -413,7 +405,7 @@
         <Kategoria>Tisztálkodószer</Kategoria>
         <Leiras>125 ml-es napvédő spray.UVA-UVB sugarak ellen 1:3 arányban véd az Európai Bizottság ajánlásának megfelelően.Külsőleg alkalmazandó.</Leiras>
         <Kep>.images/napvedospray.jpg</Kep>
-        <Ar>3900</Ar>
+        <Ar>5460</Ar>
     </Termek>
 	<Termek>
         <Id>47</Id>
@@ -422,7 +414,7 @@
         <Kategoria>Tisztítószer</Kategoria>
         <Leiras>750 ml-es nagy hatékonyságú tisztítószer konyhai felületek tisztítására.Erőteljes formulájának köszönhetően a makacs szennyeződéseket is eltávolítja.Használatra kész oldat szórófejes flakonban.</Leiras>
         <Kep>.images/zsiroldoszer.jpg</Kep>
-        <Ar>5100</Ar>
+        <Ar>7140</Ar>
     </Termek>
 	<Termek>
         <Id>48</Id>
@@ -431,7 +423,7 @@
         <Kategoria>Kültéri bútor</Kategoria>
         <Leiras>Ez a tárolóláda erős, időtálló polipropilénből (PP) készült, és kültéri használatra alkalmas. A kültéri tárolóláda diszkrét, ámbár időtlen megjelenéssel bír, és bármilyen dekorációba tökéletesen illeszkedik.Könnyen összeszerelhető. </Leiras>
         <Kep>.images/tarololada.jpg</Kep>
-        <Ar>22600</Ar>
+        <Ar>31639</Ar>
     </Termek>
 	<Termek>
         <Id>49</Id>
@@ -440,7 +432,7 @@
         <Kategoria>Konyhai eszköz</Kategoria>
         <Leiras>Gáz-, kerámialapos -, elektromos tűzhelyen használható, 21,5 cm felső átmérőjű perem nélküli, 14,5 cm also átmérőjű és 11 cm hosszú nyélű serpenyő. </Leiras>
         <Kep>.images/serpenyo.jpg</Kep>
-        <Ar>8900</Ar>
+        <Ar>12460</Ar>
     </Termek>
 	<Termek>
         <Id>50</Id>
@@ -449,6 +441,15 @@
         <Kategoria>Barkács eszköz</Kategoria>
         <Leiras>Műanyag, 10,5×21,5cm-es kézi csiszoló.</Leiras>
         <Kep>.images/kezicsiszolo.jpg</Kep>
-        <Ar>610</Ar>
+        <Ar>854</Ar>
+    </Termek>
+<Termek>
+        <Id>51</Id>
+        <Telepules>Abaliget</Telepules>
+        <Nev>dasda</Nev>
+        <Kategoria>Barkács eszköz</Kategoria>
+        <Leiras>dsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Leiras>
+        <Kep>.images/fogkrem.jpg</Kep>
+        <Ar>1</Ar>
     </Termek>
 </Termekek>

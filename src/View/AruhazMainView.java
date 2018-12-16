@@ -514,24 +514,20 @@ public final class AruhazMainView extends JFrame {
 
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
         new Torles(this).setVisible(true);
-        adatokFrissitese();
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
         new Hozzaadas(this).setVisible(true);
-        adatokFrissitese();
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Biztos ki akar lépni?", "Kilépés", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this, "Biztosan ki akar lépni?", "Kilépés", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnArakModositasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArakModositasActionPerformed
         new Armodositas(this, termekekStrings).setVisible(true);
-        adatokFrissitese();
-
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
     private void btnDiagramokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagramokActionPerformed
