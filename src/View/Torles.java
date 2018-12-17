@@ -40,7 +40,7 @@ public class Torles extends JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEltavolit = new javax.swing.JButton();
+        btnTorol = new javax.swing.JButton();
         btnMegse = new javax.swing.JButton();
         cbTermekek = new javax.swing.JComboBox<>();
 
@@ -51,10 +51,10 @@ public class Torles extends JDialog {
             }
         });
 
-        btnEltavolit.setText("Eltávolítás");
-        btnEltavolit.addActionListener(new java.awt.event.ActionListener() {
+        btnTorol.setText("Töröl");
+        btnTorol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEltavolitActionPerformed(evt);
+                btnTorolActionPerformed(evt);
             }
         });
 
@@ -71,7 +71,7 @@ public class Torles extends JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEltavolit, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTorol, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnMegse, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -88,14 +88,14 @@ public class Torles extends JDialog {
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnMegse)
-                    .addComponent(btnEltavolit))
+                    .addComponent(btnTorol))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEltavolitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEltavolitActionPerformed
+    private void btnTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTorolActionPerformed
         int index = cbTermekek.getSelectedIndex();
         String nev = termekekStrings.get(index).split(";")[0];
         String id = termekekStrings.get(index).split(";")[1];
@@ -106,7 +106,7 @@ public class Torles extends JDialog {
             ((AruhazMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
-    }//GEN-LAST:event_btnEltavolitActionPerformed
+    }//GEN-LAST:event_btnTorolActionPerformed
 
     private void btnMegseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMegseActionPerformed
         this.dispose();
@@ -118,8 +118,8 @@ public class Torles extends JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEltavolit;
     private javax.swing.JButton btnMegse;
+    private javax.swing.JButton btnTorol;
     private javax.swing.JComboBox<String> cbTermekek;
     // End of variables declaration//GEN-END:variables
 }

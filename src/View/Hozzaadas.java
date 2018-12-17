@@ -60,7 +60,7 @@ public class Hozzaadas extends JDialog {
         spLeiras = new javax.swing.JScrollPane();
         taLeiras = new javax.swing.JTextArea();
         tfNev = new javax.swing.JTextField();
-        btnFelvisz = new javax.swing.JButton();
+        btnHozzaad = new javax.swing.JButton();
         btnKilepesF = new javax.swing.JButton();
         cbTelepules = new javax.swing.JComboBox<>();
         cbKategoria = new javax.swing.JComboBox<>();
@@ -79,9 +79,9 @@ public class Hozzaadas extends JDialog {
         });
 
         btnTalloz.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnTalloz.setText("Tallózás");
-        btnTalloz.setMaximumSize(new java.awt.Dimension(2, 1));
-        btnTalloz.setMinimumSize(new java.awt.Dimension(2, 1));
+        btnTalloz.setText("Tallózás...");
+        btnTalloz.setMaximumSize(new java.awt.Dimension(92, 20));
+        btnTalloz.setMinimumSize(new java.awt.Dimension(92, 20));
         btnTalloz.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTallozActionPerformed(evt);
@@ -122,12 +122,12 @@ public class Hozzaadas extends JDialog {
         tfNev.setToolTipText("Minta János");
         tfNev.setName(""); // NOI18N
 
-        btnFelvisz.setText("Felvitel");
-        btnFelvisz.setMaximumSize(new java.awt.Dimension(68, 32));
-        btnFelvisz.setMinimumSize(new java.awt.Dimension(68, 32));
-        btnFelvisz.addActionListener(new java.awt.event.ActionListener() {
+        btnHozzaad.setText("Hozzáad");
+        btnHozzaad.setMaximumSize(new java.awt.Dimension(68, 32));
+        btnHozzaad.setMinimumSize(new java.awt.Dimension(68, 32));
+        btnHozzaad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFelviszActionPerformed(evt);
+                btnHozzaadActionPerformed(evt);
             }
         });
 
@@ -153,8 +153,8 @@ public class Hozzaadas extends JDialog {
         lbKarakterSzam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbKarakterSzam.setText("0");
 
-        btnKepMegnyitasa.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        btnKepMegnyitasa.setText("Megnyitás...");
+        btnKepMegnyitasa.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        btnKepMegnyitasa.setText("Megnyit...");
         btnKepMegnyitasa.setMaximumSize(new java.awt.Dimension(97, 20));
         btnKepMegnyitasa.setMinimumSize(new java.awt.Dimension(97, 20));
         btnKepMegnyitasa.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +188,7 @@ public class Hozzaadas extends JDialog {
                         .addComponent(l200)
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnFelvisz, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnHozzaad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnKilepesF, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(spLeiras, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -197,9 +197,9 @@ public class Hozzaadas extends JDialog {
                     .addComponent(tfAr)
                     .addComponent(tfNev, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnKepMegnyitasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -224,12 +224,11 @@ public class Hozzaadas extends JDialog {
                     .addComponent(lbKat)
                     .addComponent(cbKategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbKep)
                     .addComponent(btnKepMegnyitasa, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfKepPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbKep)
-                        .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTalloz, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -246,7 +245,7 @@ public class Hozzaadas extends JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnKilepesF)
-                    .addComponent(btnFelvisz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHozzaad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -326,7 +325,7 @@ public class Hozzaadas extends JDialog {
         }
     }
 
-    private void btnFelviszActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFelviszActionPerformed
+    private void btnHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHozzaadActionPerformed
         if (ellenorzes()) {
             view.getModell().termekHozzadasa(
                 cbTelepules.getSelectedItem().toString(),
@@ -339,7 +338,7 @@ public class Hozzaadas extends JDialog {
             ((AruhazMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
-    }//GEN-LAST:event_btnFelviszActionPerformed
+    }//GEN-LAST:event_btnHozzaadActionPerformed
 
     private void btnKilepesFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesFActionPerformed
         this.dispose();
@@ -378,7 +377,7 @@ public class Hozzaadas extends JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFelvisz;
+    private javax.swing.JButton btnHozzaad;
     private javax.swing.JButton btnKepMegnyitasa;
     private javax.swing.JButton btnKilepesF;
     private javax.swing.JButton btnTalloz;

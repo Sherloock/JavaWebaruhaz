@@ -51,7 +51,7 @@
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnFelvisz" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="btnHozzaad" min="-2" pref="120" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnKilepesF" min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
@@ -61,9 +61,9 @@
                   <Component id="tfAr" alignment="0" max="32767" attributes="0"/>
                   <Component id="tfNev" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="tfKepPath" min="-2" pref="382" max="-2" attributes="0"/>
+                      <Component id="tfKepPath" min="-2" pref="324" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnTalloz" min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="btnTalloz" min="-2" pref="93" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnKepMegnyitasa" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -96,13 +96,11 @@
                   <Component id="cbKategoria" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnKepMegnyitasa" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfKepPath" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbKep" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnTalloz" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tfKepPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbKep" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnKepMegnyitasa" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="btnTalloz" alignment="3" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -125,7 +123,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnKilepesF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnFelvisz" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnHozzaad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -140,12 +138,12 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tall&#xf3;z&#xe1;s"/>
+        <Property name="text" type="java.lang.String" value="Tall&#xf3;z&#xe1;s..."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[2, 1]"/>
+          <Dimension value="[92, 20]"/>
         </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[2, 1]"/>
+          <Dimension value="[92, 20]"/>
         </Property>
       </Properties>
       <Events>
@@ -211,9 +209,9 @@
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnFelvisz">
+    <Component class="javax.swing.JButton" name="btnHozzaad">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Felvitel"/>
+        <Property name="text" type="java.lang.String" value="Hozz&#xe1;ad"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[68, 32]"/>
         </Property>
@@ -222,7 +220,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFelviszActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHozzaadActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnKilepesF">
@@ -289,9 +287,9 @@
     <Component class="javax.swing.JButton" name="btnKepMegnyitasa">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="10" style="1"/>
+          <Font name="Dialog" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Megnyit&#xe1;s..."/>
+        <Property name="text" type="java.lang.String" value="Megnyit..."/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[97, 20]"/>
         </Property>

@@ -28,7 +28,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnEltavolit" min="-2" pref="109" max="-2" attributes="0"/>
+              <Component id="btnTorol" min="-2" pref="109" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Component id="btnMegse" min="-2" pref="109" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
@@ -48,7 +48,7 @@
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnMegse" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEltavolit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTorol" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -56,12 +56,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnEltavolit">
+    <Component class="javax.swing.JButton" name="btnTorol">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Elt&#xe1;vol&#xed;t&#xe1;s"/>
+        <Property name="text" type="java.lang.String" value="T&#xf6;r&#xf6;l"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEltavolitActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTorolActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMegse">
