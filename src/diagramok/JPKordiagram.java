@@ -8,7 +8,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
-public class Kordiagram {
+public class JPKordiagram {
 
     public static JPanel build(Tablazat tablazat) {
         tablazat.rendezes(1);

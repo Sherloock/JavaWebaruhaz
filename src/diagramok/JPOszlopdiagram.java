@@ -9,7 +9,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class Oszlopdiagram {
+public class JPOszlopdiagram {
 
     public static JPanel build(Tablazat tablazat) {
         tablazat.rendezes(1);

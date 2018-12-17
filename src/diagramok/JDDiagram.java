@@ -4,18 +4,18 @@ import aruhaz.Statisztika;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-public class Diagram extends JDialog {
+public class JDDiagram extends JDialog {
     
 
-    public Diagram(JFrame parent, Statisztika statisztika) {
+    public JDDiagram(JFrame parent, Statisztika statisztika) {
         super(parent, true);
         initComponents();
         init(parent, statisztika);
     }
 
     private void init(JFrame parent, Statisztika statisztika) {      
-        tpDiagramok.add(Oszlopdiagram.build(statisztika.termekekSzamaTelepulesenkent()), "Termékek száma településenként");
-        tpDiagramok.add(Kordiagram.build(statisztika.termekAtlagosAraKategoriankent()), "Termékek átlagos ára kategóriánként");
+        tpDiagramok.add(JPOszlopdiagram.build(statisztika.termekekSzamaTelepulesenkent()), "Termékek száma településenként");
+        tpDiagramok.add(JPKordiagram.build(statisztika.termekAtlagosAraKategoriankent()), "Termékek átlagos ára kategóriánként");
         setLocationRelativeTo(parent);
     }
 

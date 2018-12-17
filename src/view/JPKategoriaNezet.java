@@ -1,4 +1,4 @@
-package View;
+package view;
 
 
 import aruhaz.Modell;
@@ -18,11 +18,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public class KategoriakTree extends javax.swing.JPanel {
+public class JPKategoriaNezet extends javax.swing.JPanel {
     private final Modell modell;
-    private final AruhazMainView view;
+    private final JFMainView view;
   
-    public KategoriakTree(AruhazMainView view, Modell modell) {
+    public JPKategoriaNezet(JFMainView view, Modell modell) {
         this.view = view;
         this.modell = modell;
         

@@ -130,13 +130,13 @@ public class Modell {
         
         Element termek = termekekDoc.createElement("Termek");
 
-        adatFelvitelSzulohoz(termek, "Id", index + "");
-        adatFelvitelSzulohoz(termek, "Telepules", telepules + "");
+        adatFelvitelSzulohoz(termek, "Id", index);
+        adatFelvitelSzulohoz(termek, "Telepules", telepules);
         adatFelvitelSzulohoz(termek, "Nev", nev);
         adatFelvitelSzulohoz(termek, "Kategoria", kategoria);
         adatFelvitelSzulohoz(termek, "Leiras", leiras);
         adatFelvitelSzulohoz(termek, "Kep", kep);
-        adatFelvitelSzulohoz(termek, "Ar", ar + "");
+        adatFelvitelSzulohoz(termek, "Ar", ar);
 
         Element root = (Element) termekekDoc.getElementsByTagName("Termekek").item(0);
         root.appendChild(termekekDoc.importNode(termek, true));
@@ -145,9 +145,9 @@ public class Modell {
     }
 
     //adott elemhez adott azonosítoval és adattagot ad
-    private void adatFelvitelSzulohoz(Element szulo, String azonosito, String adat){
+    private void adatFelvitelSzulohoz(Element szulo, String azonosito, Object adat){
             Element elem = termekekDoc.createElement(azonosito);
-            elem.appendChild(termekekDoc.createTextNode(adat));
+            elem.appendChild(termekekDoc.createTextNode(adat.toString()));
             szulo.appendChild(elem);
     }
     

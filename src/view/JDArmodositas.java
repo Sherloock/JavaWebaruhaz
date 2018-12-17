@@ -1,16 +1,16 @@
-package View;
+package view;
 
 import aruhaz.Modell;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-public class Armodositas extends JDialog {
+public class JDArmodositas extends JDialog {
 
-    private final AruhazMainView view;
+    private final JFMainView view;
     private final ArrayList<String> termekekStrings;
 
-    public Armodositas(AruhazMainView view, ArrayList<String> termekekStrings) {
+    public JDArmodositas(JFMainView view, ArrayList<String> termekekStrings) {
         super(view, true);
         initComponents();
         this.view = view;
@@ -165,7 +165,7 @@ public class Armodositas extends JDialog {
                             + elozoAr + " --> " + modell.getTermekById(id).getAr() + ")");
 
                 }
-                ((AruhazMainView)this.getParent()).adatokFrissitese();
+                ((JFMainView)this.getParent()).adatokFrissitese();
             }
         }
     }//GEN-LAST:event_btnArValtoztatasActionPerformed

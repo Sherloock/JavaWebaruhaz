@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import aruhaz.Termek;
 import java.text.Collator;
@@ -8,12 +8,12 @@ import java.util.TreeSet;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-public class Torles extends JDialog {
+public class JDTorles extends JDialog {
 
-    private final AruhazMainView view;
+    private final JFMainView view;
     private ArrayList<String> termekekStrings = new ArrayList<>();
 
-    public Torles(AruhazMainView view) {
+    public JDTorles(JFMainView view) {
         super(view, true);
 
         initComponents();
@@ -103,7 +103,7 @@ public class Torles extends JDialog {
         if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""+ nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
             view.getModell().termekTorlese(id);
-            ((AruhazMainView)this.getParent()).adatokFrissitese();
+            ((JFMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
     }//GEN-LAST:event_btnTorolActionPerformed

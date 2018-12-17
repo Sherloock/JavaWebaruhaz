@@ -1,9 +1,9 @@
-package View;
+package view;
 
 import aruhaz.Modell;
-import aruhaz.Pdf;
+import kimutatas.Pdf;
 import aruhaz.Termek;
-import diagramok.Diagram;
+import diagramok.JDDiagram;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -22,15 +22,15 @@ import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public final class AruhazMainView extends JFrame {
+public final class JFMainView extends JFrame {
 
     private ArrayList<String> termekekStrings = new ArrayList<>();
     private final Modell modell;
-    private OsszesTermek pTermekek;
-    private Kategoriak pKategorizal;
-    private KategoriakTree pCsoportositas;
+    private JPOsszesTermek pTermekek;
+    private JPKategoriaStatisztika pKategorizal;
+    private JPKategoriaNezet pCsoportositas;
 
-    public AruhazMainView(Modell m) {
+    public JFMainView(Modell m) {
         initComponents();
         modell = m;
         elemekMagyaritasa();
@@ -46,13 +46,13 @@ public final class AruhazMainView extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(this);
 
-        pTermekek = new OsszesTermek(this, modell);
+        pTermekek = new JPOsszesTermek(this, modell);
         tpUrlap.add(pTermekek, "Összes termék");
 
-        pKategorizal = new Kategoriak(this, modell);
-        tpUrlap.add(new Kategoriak(this, modell), "Kategória összesítő");
+        pKategorizal = new JPKategoriaStatisztika(this, modell);
+        tpUrlap.add(new JPKategoriaStatisztika(this, modell), "Kategória statisztika");
 
-        pCsoportositas = new KategoriakTree(this, modell);
+        pCsoportositas = new JPKategoriaNezet(this, modell);
         tpUrlap.add(pCsoportositas, "Kategória nézet");
     }
 
@@ -169,7 +169,6 @@ public final class AruhazMainView extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Webáruház 3.0");
-        setPreferredSize(new java.awt.Dimension(1024, 576));
 
         spMain.setDividerLocation(200);
         spMain.setDividerSize(0);
@@ -270,11 +269,11 @@ public final class AruhazMainView extends JFrame {
 
 
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
-        new Torles(this).setVisible(true);
+        new JDTorles(this).setVisible(true);
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
-        new Hozzaadas(this).setVisible(true);
+        new JDHozzaadas(this).setVisible(true);
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
@@ -284,11 +283,11 @@ public final class AruhazMainView extends JFrame {
     }//GEN-LAST:event_btnKilepesActionPerformed
 
     private void btnArakModositasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArakModositasActionPerformed
-        new Armodositas(this, termekekStrings).setVisible(true);
+        new JDArmodositas(this, termekekStrings).setVisible(true);
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
     private void btnDiagramokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagramokActionPerformed
-        new Diagram(this, modell.getStatisztika()).setVisible(true);
+        new JDDiagram(this, modell.getStatisztika()).setVisible(true);
     }//GEN-LAST:event_btnDiagramokActionPerformed
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed

@@ -1,5 +1,8 @@
-package aruhaz;
+package kimutatas;
 
+import aruhaz.Modell;
+import aruhaz.Statisztika;
+import aruhaz.Tablazat;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;

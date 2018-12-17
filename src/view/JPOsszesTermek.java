@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import aruhaz.Modell;
 import aruhaz.Tablazat;
@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class OsszesTermek extends javax.swing.JPanel {
+public class JPOsszesTermek extends javax.swing.JPanel {
 
     private final Modell modell;
-    private final AruhazMainView view;
+    private final JFMainView view;
 
-    public OsszesTermek(AruhazMainView view, Modell modell) {
+    public JPOsszesTermek(JFMainView view, Modell modell) {
         this.view = view;
         this.modell = modell;
 

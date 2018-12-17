@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class Hozzaadas extends JDialog {
+public class JDHozzaadas extends JDialog {
 
-    private final AruhazMainView view;
+    private final JFMainView view;
 
-    public Hozzaadas(AruhazMainView view) {
+    public JDHozzaadas(JFMainView view) {
         super(view, true);
 
         initComponents();
@@ -335,7 +335,7 @@ public class Hozzaadas extends JDialog {
                 tfAr.getText(),
                 tfKepPath.getText()
             );
-            ((AruhazMainView)this.getParent()).adatokFrissitese();
+            ((JFMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }
     }//GEN-LAST:event_btnHozzaadActionPerformed

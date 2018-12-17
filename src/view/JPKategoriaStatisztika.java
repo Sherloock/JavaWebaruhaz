@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import aruhaz.Modell;
 import aruhaz.Tablazat;
@@ -10,11 +10,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class Kategoriak extends javax.swing.JPanel {
+public class JPKategoriaStatisztika extends javax.swing.JPanel {
     private final Modell modell;
-    private final AruhazMainView view;
+    private final JFMainView view;
   
-    public Kategoriak(AruhazMainView view, Modell modell) {
+    public JPKategoriaStatisztika(JFMainView view, Modell modell) {
         this.view = view;
         this.modell = modell;
         
