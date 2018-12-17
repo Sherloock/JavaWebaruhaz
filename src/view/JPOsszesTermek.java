@@ -23,59 +23,58 @@ public class JPOsszesTermek extends javax.swing.JPanel {
 
     private final Modell modell;
     private final JFMainView view;
-
+    
     public JPOsszesTermek(JFMainView view, Modell modell) {
-        this.view = view;
         this.modell = modell;
-
-        frissit();
+        this.view = view;
     }
 
     public void frissit() {
         removeAll();
+        
         float[] termekekTablaOszlopszelesseg = {2.0f, 8.0f, 14.0f, 9.0f, 43.0f, 6.0f, 18.0f};
 
         Tablazat tablazat = modell.getStatisztika().osszesAdat();
+        
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override
             public Class getColumnClass(int column) {
-                return (column == 0 || column == 5) ? Integer.class : String.class;
+                String oszlopNeve = getColumnName(column);
+                if (oszlopNeve.equals("Ár") || oszlopNeve.equals("Id")) {
+                    return Integer.class;
+                } else {
+                    return String.class;
+                }
             }
         };
-        JTable tableTermekek = new MyJTable(tablaModell);
-                //view.tablaElkeszitese(tablaModell);
-
-        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
-        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
-
-        tableTermekek.getColumnModel().getColumn(0).setCellRenderer(jobbraRendez);
-        tableTermekek.getColumnModel().getColumn(5).setCellRenderer(jobbraRendez);
-
-        JScrollPane gorgetoSav = new JScrollPane(tableTermekek);
+        
+        JTable tabla = new MyJTable(tablaModell);
+       
+        JScrollPane gorgetoSav = new JScrollPane(tabla);
         setLayout(new BorderLayout(WIDTH, HEIGHT));
 
-        add(tableTermekek.getTableHeader(), BorderLayout.PAGE_START);
+        add(tabla.getTableHeader(), BorderLayout.PAGE_START);
         add(gorgetoSav, BorderLayout.CENTER);
 
-        tableTermekek.setSize(getSize());
-        tablaOszlopainakAtmeretezese(tableTermekek, termekekTablaOszlopszelesseg);
+        tabla.setSize(getSize());
+        tablaOszlopainakAtmeretezese(tabla, termekekTablaOszlopszelesseg);
 
         //képek megnyitása kattintásra
-        tableTermekek.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = tableTermekek.rowAtPoint(evt.getPoint());
-                int col = tableTermekek.columnAtPoint(evt.getPoint());
+                int row = tabla.rowAtPoint(evt.getPoint());
+                int col = tabla.columnAtPoint(evt.getPoint());
 
-                if (tableTermekek.getColumnName(col).equals(tablazat.getFejlec()[6])) { //képek 6. oszlop
-                    int id = (int) tableTermekek.getValueAt(row, 0); //id 0.oszlop
+                if (tabla.getColumnName(col).equals(tablazat.getFejlec()[6])) { //képek 6. oszlop
+                    int id = (int) tabla.getValueAt(row, 0); //id 0.oszlop
 
                     String path = modell.getTermekById(id).getKep();
                     try {
                         File file = new File(path.substring(1));
-                        Image image = view.kepAtmeretezese(ImageIO.read(file));
+                        Image image = JFMainView.kepAtmeretezese(ImageIO.read(file));
                         JLabel picLabel = new JLabel(new ImageIcon(image));
-                        JOptionPane.showMessageDialog(null, picLabel, modell.getTermekById(id).getNev(), JOptionPane.CLOSED_OPTION, null);
+                        JOptionPane.showMessageDialog(view, picLabel, modell.getTermekById(id).getNev(), JOptionPane.CLOSED_OPTION, null);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(new JFrame(), "A képet nem sikerült megnyitni!", "Hiba!", JOptionPane.ERROR_MESSAGE);
                     } catch (IndexOutOfBoundsException ex) {
@@ -88,17 +87,24 @@ public class JPOsszesTermek extends javax.swing.JPanel {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-                tablaOszlopainakAtmeretezese(tableTermekek, termekekTablaOszlopszelesseg);
+                tablaOszlopainakAtmeretezese(tabla, termekekTablaOszlopszelesseg);
             }
         });
 
+        //jobbra rendez
+        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
+        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
+
+        tabla.getColumnModel().getColumn(0).setCellRenderer(jobbraRendez);
+        tabla.getColumnModel().getColumn(5).setCellRenderer(jobbraRendez);
+        
         revalidate();
     }
 
     //TODO: oszlopok átrendezésnél rosszul müködik
     public void tablaOszlopainakAtmeretezese(JTable tabla, float[] oszlopSzelessegek) {
         if (tabla != null) {
-            tabla.setPreferredSize(tabla.getPreferredSize());
+            //tabla.setPreferredSize(tabla.getPreferredSize());
             int tablaSzelesseg = tabla.getWidth();
             TableColumnModel jTableOszlopModell = tabla.getColumnModel();
             for (int i = 0; i < jTableOszlopModell.getColumnCount(); i++) {

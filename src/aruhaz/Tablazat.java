@@ -3,7 +3,19 @@ package aruhaz;
 import java.util.Arrays;
 import java.util.Comparator;
 
+
 public class Tablazat {
+    public static final String ID = "Id";
+    public static final String TELEP = "Települes";
+    public static final String T_NEV = "Termék neve";
+    public static final String KAT = "Kategória";
+    public static final String LEIRAS = "Leírás";
+    public static final String AR = "Ár";
+    public static final String KEP = "Kép elérési címe";
+//    public static final String  = "";
+//    public static final String  = "";
+    
+    
     public final int X;
     public final int Y;
     

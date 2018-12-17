@@ -72,6 +72,7 @@ public class JDHozzaadas extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Termék hozzáadása");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -254,14 +255,13 @@ public class JDHozzaadas extends JDialog {
 
     private void btnTallozActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTallozActionPerformed
         try {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new File(".\\images"));
+            JFileChooser chooser = new JFileChooser(".\\images");
 
             //kép filter
             FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
             chooser.setFileFilter(imageFilter);
 
-            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
                 File file = chooser.getSelectedFile();
 
                 File directory = new File("./");
@@ -362,9 +362,9 @@ public class JDHozzaadas extends JDialog {
     private void btnKepMegnyitasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKepMegnyitasaActionPerformed
         try {
             File file = new File(tfKepPath.getText().substring(1));
-            Image image = view.kepAtmeretezese(ImageIO.read(file));
+            Image image = JFMainView.kepAtmeretezese(ImageIO.read(file));
             JLabel picLabel = new JLabel(new ImageIcon(image));
-            JOptionPane.showMessageDialog(null, picLabel, file.toString(), JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(this, picLabel, file.toString(), JOptionPane.PLAIN_MESSAGE, null);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "A képet nem sikerült megnyitni!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         } catch (IndexOutOfBoundsException ex) {

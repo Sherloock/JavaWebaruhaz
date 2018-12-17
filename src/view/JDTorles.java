@@ -1,36 +1,24 @@
 package view;
 
-import aruhaz.Termek;
-import java.text.Collator;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.TreeSet;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 public class JDTorles extends JDialog {
 
     private final JFMainView view;
-    private ArrayList<String> termekekStrings = new ArrayList<>();
+    private ArrayList<String> termekekStrings;
 
-    public JDTorles(JFMainView view) {
+    public JDTorles(JFMainView view,ArrayList<String> termekekStrings) {
         super(view, true);
 
         initComponents();
         this.view = view;
-        termekekStringsFeltolt();
+        this.termekekStrings = termekekStrings;
+        termekekListaBeallitasaComboBoxra();
     }
 
-    private void termekekStringsFeltolt() {
-        Collection<String> collection = new TreeSet<>(Collator.getInstance());
-
-        for (int i = 0; i < view.getModell().getTermekek().size(); i++) {
-            Termek t = view.getModell().getTermekek().get(i);
-            collection.add(t.getNev() + ";" + t.ID);
-        }
-
-        termekekStrings = new ArrayList<>(collection);
-
+    private void termekekListaBeallitasaComboBoxra() {
         for (int i = 0; i < termekekStrings.size(); i++) {
             cbTermekek.addItem(termekekStrings.get(i).split("\\;")[0]);
         }
@@ -45,6 +33,7 @@ public class JDTorles extends JDialog {
         cbTermekek = new javax.swing.JComboBox<>();
 
         setTitle("Termék törlése");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);

@@ -3,10 +3,13 @@ package view;
 import aruhaz.Modell;
 import kimutatas.Pdf;
 import aruhaz.Termek;
+import com.sun.xml.internal.messaging.saaj.soap.ImageDataContentHandler;
 import diagramok.JDDiagram;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.text.Collator;
 import java.text.SimpleDateFormat;
@@ -17,7 +20,6 @@ import java.util.TreeSet;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -50,9 +52,10 @@ public final class JFMainView extends JFrame {
         tpUrlap.add(pTermekek, "Összes termék");
 
         pKategorizal = new JPKategoriaStatisztika(this, modell);
-        tpUrlap.add(new JPKategoriaStatisztika(this, modell), "Kategória statisztika");
+        tpUrlap.add(pKategorizal, "Kategória statisztika");
 
         pCsoportositas = new JPKategoriaNezet(this, modell);
+        pCsoportositas.setLayout(new BorderLayout());
         tpUrlap.add(pCsoportositas, "Kategória nézet");
     }
 
@@ -123,34 +126,6 @@ public final class JFMainView extends JFrame {
             collection.add(t.getNev() + ";" + t.ID);
         }
         termekekStrings = new ArrayList<>(collection);
-    }
-
-
-
-    // kép átméretezése default
-    public Image kepAtmeretezese(Image image) {
-        return kepAtmeretezese(image, 800, 600);
-    }
-
-    // ha nagyobb mint a megadott paraméterek
-    public Image kepAtmeretezese(Image image, int maxWidth, int maxHeight) {
-        int imageWidth = image.getWidth(rootPane);
-        int imageHeight = image.getHeight(rootPane);
-
-        if (maxWidth < imageWidth || maxHeight < imageHeight) {
-
-            double ratioWidth = maxWidth / (double) imageWidth;
-            double ratioHeight = maxHeight / (double) imageHeight;
-            double ratio = Math.min(ratioHeight, ratioWidth);
-
-            Image newImage = image.getScaledInstance((int) (imageWidth * ratio), (int) (imageHeight * ratio), Image.SCALE_DEFAULT);
-            return newImage;
-        }
-        return image;
-    }
-
-    public Modell getModell() {
-        return modell;
     }
 
     @SuppressWarnings("unchecked")
@@ -269,7 +244,7 @@ public final class JFMainView extends JFrame {
 
 
     private void btnTermekTorolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekTorolActionPerformed
-        new JDTorles(this).setVisible(true);
+        new JDTorles(this, termekekStrings).setVisible(true);
     }//GEN-LAST:event_btnTermekTorolActionPerformed
 
     private void btnTermekHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTermekHozzaadActionPerformed
@@ -295,9 +270,7 @@ public final class JFMainView extends JFrame {
 
         while (!sikeres) {
 
-            JFileChooser chooser = new JFileChooser();
-
-            chooser.setCurrentDirectory(new File(".\\kimutatasok"));
+            JFileChooser chooser = new JFileChooser(".\\kimutatasok");
 
             FileFilter pdfFilter = new FileNameExtensionFilter("PDF Document", "pdf");
             chooser.setFileFilter(pdfFilter);
@@ -305,7 +278,7 @@ public final class JFMainView extends JFrame {
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd_HH.mm.ss").format(Calendar.getInstance().getTime());
             chooser.setSelectedFile(new File("WebáruházKimutatás" + timeStamp));
 
-            if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
                 File fajlNev = chooser.getSelectedFile();
                 sikeres = Pdf.kimutatas(modell, fajlNev.getAbsolutePath());
             } else {
@@ -314,7 +287,6 @@ public final class JFMainView extends JFrame {
         }
     }//GEN-LAST:event_btnPDFActionPerformed
 
-    private JTable tableTermekek;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnArakModositas;
     private javax.swing.JButton btnDiagramok;
@@ -326,4 +298,34 @@ public final class JFMainView extends JFrame {
     private javax.swing.JSplitPane spMain;
     private javax.swing.JTabbedPane tpUrlap;
     // End of variables declaration//GEN-END:variables
+
+    // kép átméretezése default
+    public static Image kepAtmeretezese(Image image) {
+        return kepAtmeretezese(image, 800, 600);
+    }
+
+    // ha nagyobb mint a megadott paraméterek
+    public static Image kepAtmeretezese(Image image, int maxWidth, int maxHeight) {
+        ImageObserver observer = new ImageDataContentHandler();
+        int imageWidth = image.getWidth(observer);
+        int imageHeight = image.getHeight(observer);
+
+        if (maxWidth < imageWidth || maxHeight < imageHeight) {
+
+            double ratioWidth = maxWidth / (double) imageWidth;
+            double ratioHeight = maxHeight / (double) imageHeight;
+            double ratio = Math.min(ratioHeight, ratioWidth);
+
+            Image newImage = image.getScaledInstance((int) (imageWidth * ratio), (int) (imageHeight * ratio), Image.SCALE_DEFAULT);
+            return newImage;
+        }
+        return image;
+    }
+
+    public Modell getModell() {
+        return modell;
+    }
+
+
+
 }

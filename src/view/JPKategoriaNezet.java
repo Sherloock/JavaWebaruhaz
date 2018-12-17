@@ -1,38 +1,25 @@
 package view;
 
-
 import aruhaz.Modell;
-import aruhaz.Tablazat;
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
-
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 public class JPKategoriaNezet extends javax.swing.JPanel {
+
     private final Modell modell;
-    private final JFMainView view;
-  
+
     public JPKategoriaNezet(JFMainView view, Modell modell) {
-        this.view = view;
         this.modell = modell;
-        
-        setLayout(new BorderLayout());
-        frissit();
     }
 
-
-      public void frissit() {
-          DefaultMutableTreeNode root = new DefaultMutableTreeNode("Kategóriák");
+    public void frissit() {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Kategóriák");
 
         ArrayList<String> termekek = new ArrayList<>();
 
@@ -67,8 +54,8 @@ public class JPKategoriaNezet extends javax.swing.JPanel {
         });
         revalidate();
     }
-     
-      //fa rendezese abc sorrendbe
+
+    //fa rendezese abc sorrendbe
     public static void rendezTree(DefaultMutableTreeNode root) {
         Enumeration e = root.depthFirstEnumeration();
         while (e.hasMoreElements()) {
