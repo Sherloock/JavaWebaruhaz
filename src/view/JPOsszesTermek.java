@@ -103,7 +103,7 @@ public class JPOsszesTermek extends javax.swing.JPanel {
             int tablaSzelesseg = tabla.getWidth();
             TableColumnModel jTableOszlopModell = tabla.getColumnModel();
             for (int i = 0; i < jTableOszlopModell.getColumnCount(); i++) {
-                int pWidth = Math.round(oszlopSzelessegek[i] * tablaSzelesseg / 100);
+                int pWidth = Math.round(oszlopSzelessegek[tabla.convertColumnIndexToModel(i)] * tablaSzelesseg / 100);
                 jTableOszlopModell.getColumn(i).setPreferredWidth(pWidth);
             }
         }

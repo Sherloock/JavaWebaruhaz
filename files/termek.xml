@@ -163,15 +163,7 @@
         <Kep>.images/popszegecshuzofogo.jpg</Kep>
         <Ar>6800</Ar>
     </Termek>
-    <Termek>
-        <Id>19</Id>
-        <Telepules>Csepreg</Telepules>
-        <Nev>Ajtódísz</Nev>
-        <Kategoria>Vegyszer</Kategoria>
-        <Leiras>26 x 8 cm-es fából készült ajtódísz akasztóval a tetején. </Leiras>
-        <Kep>.images/ajtodisz.jpg</Kep>
-        <Ar>2300</Ar>
-    </Termek>
+    
     <Termek>
         <Id>20</Id>
         <Telepules>Nagykáta</Telepules>
