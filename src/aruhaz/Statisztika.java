@@ -1,5 +1,6 @@
 package aruhaz;
 
+import static aruhaz.Tablazat.*;
 import java.util.ArrayList;
 
 public class Statisztika {
@@ -11,9 +12,9 @@ public class Statisztika {
     }
 
     public Tablazat osszesAdat() {
-        Object[] fejlec = {"Id", "Település", "Név", "Kategória", "Leírás", "Ár", "Kép elérési címe"};
-
+        Object[] fejlec = {ID, TELEP, T_NEV, KAT, LEIRAS, AR, KEP};
         Object[][] adatok = new Object[modell.getTermekek().size()][fejlec.length];
+        
         for (int i = 0; i < modell.getTermekek().size(); i++) {
             adatok[i][0] = modell.getTermekek().get(i).ID;
             adatok[i][1] = modell.getTermekek().get(i).getTelepules();
@@ -28,7 +29,8 @@ public class Statisztika {
 
     public Tablazat termekSzamaKategoriankent() {
         ArrayList<String>kategoriak = modell.getKategoriak();
-        Object[] fejlec = {"Kategória", "Termékek Száma"};
+        
+        Object[] fejlec = {KAT, T_SZAMA};
         Object[][] adatok = new Object[kategoriak.size()][fejlec.length];
 
         //kategóriák feltölt
@@ -48,7 +50,7 @@ public class Statisztika {
 
     public Tablazat termekAtlagosAraKategoriankent() {
         ArrayList<String>kategoriak = modell.getKategoriak();
-        Object[] fejlec = {"Kategória", "Átlagos ár"};
+        Object[] fejlec = {KAT, AR_ATL};
         int n = kategoriak.size();
 
         int sum[] = new int[n];
@@ -75,7 +77,7 @@ public class Statisztika {
 
     public Tablazat kategoriaDbMinMaxAr() {
         ArrayList<String>kategoriak = modell.getKategoriak();
-        Object[] fejlec = {"Kategória", "Termékek száma", "Legolcsóbb", "Legdrágább"};
+        Object[] fejlec = {KAT, T_SZAMA, T_MIN, T_MAX};
         Object[][] adatok = new Object[kategoriak.size()][fejlec.length];
 
         //kategóriák feltölt
@@ -98,7 +100,7 @@ public class Statisztika {
     }
 
     public Tablazat termekekSzamaTelepulesenkent() {
-        Object[] fejlec = {"Település", "Termékek száma"};
+        Object[] fejlec = {TELEP, T_SZAMA};
 
         ArrayList<String> telepulesek = new ArrayList<>();
         ArrayList<Integer> termekDB = new ArrayList<>();

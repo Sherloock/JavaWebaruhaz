@@ -2,7 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
@@ -38,6 +40,16 @@ public class MyJTable extends JTable {
     private void init() {
         setAutoCreateRowSorter(true);
         setFillsViewportHeight(true);
+        
+        //jobbra rendez
+        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
+        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
+
+        for (int i = 0; i < getColumnCount(); i++) {
+            if(getColumnClass(i).equals(Integer.class)){
+                getColumnModel().getColumn(i).setCellRenderer(jobbraRendez);
+            }
+        }
     }
 
 }

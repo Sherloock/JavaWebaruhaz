@@ -252,7 +252,7 @@ public final class JFMainView extends JFrame {
     }//GEN-LAST:event_btnTermekHozzaadActionPerformed
 
     private void btnKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "Biztosan ki akar lépni?", "Kilépés", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(this, "Biztosan ki akar lépni?", "Kilépés", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnKilepesActionPerformed

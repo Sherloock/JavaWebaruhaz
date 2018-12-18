@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -262,7 +261,7 @@ public class Modell {
     }
     
      private void hibaUzenet(String hibauzenet) {
-        JOptionPane.showMessageDialog(new JFrame(), hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, hibauzenet, "Hiba!", JOptionPane.ERROR_MESSAGE);
     }    
      
 }

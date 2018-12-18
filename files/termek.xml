@@ -194,15 +194,7 @@
         <Kep>.images/testapolo.jpg</Kep>
         <Ar>1050</Ar>
     </Termek>
-	<Termek>
-        <Id>26</Id>
-        <Telepules>Aba</Telepules>
-        <Nev>Dezodor</Nev>   
-        <Kategoria>Tisztálkodószer</Kategoria>
-        <Leiras>Értékes bioaktív összetevőket tartalmazó natúr dezodor.Nem tömíti el a pórusokat, a verejtékben található baktériumok hatástalanításával gátolja a nemkívánt testszag kialakulását, miközben a bőr szabadon lélegzik.</Leiras>
-        <Kep>.images/dezodor.png</Kep>
-        <Ar>2940</Ar>
-    </Termek>
+	
 	<Termek>
         <Id>27</Id>
         <Telepules>Nagykáta</Telepules>
@@ -239,15 +231,7 @@
         <Kep>.images/kezkrem.jpg</Kep>
         <Ar>724</Ar>
     </Termek>
-	<Termek>
-        <Id>31</Id>
-        <Telepules>Nagykáta</Telepules>
-        <Nev>Fareszelő készlet</Nev>
-        <Kategoria>Barkács eszköz</Kategoria>
-        <Leiras>200 mm hosszúságú kerek, félkerek és lapos reszelő.</Leiras>
-        <Kep>.images/fareszelokeszlet.jpg</Kep>  
-        <Ar>3139</Ar> 
-    </Termek>
+	
 	<Termek>
         <Id>32</Id>
         <Telepules>Fertőd</Telepules>
@@ -257,15 +241,7 @@
         <Kep>.images/oblitoszer.jpg</Kep>
         <Ar>724</Ar>
     </Termek>
-	<Termek>
-        <Id>33</Id>
-        <Telepules>Kenderes</Telepules>
-        <Nev>Díszgömb</Nev>
-        <Kategoria>Dísztárgy</Kategoria>
-        <Leiras>9×9-es méretű kerámia díszdömb.</Leiras>
-        <Kep>.images/diszgomb.jpg</Kep>
-        <Ar>4305</Ar>
-    </Termek>
+	
 	<Termek>
         <Id>34</Id>
         <Telepules>Emőd</Telepules>
@@ -275,15 +251,7 @@
         <Kep>.images/szekreny.jpg</Kep>
         <Ar>22365</Ar>
     </Termek>
-	<Termek>
-        <Id>35</Id>
-        <Telepules>Kiskunhalas</Telepules>
-        <Nev>Dekorációs madár</Nev>
-        <Kategoria>Dísztárgy</Kategoria>
-        <Leiras>Modern 15×5,5-ös méretű dekorációs madár dróton.</Leiras>
-        <Kep>.images/diszmadar.jpg</Kep>
-        <Ar>3675</Ar>
-    </Termek>
+	
 	<Termek>
         <Id>36</Id>
         <Telepules>Kőszeg</Telepules>

@@ -1,6 +1,8 @@
 package aruhaz;
 
 public class Termek {
+    private static int kovID;
+    //TODO: autoincrement here
     
     public final int ID;
     private String telepules;

@@ -1,5 +1,6 @@
 package view;
 
+import aruhaz.Termek;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.Image;
@@ -14,6 +15,8 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -28,6 +31,23 @@ public class JDHozzaadas extends JDialog {
         this.view = view;
         kategoriakFeltolt();
         telepulesekFeltolt();
+
+        //karakterszámláló
+        taLeiras.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+               karakterszamlaloFrissitese();
+            }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                karakterszamlaloFrissitese();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
     }
 
     private void kategoriakFeltolt() {//kategóriák lenyíló menü feltöltése     
@@ -43,6 +63,11 @@ public class JDHozzaadas extends JDialog {
         view.getModell().getTelepulesek().forEach((kategoria) -> {
             cbTelepules.addItem(kategoria);
         });
+    }
+    
+     private void karakterszamlaloFrissitese() {
+        lbKarakterSzam.setText(taLeiras.getText().length() + "");
+        lbKarakterSzam.setForeground(ellenorizLeirasHossz() ? Color.black : Color.red);
     }
 
     @SuppressWarnings("unchecked")
@@ -107,17 +132,6 @@ public class JDHozzaadas extends JDialog {
         taLeiras.setLineWrap(true);
         taLeiras.setRows(5);
         taLeiras.setTabSize(25);
-        taLeiras.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                taLeirasKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                taLeirasKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                taLeirasKeyTyped(evt);
-            }
-        });
         spLeiras.setViewportView(taLeiras);
 
         tfNev.setToolTipText("Minta János");
@@ -276,11 +290,20 @@ public class JDHozzaadas extends JDialog {
         }
     }//GEN-LAST:event_btnTallozActionPerformed
 
-    private boolean ellenorizNev() {
+    private boolean ellenorizNevLetezik() {
+        for (Termek termek : view.getModell().getTermekek()) {
+            if(termek.getNev().equals(tfNev.getText())){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean ellenorizNevHossz() {
         return (tfNev.getText().length() > 0 && tfNev.getText().length() <= 30);
     }
 
-    private boolean ellenorizLeiras() {
+    private boolean ellenorizLeirasHossz() {
         return (taLeiras.getText().length() >= 30 && taLeiras.getText().length() <= 200);
     }
 
@@ -305,8 +328,11 @@ public class JDHozzaadas extends JDialog {
 
     private boolean ellenorzes() {
         String hiba = "";
-        if (!ellenorizNev()) {
+        if (!ellenorizNevHossz()) {
             hiba += "A névnek minimum 1 maximum 30 karakter hosszúnak kell lennie!\n";
+        }
+        if(!ellenorizNevLetezik()){
+            hiba += "A névnek egyedinek kell lennie! Ez a név már létezik!\n";
         }
         if (!ellenorizAr()) {
             hiba += "Az árnak pozitív számnak kell lennie!\n";
@@ -314,7 +340,7 @@ public class JDHozzaadas extends JDialog {
         if (!ellenorizFile()) {
             hiba += "Kötelező képet feltölteni!\n";
         }
-        if (!ellenorizLeiras()) {
+        if (!ellenorizLeirasHossz()) {
             hiba += "A leírásnak minimum 30 maximum 200 karakter hosszúnak kell lennie!\n";
         }
         if (hiba.isEmpty()) {
@@ -328,14 +354,14 @@ public class JDHozzaadas extends JDialog {
     private void btnHozzaadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHozzaadActionPerformed
         if (ellenorzes()) {
             view.getModell().termekHozzadasa(
-                cbTelepules.getSelectedItem().toString(),
-                tfNev.getText(),
-                cbKategoria.getSelectedItem().toString(),
-                taLeiras.getText(),
-                tfAr.getText(),
-                tfKepPath.getText()
+                    cbTelepules.getSelectedItem().toString(),
+                    tfNev.getText(),
+                    cbKategoria.getSelectedItem().toString(),
+                    taLeiras.getText(),
+                    tfAr.getText(),
+                    tfKepPath.getText()
             );
-            ((JFMainView)this.getParent()).adatokFrissitese();
+            ((JFMainView) this.getParent()).adatokFrissitese();
             this.dispose();
         }
     }//GEN-LAST:event_btnHozzaadActionPerformed
@@ -343,21 +369,6 @@ public class JDHozzaadas extends JDialog {
     private void btnKilepesFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKilepesFActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnKilepesFActionPerformed
-
-    private void taLeirasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taLeirasKeyTyped
-        lbKarakterSzam.setText(taLeiras.getText().length() + "");
-        lbKarakterSzam.setForeground(ellenorizLeiras() ? Color.black : Color.red);
-    }//GEN-LAST:event_taLeirasKeyTyped
-
-    private void taLeirasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taLeirasKeyPressed
-        lbKarakterSzam.setText(taLeiras.getText().length() + "");
-        lbKarakterSzam.setForeground(ellenorizLeiras() ? Color.black : Color.red);
-    }//GEN-LAST:event_taLeirasKeyPressed
-
-    private void taLeirasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_taLeirasKeyReleased
-        lbKarakterSzam.setText(taLeiras.getText().length() + "");
-        lbKarakterSzam.setForeground(ellenorizLeiras() ? Color.black : Color.red);
-    }//GEN-LAST:event_taLeirasKeyReleased
 
     private void btnKepMegnyitasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKepMegnyitasaActionPerformed
         try {

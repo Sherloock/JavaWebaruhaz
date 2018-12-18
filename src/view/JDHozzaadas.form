@@ -196,11 +196,6 @@
             <Property name="rows" type="int" value="5"/>
             <Property name="tabSize" type="int" value="25"/>
           </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyPressed"/>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyReleased"/>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="taLeirasKeyTyped"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

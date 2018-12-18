@@ -2,11 +2,10 @@ package view;
 
 import aruhaz.Modell;
 import aruhaz.Tablazat;
+import static aruhaz.Tablazat.*;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class JPKategoriaStatisztika extends javax.swing.JPanel {
@@ -25,7 +24,12 @@ public class JPKategoriaStatisztika extends javax.swing.JPanel {
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override
             public Class getColumnClass(int column) {
-                return (column >= 1 && column <= 3) ? Integer.class : String.class;
+                String oszlopNeve = getColumnName(column);
+                if (oszlopNeve.equals(T_SZAMA) || oszlopNeve.equals(T_MIN) || oszlopNeve.equals(T_MAX)) {
+                    return Integer.class;
+                } else {
+                    return String.class;
+                }
             }
         };
 
@@ -36,15 +40,6 @@ public class JPKategoriaStatisztika extends javax.swing.JPanel {
         
         add(tabla.getTableHeader(), BorderLayout.PAGE_START);
         add(gorgetoSav, BorderLayout.CENTER);
-
-         
-        //jobbra rendez
-        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
-        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
-
-        tabla.getColumnModel().getColumn(1).setCellRenderer(jobbraRendez);
-        tabla.getColumnModel().getColumn(2).setCellRenderer(jobbraRendez);
-        tabla.getColumnModel().getColumn(3).setCellRenderer(jobbraRendez);
 
         tabla.revalidate();
     }

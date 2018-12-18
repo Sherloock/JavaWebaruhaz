@@ -1,5 +1,6 @@
 package view;
 
+import static aruhaz.Tablazat.*;
 import aruhaz.Modell;
 import aruhaz.Tablazat;
 import java.awt.BorderLayout;
@@ -15,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -35,12 +35,13 @@ public class JPOsszesTermek extends javax.swing.JPanel {
         float[] termekekTablaOszlopszelesseg = {2.0f, 8.0f, 14.0f, 9.0f, 43.0f, 6.0f, 18.0f};
 
         Tablazat tablazat = modell.getStatisztika().osszesAdat();
+        tablazat.rendezes(0);
         
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override
             public Class getColumnClass(int column) {
                 String oszlopNeve = getColumnName(column);
-                if (oszlopNeve.equals("Ár") || oszlopNeve.equals("Id")) {
+                if (oszlopNeve.equals(AR) || oszlopNeve.equals(ID)) {
                     return Integer.class;
                 } else {
                     return String.class;
@@ -66,7 +67,7 @@ public class JPOsszesTermek extends javax.swing.JPanel {
                 int row = tabla.rowAtPoint(evt.getPoint());
                 int col = tabla.columnAtPoint(evt.getPoint());
 
-                if (tabla.getColumnName(col).equals(tablazat.getFejlec()[6])) { //képek 6. oszlop
+               if (tabla.getColumnName(col).equals(KEP)) { 
                     int id = (int) tabla.getValueAt(row, 0); //id 0.oszlop
 
                     String path = modell.getTermekById(id).getKep();
@@ -91,13 +92,6 @@ public class JPOsszesTermek extends javax.swing.JPanel {
             }
         });
 
-        //jobbra rendez
-        DefaultTableCellRenderer jobbraRendez = new DefaultTableCellRenderer();
-        jobbraRendez.setHorizontalAlignment(JLabel.RIGHT);
-
-        tabla.getColumnModel().getColumn(0).setCellRenderer(jobbraRendez);
-        tabla.getColumnModel().getColumn(5).setCellRenderer(jobbraRendez);
-        
         revalidate();
     }
 
