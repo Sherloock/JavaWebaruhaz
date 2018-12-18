@@ -31,8 +31,9 @@ public class MyJTable extends JTable {
         Component c = super.prepareRenderer(renderer, row, column);
 
         //  szinez
+        int myGray = 220;
         if (!isRowSelected(row)) {
-            c.setBackground(row % 2 == 0 ? getBackground() : Color.LIGHT_GRAY);
+            c.setBackground(row % 2 == 0 ? getBackground() : new Color(myGray,myGray,myGray));
         }
         return c;
     }

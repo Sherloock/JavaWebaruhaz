@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Termekek kovId="51">
     
-    
+    <Termek>
+        <Id>1</Id>
+        <Telepules>Aba</Telepules>
+        <Nev>Alkoholos ablaktisztító</Nev>
+        <Kategoria>Tisztítószer</Kategoria>
+        <Leiras>500 ml-es alkoholos ablaktisztító.Folt és homálymentesen tisztít. Habosító szórófejes és utántöltő változatban.</Leiras>
+        <Kep>.images/ablaktisztito.jpg</Kep>
+        <Ar>400</Ar>
+    </Termek>
 	<Termek>
         <Id>2</Id>
         <Telepules>Répcelak</Telepules>
@@ -155,7 +163,15 @@
         <Kep>.images/popszegecshuzofogo.jpg</Kep>
         <Ar>6800</Ar>
     </Termek>
-    
+    <Termek>
+        <Id>19</Id>
+        <Telepules>Csepreg</Telepules>
+        <Nev>Ajtódísz</Nev>
+        <Kategoria>Vegyszer</Kategoria>
+        <Leiras>26 x 8 cm-es fából készült ajtódísz akasztóval a tetején. </Leiras>
+        <Kep>.images/ajtodisz.jpg</Kep>
+        <Ar>2300</Ar>
+    </Termek>
     <Termek>
         <Id>20</Id>
         <Telepules>Nagykáta</Telepules>
