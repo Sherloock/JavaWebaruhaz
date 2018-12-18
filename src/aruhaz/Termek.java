@@ -12,7 +12,7 @@ public class Termek {
     private String kep;
     
     
-    //modellről konstruktor
+    //modellből konstruktor
     Termek(String telepules, String nev, String leiras, String kategoria, String ar, String kep) {
         this(telepules, nev, leiras, kategoria, Integer.parseInt(ar), kep);
     }

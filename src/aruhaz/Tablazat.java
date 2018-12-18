@@ -39,7 +39,7 @@ public class Tablazat {
         return adatok;
     }
 
-    //alapból növekvő sorrend
+    //default növekvő sorrend
     public void rendezes(int oszlop) {
         rendezes(oszlop, true);
     }

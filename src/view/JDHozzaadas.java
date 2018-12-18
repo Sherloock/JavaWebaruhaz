@@ -1,6 +1,5 @@
 package view;
 
-import aruhaz.Termek;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.Image;
@@ -291,10 +290,8 @@ public class JDHozzaadas extends JDialog {
     }//GEN-LAST:event_btnTallozActionPerformed
 
     private boolean ellenorizNevLetezik() {
-        for (Termek termek : view.getModell().getTermekek()) {
-            if(termek.getNev().equals(tfNev.getText())){
-                return false;
-            }
+        if (!view.getModell().getTermekek().stream().noneMatch((termek) -> (termek.getNev().equals(tfNev.getText())))) {
+            return false;
         }
         return true;
     }

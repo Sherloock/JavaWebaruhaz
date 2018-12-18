@@ -68,8 +68,4 @@ public class Modell {
     public ArrayList<String> getTelepulesek() {
         return TELEPULESEK;
     }
-    
-    public Statisztika getStatisztika(){
-        return new Statisztika(this);
-    }     
 }

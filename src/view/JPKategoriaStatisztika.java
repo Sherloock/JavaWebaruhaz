@@ -1,6 +1,7 @@
 package view;
 
 import aruhaz.Modell;
+import aruhaz.Statisztika;
 import aruhaz.Tablazat;
 import static aruhaz.Tablazat.*;
 import java.awt.BorderLayout;
@@ -19,7 +20,7 @@ public class JPKategoriaStatisztika extends javax.swing.JPanel {
      public void frissit() {
         removeAll();
         
-        Tablazat tablazat = modell.getStatisztika().kategoriaDbMinMaxAr();
+        Tablazat tablazat = new Statisztika(modell).kategoriaDbMinMaxAr();
         
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
             @Override

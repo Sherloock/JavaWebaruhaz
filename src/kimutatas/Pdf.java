@@ -30,7 +30,7 @@ public class Pdf {
         Font FONT_KOZEPES = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
         Font FONT_KICSI = FontFactory.getFont(FontFactory.COURIER, 8, BaseColor.BLACK);
 
-        Statisztika statisztika = modell.getStatisztika();
+        Statisztika statisztika = new Statisztika(modell);
         File file = new File(absPath + ".pdf");
         Document document = new Document();
         try {

@@ -2,6 +2,7 @@ package view;
 
 import aruhaz.Fajl;
 import aruhaz.Modell;
+import aruhaz.Statisztika;
 import kimutatas.Pdf;
 import aruhaz.Termek;
 import com.sun.xml.internal.messaging.saaj.soap.ImageDataContentHandler;
@@ -270,7 +271,7 @@ public final class JFMainView extends JFrame {
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
     private void btnDiagramokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagramokActionPerformed
-        new JDDiagram(this, modell.getStatisztika()).setVisible(true);
+        new JDDiagram(this,new Statisztika(modell)).setVisible(true);
     }//GEN-LAST:event_btnDiagramokActionPerformed
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed

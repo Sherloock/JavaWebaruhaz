@@ -2,6 +2,7 @@ package view;
 
 import static aruhaz.Tablazat.*;
 import aruhaz.Modell;
+import aruhaz.Statisztika;
 import aruhaz.Tablazat;
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -34,7 +35,7 @@ public class JPOsszesTermek extends javax.swing.JPanel {
         
         float[] termekekTablaOszlopszelesseg = {2.0f, 8.0f, 14.0f, 9.0f, 43.0f, 6.0f, 18.0f};
 
-        Tablazat tablazat = modell.getStatisztika().osszesAdat();
+        Tablazat tablazat = new Statisztika(modell).osszesAdat();
         tablazat.rendezes(0);
         
         DefaultTableModel tablaModell = new DefaultTableModel(tablazat.getAdatok(), tablazat.getFejlec()) {
