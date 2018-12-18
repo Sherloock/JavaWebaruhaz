@@ -146,7 +146,7 @@ public class JDArmodositas extends JDialog {
 
             int indexAbc = cbTermekek.getSelectedIndex();
 
-            //Összes //   egy termék
+            //Összes(-1) vagy egy termék
             int id = (indexAbc == 0) ? -1 : Integer.parseInt(termekekStrings.get(indexAbc - 1).split(";")[1]);
 
             if (JOptionPane.showConfirmDialog(this, "Biztos meg akarja változtatni a kiválaszott termék árát? ("
@@ -157,7 +157,9 @@ public class JDArmodositas extends JDialog {
                 if (id == -1) {
                     modell.arvaltoztatas(valtoztatasMerteke);
                     labelArValtUzenet.setText("Az összes termék ára megváltozott " + sliderArValt.getValue() + "%-al!");
-                } //egy termék
+                } 
+
+                //egy termék
                 else {
                     int elozoAr = modell.getTermekById(id).getAr();
                     modell.arvaltoztatas(id, valtoztatasMerteke);
@@ -166,7 +168,7 @@ public class JDArmodositas extends JDialog {
                             + elozoAr + " --> " + modell.getTermekById(id).getAr() + ")");
 
                 }
-                ((JFMainView)this.getParent()).adatokFrissitese();
+                view.adatokFrissitese();
             }
         }
     }//GEN-LAST:event_btnArValtoztatasActionPerformed

@@ -28,7 +28,13 @@ public class Tablazat {
         this.adatok = adatok;
         X = adatok[0].length;
         Y = adatok.length;
-        rendezes(1, false); 
+        alapRendezes();
+    }
+
+   
+    private void alapRendezes() {
+        rendezes(1, false);  //2. oszlop szerint csökkenő sorrend
+        //rendezes(0, true);  // 1. oszlop szerint növekvő sorrend
     }
 
     public Object[] getFejlec() {
@@ -53,9 +59,7 @@ public class Tablazat {
                 } else {
                     Arrays.sort(adatok, Comparator.comparing((Object[] entry) -> (Integer) entry[oszlop]).reversed());
                 }
-            }
-            
-            else if (adatok[0][oszlop].getClass().equals(String.class)) {
+            } else if (adatok[0][oszlop].getClass().equals(String.class)) {
                 if (novekvoSorrend) {
                     Arrays.sort(adatok, Comparator.comparing((Object[] entry) -> (String) entry[oszlop]));
                 } else {
@@ -64,4 +68,5 @@ public class Tablazat {
             }
         }
     }
+
 }

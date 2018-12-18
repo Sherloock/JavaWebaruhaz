@@ -27,15 +27,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class JFMainView extends JFrame {
-    
-    //MAIN
-    public static void main(String[] args) {
-        JFMainView v = new JFMainView(new Modell(new Fajl("./files/termek.xml", "./files/kategoria.xml")));
-        v.setVisible(true);
-    }
-    
 
-    private ArrayList<String> termekekStrings = new ArrayList<>();
+    private ArrayList<String> termekekStrings;
     private final Modell modell;
     private JPOsszesTermek pTermekek;
     private JPKategoriaStatisztika pKategorizal;
@@ -271,7 +264,7 @@ public final class JFMainView extends JFrame {
     }//GEN-LAST:event_btnArakModositasActionPerformed
 
     private void btnDiagramokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagramokActionPerformed
-        new JDDiagram(this,new Statisztika(modell)).setVisible(true);
+        new JDDiagram(this, new Statisztika(modell)).setVisible(true);
     }//GEN-LAST:event_btnDiagramokActionPerformed
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
@@ -334,7 +327,11 @@ public final class JFMainView extends JFrame {
     public Modell getModell() {
         return modell;
     }
-
-
+    
+    //MAIN
+    public static void main(String[] args) {
+        JFMainView v = new JFMainView(new Modell(new Fajl("./files/termek.xml", "./files/kategoria.xml")));
+        v.setVisible(true);
+    }
 
 }
