@@ -1,8 +1,7 @@
 package aruhaz;
 
 public class Termek {
-    private static int kovID;
-    //TODO: autoincrement here
+    private static int kovID = 1;
     
     public final int ID;
     private String telepules;
@@ -12,6 +11,23 @@ public class Termek {
     private int ar;
     private String kep;
     
+    
+    //modellről konstruktor
+    Termek(String telepules, String nev, String leiras, String kategoria, String ar, String kep) {
+        this(telepules, nev, leiras, kategoria, Integer.parseInt(ar), kep);
+    }
+    
+    Termek(String telepules, String nev, String leiras, String kategoria, int ar, String kep) {
+        this.ID = kovID++;
+        this.telepules = telepules;
+        this.nev = nev;
+        this.kategoria = kategoria;
+        this.leiras = leiras;
+        setAr(ar);
+        this.kep = kep;
+    }
+    
+    //fajlból konstruktor
     Termek(String ID, String telepules, String nev, String leiras, String kategoria, String ar, String kep) {
         this(Integer.parseInt(ID), telepules, nev, leiras, kategoria, Integer.parseInt(ar), kep);
     }
@@ -87,4 +103,10 @@ public class Termek {
     public void setKep(String kep) {
         this.kep = kep;
     }
+
+    public static void setKovID(int kovID) {
+        Termek.kovID = kovID;
+    }
+    
+    
 }

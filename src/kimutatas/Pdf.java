@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 
 public class Pdf {
 
-    public static boolean kimutatas(Modell modell, String absPath) {
+    public static boolean kimutatas(JFrame parent, Modell modell, String absPath) {
         Font FONT_NAGY = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
         Font FONT_KOZEPES = FontFactory.getFont(FontFactory.COURIER, 12, BaseColor.BLACK);
         Font FONT_KICSI = FontFactory.getFont(FontFactory.COURIER, 8, BaseColor.BLACK);
@@ -92,7 +92,7 @@ public class Pdf {
 
             document.close();
 
-            if (JOptionPane.showConfirmDialog(new JFrame(),
+            if (JOptionPane.showConfirmDialog(parent,
                     "Fájl elmentve:\n" + file + "\n\nMegnyitja?\n", "Fájl mentése", JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
                 if (Desktop.isDesktopSupported()) {
                     Desktop.getDesktop().open(file);
@@ -101,9 +101,9 @@ public class Pdf {
 
             return true;
         } catch (FileNotFoundException | DocumentException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, "Érvénytelen fájlnév!", "Hiba!", JOptionPane.ERROR_MESSAGE);
         }
         return false;
     }

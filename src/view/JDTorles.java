@@ -91,7 +91,7 @@ public class JDTorles extends JDialog {
 
         if (JOptionPane.showConfirmDialog(this, "Biztos törölni akarja \""+ nev + "\" nevű terméket? (Azonosító:" + id + ")", "Termék törlése", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-            view.getModell().termekTorlese(id);
+            view.getModell().termekTorlese(Integer.parseInt(id));
             ((JFMainView)this.getParent()).adatokFrissitese();
             this.dispose();
         }

@@ -1,5 +1,6 @@
 package view;
 
+import aruhaz.Fajl;
 import aruhaz.Modell;
 import kimutatas.Pdf;
 import aruhaz.Termek;
@@ -25,6 +26,13 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public final class JFMainView extends JFrame {
+    
+    //MAIN
+    public static void main(String[] args) {
+        JFMainView v = new JFMainView(new Modell(new Fajl("./files/termek.xml", "./files/kategoria.xml")));
+        v.setVisible(true);
+    }
+    
 
     private ArrayList<String> termekekStrings = new ArrayList<>();
     private final Modell modell;
@@ -280,7 +288,7 @@ public final class JFMainView extends JFrame {
 
             if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
                 File fajlNev = chooser.getSelectedFile();
-                sikeres = Pdf.kimutatas(modell, fajlNev.getAbsolutePath());
+                sikeres = Pdf.kimutatas(this, modell, fajlNev.getAbsolutePath());
             } else {
                 return;
             }
